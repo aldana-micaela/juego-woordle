@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -35,6 +36,14 @@ public class JuegoInterface {
 	 * Create the application.
 	 */
 	public JuegoInterface() {
+		try{
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+
+		}
+		catch (Exception e)	
+		{
+			e.printStackTrace();
+		}
 		initialize();
 	}
 
@@ -43,6 +52,7 @@ public class JuegoInterface {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.PINK);
 		frame.setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,6 +68,7 @@ public class JuegoInterface {
 		textPalabraIngresada.setColumns(10);
 		
 		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.setBackground(Color.WHITE);
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -66,11 +77,11 @@ public class JuegoInterface {
 		frame.getContentPane().add(btnAceptar);
 		
 		JLabel textIntentos = new JLabel("Intentos:");
-		textIntentos.setBounds(295, 11, 46, 14);
+		textIntentos.setBounds(295, 11, 57, 14);
 		frame.getContentPane().add(textIntentos);
 		
 		JLabel cantidadDeIntentos = new JLabel("0");
-		cantidadDeIntentos.setBounds(342, 11, 17, 14);
+		cantidadDeIntentos.setBounds(348, 11, 17, 14);
 		frame.getContentPane().add(cantidadDeIntentos);
 	}
 
