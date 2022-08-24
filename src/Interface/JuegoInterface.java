@@ -13,7 +13,7 @@ import java.awt.Color;
 public class JuegoInterface {
 
 	private JFrame frame;
-	private JTextField textField;
+	private JTextField textPalabraIngresada;
 
 	/**
 	 * Launch the application.
@@ -43,27 +43,35 @@ public class JuegoInterface {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBackground(Color.MAGENTA);
+		frame.setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Ingresar palabra:");
-		lblNewLabel.setBounds(45, 24, 97, 24);
-		frame.getContentPane().add(lblNewLabel);
+		JLabel textIngresarPalabra = new JLabel("Ingresar palabra:");
+		textIngresarPalabra.setBounds(30, 26, 97, 24);
+		frame.getContentPane().add(textIngresarPalabra);
 		
-		textField = new JTextField();
-		textField.setBounds(193, 26, 109, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		textPalabraIngresada = new JTextField();
+		textPalabraIngresada.setBounds(153, 28, 109, 20);
+		frame.getContentPane().add(textPalabraIngresada);
+		textPalabraIngresada.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Aceptar");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(193, 74, 89, 23);
-		frame.getContentPane().add(btnNewButton);
+		btnAceptar.setBounds(163, 63, 89, 23);
+		frame.getContentPane().add(btnAceptar);
+		
+		JLabel textIntentos = new JLabel("Intentos:");
+		textIntentos.setBounds(295, 11, 46, 14);
+		frame.getContentPane().add(textIntentos);
+		
+		JLabel cantidadDeIntentos = new JLabel("0");
+		cantidadDeIntentos.setBounds(342, 11, 17, 14);
+		frame.getContentPane().add(cantidadDeIntentos);
 	}
 
 }
