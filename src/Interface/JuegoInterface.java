@@ -19,6 +19,7 @@ public class JuegoInterface {
 	private JFrame frame;
 	private JTextField textPalabraIngresada;
 	private EstadoDeJuego juego;
+	private static MenuInterface menu;
 
 	/**
 	 * Launch the application.
@@ -27,8 +28,9 @@ public class JuegoInterface {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					JuegoInterface window = new JuegoInterface();
-					window.frame.setVisible(true);
+//					JuegoInterface window = new JuegoInterface();
+//					window.frame.setVisible(true);
+					menu = new MenuInterface();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -81,6 +83,7 @@ public class JuegoInterface {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setVisible(true);
 		
 		JLabel textIngresarPalabra = new JLabel("Ingresar palabra:");
 		textIngresarPalabra.setBounds(30, 26, 97, 24);
