@@ -13,11 +13,17 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import com.sun.tools.javac.Main;
+
+import Juego.EstadoDeJuego;
+
 import java.awt.FlowLayout;
+import javax.swing.JMenuBar;
 
 public class MenuInterface {
 
 	private JFrame frame;
+
+
 
 
 	
@@ -56,7 +62,11 @@ public class MenuInterface {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		//Juego
 		crearBotonIniciarJuego();
+		
+		
+		
 		
 		
 		JLabel lblNewLabel = new JLabel("Men\u00FA Principal");
@@ -66,15 +76,17 @@ public class MenuInterface {
 		
 		JLabel Imagen = new JLabel("");
 		Imagen.setIcon(new ImageIcon(MenuInterface.class.getResource("/Img/wordle-logo2.png")));
-		Imagen.setBounds(0, -40, 434, 335);
+		Imagen.setBounds(10, -34, 434, 335);
 		frame.getContentPane().add(Imagen);
+		
+	
 		
 
 	}
 	
 	private void crearBotonIniciarJuego() {
 		JButton btnIniciarJuego = new JButton("Jugar");
-		btnIniciarJuego.setBackground(new Color(255, 255, 204));
+		btnIniciarJuego.setBackground(Color.GREEN);
 		btnIniciarJuego.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new JuegoInterface();
@@ -85,5 +97,4 @@ public class MenuInterface {
 		btnIniciarJuego.setBounds(160, 224, 117, 26);
 		frame.getContentPane().add(btnIniciarJuego);
 	}
-
 }

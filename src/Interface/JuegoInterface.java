@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+
+import Juego.EstadoDeJuego;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -15,6 +18,7 @@ public class JuegoInterface {
 
 	private JFrame frame;
 	private JTextField textPalabraIngresada;
+	private EstadoDeJuego juego;
 
 	/**
 	 * Launch the application.
@@ -36,14 +40,7 @@ public class JuegoInterface {
 	 * Create the application.
 	 */
 	public JuegoInterface() {
-		try{
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-
-		}
-		catch (Exception e)	
-		{
-			e.printStackTrace();
-		}
+		
 		initialize();
 	}
 
@@ -51,21 +48,12 @@ public class JuegoInterface {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.PINK);
-		frame.setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
 		
-		JLabel textIngresarPalabra = new JLabel("Ingresar palabra:");
-		textIngresarPalabra.setBounds(30, 26, 97, 24);
-		frame.getContentPane().add(textIngresarPalabra);
+		crearDiseñoJuego();
 		
-		textPalabraIngresada = new JTextField();
-		textPalabraIngresada.setBounds(153, 28, 109, 20);
-		frame.getContentPane().add(textPalabraIngresada);
-		textPalabraIngresada.setColumns(10);
+		//inicializo
+		
+		juego= new EstadoDeJuego(); 
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.setBackground(Color.WHITE);
@@ -84,6 +72,24 @@ public class JuegoInterface {
 		JLabel cantidadDeIntentos = new JLabel("0");
 		cantidadDeIntentos.setBounds(348, 11, 17, 14);
 		frame.getContentPane().add(cantidadDeIntentos);
+	}
+
+	private void crearDiseñoJuego() {
+		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.PINK);
+		frame.setBackground(Color.WHITE);
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel textIngresarPalabra = new JLabel("Ingresar palabra:");
+		textIngresarPalabra.setBounds(30, 26, 97, 24);
+		frame.getContentPane().add(textIngresarPalabra);
+		
+		textPalabraIngresada = new JTextField();
+		textPalabraIngresada.setBounds(153, 28, 109, 20);
+		frame.getContentPane().add(textPalabraIngresada);
+		textPalabraIngresada.setColumns(10);
 	}
 
 }
