@@ -71,6 +71,7 @@ public class JuegoInterface {
 		btnAceptar.setBackground(Color.WHITE);
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		btnAceptar.setBounds(163, 63, 89, 23);

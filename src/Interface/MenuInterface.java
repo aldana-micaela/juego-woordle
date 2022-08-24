@@ -19,6 +19,7 @@ public class MenuInterface {
 
 	private JFrame frame;
 
+
 	
 
 	/**
@@ -76,7 +77,7 @@ public class MenuInterface {
 		btnIniciarJuego.setBackground(new Color(255, 255, 204));
 		btnIniciarJuego.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new Main();
+				new JuegoInterface();
 				frame.setVisible(false);
 			}
 		});
