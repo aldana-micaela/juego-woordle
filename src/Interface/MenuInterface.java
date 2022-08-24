@@ -63,12 +63,10 @@ public class MenuInterface {
 		lblNewLabel.setBounds(126, 0, 206, 30);
 		frame.getContentPane().add(lblNewLabel);
 		
-
-		
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(MenuInterface.class.getResource("/Img/wordle-logo2.png")));
-		lblNewLabel_2.setBounds(60, 22, 306, 217);
-		frame.getContentPane().add(lblNewLabel_2);
+		JLabel Imagen = new JLabel("");
+		Imagen.setIcon(new ImageIcon(MenuInterface.class.getResource("/Img/wordle-logo2.png")));
+		Imagen.setBounds(0, -40, 434, 335);
+		frame.getContentPane().add(Imagen);
 		
 
 	}
