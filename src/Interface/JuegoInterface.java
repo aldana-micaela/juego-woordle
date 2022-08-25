@@ -47,8 +47,8 @@ public class JuegoInterface {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-//					JuegoInterface window = new JuegoInterface();
-//					window.frame.setVisible(true);
+					JuegoInterface window = new JuegoInterface();
+					window.frame.setVisible(true);
 
 					 menu = new MenuInterface();
 
