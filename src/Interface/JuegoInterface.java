@@ -118,12 +118,12 @@ public class JuegoInterface {
 						}
 						
 						else if(juego.letras.get(i) == 2) {
-							cambiarColor(i, Color.blue, letraQueSeVerifica.toString());
+							cambiarColor(i, Color.yellow, letraQueSeVerifica.toString());
 						}
 
 						else {
 						//	letraQueSeVerifica.append(letra);
-							cambiarColor(i, Color.red, letraQueSeVerifica.toString());
+							cambiarColor(i, Color.gray, letraQueSeVerifica.toString());
 							//letraQueSeVerifica.deleteCharAt(0);
 							
 
