@@ -116,6 +116,10 @@ public class JuegoInterface {
 							
 
 						}
+						
+						else if(juego.letras.get(i) == 2) {
+							cambiarColor(i, Color.blue, letraQueSeVerifica.toString());
+						}
 
 						else {
 						//	letraQueSeVerifica.append(letra);
@@ -128,6 +132,7 @@ public class JuegoInterface {
 					}
 				}
 				textField.setText(null);
+				//palabraUsuario= null;
 			}
 			
 			
@@ -141,19 +146,19 @@ public class JuegoInterface {
 
 		if (n == 0) {
 			letra0.setBackground(color);
-			letra0.setText(letra.toString());
+			//letra0.setText(letra.toString());
 		} else if (n == 1) {
 			letra1.setBackground(color);
-			letra1.setText(letra.toString());
+			//letra1.setText(letra.toString());
 		} else if (n == 2) {
 			letra2.setBackground(color);
-			letra2.setText(letra.toString());
+			//letra2.setText(letra.toString());
 		} else if (n == 3) {
 			letra3.setBackground(color);
-			letra3.setText(letra.toString());
-		} else if (n==4) {
+			//letra3.setText(letra.toString());
+		} else if(n==4){
 			letra4.setBackground(color);
-			letra4.setText(letra.toString());
+			//letra4.setText(letra.toString());
 		}
 	}
 

@@ -50,6 +50,20 @@ public class EstadoDeJuego {
 	}
 	
 	
+	private boolean estaLaLetraEnLaPalabra(char letra) {
+		
+		
+		
+		for (int i = 0; i <palabra.length();i++) {
+			if (palabra.charAt(i) == letra) {
+				return true;
+			}
+		}
+		return false;
+		
+	}
+	
+	
 	public void verificarPalabra() {
 		
 		palabraDelUsuario.toLowerCase();
@@ -58,6 +72,10 @@ public class EstadoDeJuego {
 				
 				if(palabraDelUsuario.charAt(i) == palabra.charAt(i)) {
 					letras.add(i, 1);
+				}
+				
+				else if(estaLaLetraEnLaPalabra(palabraDelUsuario.charAt(i))) {
+					letras.add(i, 2);
 				}
 				
 				else {
