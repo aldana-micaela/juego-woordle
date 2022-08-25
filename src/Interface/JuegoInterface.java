@@ -1,33 +1,21 @@
 package Interface;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
-
 import Juego.EstadoDeJuego;
-
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JTextPane;
 import java.awt.Font;
-import java.awt.Frame;
-
-import javax.swing.DropMode;
-import javax.swing.JTable;
-import javax.swing.JSpinner;
-import javax.swing.Box;
 
 public class JuegoInterface {
 
 	private JFrame frame;
-	private JTextField textPalabraIngresada;
 	private EstadoDeJuego juego;
-	private JTable table;
 	private JTextField textField;
 	private JButton btnAceptar;
 	private JLabel textIntentos;
@@ -50,7 +38,7 @@ public class JuegoInterface {
 //					JuegoInterface window = new JuegoInterface();
 //					window.frame.setVisible(true);
 
-					 menu = new MenuInterface();
+					menu = new MenuInterface();
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -71,26 +59,24 @@ public class JuegoInterface {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-
 		crearDiseñoJuego();
 
+		juego = new EstadoDeJuego();			
+
 		// inicializo
-		juego = new EstadoDeJuego();
-		
+
 		JLabel palabraERA = new JLabel(juego.palabra);
 		palabraERA.setBounds(315, 67, 57, 14);
 		frame.getContentPane().add(palabraERA);
 		
-		
-
 
 		btnAceptar.addActionListener(new ActionListener() {
+			
 
 			public void actionPerformed(ActionEvent e) {
-
-				StringBuilder letraQueSeVerifica = new StringBuilder();
-				String palabraUsuario = textField.getText();
-				//char letra;
+				
+				String palabraUsuario = textField.getText().toLowerCase();
+				juego.limpiarArregloDeNumeros();
 
 				if (palabraUsuario.length() != 5) {
 					textField.setText(null);
@@ -100,66 +86,55 @@ public class JuegoInterface {
 
 				else {
 
+					char letraQueSeAgrega;
 					excepcion5Letras.setVisible(false);
-					juego.getPalabra(palabraUsuario);
-					juego.verificarPalabra();
+					juego.verificarPalabra(palabraUsuario);
 
-					for (int i = 0; i < juego.letras.size(); i++) {
+					
+					for (int i = 0; i < 5; i++) {						
+						letraQueSeAgrega = palabraUsuario.charAt(i);
 
-						//letra = palabraUsuario.charAt(i);
+						if (juego.obtenerNumero(i) == 1) {
 
-						if (juego.letras.get(i) == 1) {
-
-							//letraQueSeVerifica.append(letra);
-							cambiarColor(i, Color.green, letraQueSeVerifica.toString());
-							//letraQueSeVerifica.deleteCharAt(letra);
-							
-
-						}
-						
-						else if(juego.letras.get(i) == 2) {
-							cambiarColor(i, Color.yellow, letraQueSeVerifica.toString());
+							cambiarColor(i, Color.green, letraQueSeAgrega);
 						}
 
+						else if (juego.obtenerNumero(i) == 2) {
+							cambiarColor(i, Color.yellow, letraQueSeAgrega);
+						}
 						else {
-						//	letraQueSeVerifica.append(letra);
-							cambiarColor(i, Color.gray, letraQueSeVerifica.toString());
-							//letraQueSeVerifica.deleteCharAt(0);
-							
-
+							cambiarColor(i, Color.gray, letraQueSeAgrega);
 						}
-
 					}
 				}
 				textField.setText(null);
-				//palabraUsuario= null;
+				
 			}
-			
-			
+
 		});
-
-
-
 	}
 
-	private void cambiarColor(int n, Color color, String letra) {
+	private void cambiarColor(int n, Color color, char letra) {
 
+		String l= String.valueOf(letra);
 		if (n == 0) {
 			letra0.setBackground(color);
-			//letra0.setText(letra.toString());
+			letra0.setText(l);
+			
 		} else if (n == 1) {
 			letra1.setBackground(color);
-			//letra1.setText(letra.toString());
+			letra1.setText(l);
 		} else if (n == 2) {
 			letra2.setBackground(color);
-			//letra2.setText(letra.toString());
+			letra2.setText(l);
 		} else if (n == 3) {
 			letra3.setBackground(color);
-			//letra3.setText(letra.toString());
-		} else if(n==4){
+			letra3.setText(l);
+		} else if (n == 4) {
 			letra4.setBackground(color);
-			//letra4.setText(letra.toString());
+			letra4.setText(l);
 		}
+		
 	}
 
 	private void crearDiseñoJuego() {
@@ -179,7 +154,7 @@ public class JuegoInterface {
 		textField.setBounds(156, 29, 96, 19);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
-		
+
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.setBackground(Color.WHITE);
 		btnAceptar.setBounds(163, 63, 89, 23);
@@ -188,13 +163,11 @@ public class JuegoInterface {
 		textIntentos = new JLabel("Intentos:");
 		textIntentos.setBounds(297, 11, 57, 14);
 		frame.getContentPane().add(textIntentos);
-		
-		
+
 		cantidadDeIntentos = new JLabel("0");
 		cantidadDeIntentos.setBounds(348, 11, 17, 14);
 		frame.getContentPane().add(cantidadDeIntentos);
-		
-		
+
 		letra0 = new JTextPane();
 		letra0.setEditable(false);
 		letra0.setBackground(Color.LIGHT_GRAY);

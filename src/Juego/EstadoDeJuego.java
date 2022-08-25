@@ -13,15 +13,16 @@ public class EstadoDeJuego {
 			"carne", "falta", "fuego", "pluma", "tucan", "gatos", "fruta", "poste", "mesas", "motos", "tecla"};
 
 	public String palabra;
-	private String palabraDelUsuario;
 	private char[] palabraSecreta;
 	private ArrayList<String> letrasAdivinadasEnPosicionCorrecta;
 	private ArrayList<String> letrasEnPosicionIncorrecta;
 	private ArrayList<String> palabrasIngresadas;	
 	
-	public ArrayList<Integer> letras;
+	private ArrayList<Integer> letras;
 	private int puntaje;
 	private int intentos;
+	private boolean gano;
+	
 	
 	public EstadoDeJuego() {
 
@@ -32,6 +33,7 @@ public class EstadoDeJuego {
 		this.palabrasIngresadas = new ArrayList<String>();
 		this.puntaje = 0;
 		this.intentos = 6;
+		this.gano=false;
 		
 		
 		this.letras = new ArrayList<Integer>();
@@ -45,14 +47,18 @@ public class EstadoDeJuego {
 	}
 	
 	
-	public void getPalabra(String palabra) {
-		 palabraDelUsuario= palabra;
+	
+	public void limpiarArregloDeNumeros() {
+		letras.clear();
+	}
+	
+	public int obtenerNumero(int i) {
+		return letras.get(i);
 	}
 	
 	
+	
 	private boolean estaLaLetraEnLaPalabra(char letra) {
-		
-		
 		
 		for (int i = 0; i <palabra.length();i++) {
 			if (palabra.charAt(i) == letra) {
@@ -60,21 +66,18 @@ public class EstadoDeJuego {
 			}
 		}
 		return false;
-		
 	}
 	
 	
-	public void verificarPalabra() {
-		
-		palabraDelUsuario.toLowerCase();
-		
-			for(int i = 0; i<palabra.length(); i ++) {
+	public void verificarPalabra(String palabraUSER) {
 				
-				if(palabraDelUsuario.charAt(i) == palabra.charAt(i)) {
+			for(int i = 0; i<palabra.length(); i++) {
+				
+				if(palabraUSER.charAt(i) == palabra.charAt(i)) {
 					letras.add(i, 1);
 				}
 				
-				else if(estaLaLetraEnLaPalabra(palabraDelUsuario.charAt(i))) {
+				else if(estaLaLetraEnLaPalabra(palabraUSER.charAt(i))) {
 					letras.add(i, 2);
 				}
 				
@@ -82,9 +85,7 @@ public class EstadoDeJuego {
 					letras.add(i, 0);
 				}
 				
-		
 			}
-			
 	}
 	
 	
