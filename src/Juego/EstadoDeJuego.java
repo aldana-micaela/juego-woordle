@@ -10,7 +10,7 @@ import javax.swing.text.StyledDocument;
 public class EstadoDeJuego {
 	
 	private String[] palabras = { "orden", "joven", "botas", "calma", "palma", "jugar", "apodo", "dulce", "vocal",
-			"barco", "regla", "taller", "nadar", "torta", "atomo", "boton", "libro", "cielo", "falso",
+			"barco", "regla", "letra", "nadar", "torta", "atomo", "boton", "libro", "cielo", "falso",
 			"carne", "falta", "fuego", "pluma", "tucan", "gatos", "fruta", "poste", "mesas", "motos", "tecla"};
 
 	public String palabra;
@@ -76,7 +76,6 @@ public class EstadoDeJuego {
 				
 				if(palabraUSER.charAt(i) == palabra.charAt(i)) {
 					letras.add(i, 1);
-					sumarPuntaje();
 				}
 				
 				else if(estaLaLetraEnLaPalabra(palabraUSER.charAt(i))) {
@@ -113,18 +112,18 @@ public class EstadoDeJuego {
 				}
 
 			public boolean adivinoPalabra(String p) {
-				return p.equals(palabra);
+				return p.equals(this.palabra);
 			}
 
 
 			public String getPuntaje() {
 				// TODO Auto-generated method stub
-				return puntaje + "";
+				return this.puntaje + "";
 			}
 
 
 			public void sumarPuntaje() {
-				this.puntaje=this.puntaje+5;
+				this.puntaje=+5;
 				
 			}
 
@@ -134,6 +133,23 @@ public class EstadoDeJuego {
 				return palabra;
 			}
 			
-	
+			public void quitarIntentos() {
+				if (this.intentos > 0) {
+					this.intentos--;
+				}
+			}
+
+
+			public String getIntentos() {
+				// TODO Auto-generated method stub
+				return this.intentos + "";
+			}
+
+
+			public int IntentosCero() {
+				// TODO Auto-generated method stub
+				return this.intentos;
+			}
+
 
 }

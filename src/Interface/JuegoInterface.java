@@ -22,7 +22,8 @@ public class JuegoInterface {
 	private JButton btnsig;
 	private JLabel textIntentos;
 	private JLabel  PuntajeCant;
-	JLabel cantidadDeIntentos;
+	private JLabel  Puntaje;
+	private JLabel cantidadDeIntentos;
 	private JLabel  palabraERA;
 	private JTextPane letra0;
 	private JTextPane letra1;
@@ -31,6 +32,7 @@ public class JuegoInterface {
 	private JTextPane letra4;
 	private JLabel excepcion5Letras;
 	private static MenuInterface menu;
+	private String palabraUsuario;
 
 	/**
 	 * Launch the application.
@@ -81,7 +83,7 @@ public class JuegoInterface {
 
 			public void actionPerformed(ActionEvent e) {
 				
-				String palabraUsuario = textField.getText().toLowerCase();
+			    palabraUsuario = textField.getText().toLowerCase();
 				juego.limpiarArregloDeNumeros();
 
 				if (palabraUsuario.length() != 5) {
@@ -118,8 +120,17 @@ public class JuegoInterface {
 				if (juego.adivinoPalabra(palabraUsuario)) {
 					crearBotonSiguientePalabra();
 					sumarPuntaje();
-					PuntajeCant.setText(juego.getPuntaje());
+
+					
+				  }else {
+					juego.quitarIntentos();
+					cantidadDeIntentos.setText(juego.getIntentos());
 				}
+				
+				if(juego.IntentosCero()==0) {
+					perderJuego();
+				}
+
 				
 			}
 
@@ -181,7 +192,7 @@ public class JuegoInterface {
 		textIntentos.setBounds(329, 0, 57, 14);
 		frame.getContentPane().add(textIntentos);
 
-		cantidadDeIntentos = new JLabel("0");
+		cantidadDeIntentos = new JLabel("6");
 		cantidadDeIntentos.setBounds(385, 0, 17, 14);
 		frame.getContentPane().add(cantidadDeIntentos);
 
@@ -227,6 +238,7 @@ public class JuegoInterface {
 		JLabel PuntajeCant = new JLabel("0");
 		PuntajeCant.setBounds(385, 26, 17, 14);
 		frame.getContentPane().add(PuntajeCant);
+		
 		btnsig = new JButton("Siguiente Palabra");
 		btnsig.setBackground(Color.WHITE);
 		btnsig.setBounds(180, 90, 150, 30);
@@ -275,13 +287,24 @@ public class JuegoInterface {
 		}
 	}
 	
+	private void perderJuego() {
+		int opcion = JOptionPane.showConfirmDialog(frame, "¡Game Over!, ¿Desea seguir jugando?", "",
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
+		if (opcion == 0) {
+			cambiarColor();
+			juego.cambiarPalabra();
+		}
+		if (opcion == 1 || opcion == -1) {
+			System.exit(0);
+		}
+	}
 	private void sumarPuntaje() {
 		juego.sumarPuntaje();
-		
-		
-	}
+		PuntajeCant.setText(juego.getPuntaje());
 
+	}
 	private void crearBotonSiguientePalabra() {
+		
 		btnsig.setVisible(true);
 		
 		btnsig.addActionListener(new ActionListener() {
@@ -290,9 +313,7 @@ public class JuegoInterface {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				juego.cambiarPalabra();
-				ganarJuego();
-				cambiarColor();
-								
+				cambiarColor();		
 			}
 
 	});
