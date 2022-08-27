@@ -87,17 +87,29 @@ public class EstadoDeJuego {
 				
 			}
 	}
+			public void cambiarPalabra() {
+				String viejaPalabra = this.palabra;
+				String nuevaPalabra = elegirPalabra();
+
+				while (nuevaPalabra == viejaPalabra)
+					nuevaPalabra = elegirPalabra();
+
+				
+				this.palabra = nuevaPalabra;
+				
+			}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+			private void cambiarASiguientePalabra() {
+				cambiarPalabra();
+				restablecerIntentos();	
+			}
+
+			
+			private void restablecerIntentos() {
+			
+					this.intentos = 0;
+				}
+
 	
 
 }
