@@ -5,28 +5,15 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 
-import com.sun.tools.javac.Main;
-
-import Juego.EstadoDeJuego;
-
-import java.awt.FlowLayout;
-import javax.swing.JMenuBar;
 
 public class MenuInterface {
 
 	private JFrame frame;
-
-
-
-
-	
 
 	/**
 	 * Launch the application.
@@ -65,10 +52,6 @@ public class MenuInterface {
 		//Juego
 		crearBotonIniciarJuego();
 		
-		
-		
-		
-		
 		JLabel lblNewLabel = new JLabel("Men\u00FA Principal");
 		lblNewLabel.setFont(new Font("Eras Bold ITC", Font.PLAIN, 23));
 		lblNewLabel.setBounds(126, 0, 206, 30);
@@ -78,9 +61,6 @@ public class MenuInterface {
 		Imagen.setIcon(new ImageIcon(MenuInterface.class.getResource("/Img/wordle-logo2.png")));
 		Imagen.setBounds(10, -34, 434, 335);
 		frame.getContentPane().add(Imagen);
-		
-	
-		
 
 	}
 	
