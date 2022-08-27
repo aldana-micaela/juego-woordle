@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JTextField;
+import javax.swing.text.StyledDocument;
 
 public class EstadoDeJuego {
 	
@@ -19,7 +20,7 @@ public class EstadoDeJuego {
 //	private ArrayList<String> palabrasIngresadas;	
 	
 	private ArrayList<Integer> letras;
-//	private int puntaje;
+	private int puntaje;
 	private int intentos;
 //	private boolean gano;
 	
@@ -31,7 +32,7 @@ public class EstadoDeJuego {
 //		this.letrasAdivinadasEnPosicionCorrecta = new ArrayList<String>();
 //		this.letrasEnPosicionIncorrecta = new ArrayList<String>();
 //		this.palabrasIngresadas = new ArrayList<String>();
-//		this.puntaje = 0;
+		this.puntaje = 0;
 		this.intentos = 6;
 //		this.gano=false;
 //		
@@ -75,6 +76,7 @@ public class EstadoDeJuego {
 				
 				if(palabraUSER.charAt(i) == palabra.charAt(i)) {
 					letras.add(i, 1);
+					sumarPuntaje();
 				}
 				
 				else if(estaLaLetraEnLaPalabra(palabraUSER.charAt(i))) {
@@ -112,6 +114,24 @@ public class EstadoDeJuego {
 
 			public boolean adivinoPalabra(String p) {
 				return p.equals(palabra);
+			}
+
+
+			public String getPuntaje() {
+				// TODO Auto-generated method stub
+				return puntaje + "";
+			}
+
+
+			public void sumarPuntaje() {
+				this.puntaje=this.puntaje+5;
+				
+			}
+
+
+			public String getpalabra() {
+				// TODO Auto-generated method stub
+				return palabra;
 			}
 			
 	
