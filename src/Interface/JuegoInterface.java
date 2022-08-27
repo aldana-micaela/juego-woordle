@@ -3,6 +3,7 @@ package Interface;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import Juego.EstadoDeJuego;
 import javax.swing.JButton;
@@ -18,8 +19,10 @@ public class JuegoInterface {
 	private EstadoDeJuego juego;
 	private JTextField textField;
 	private JButton btnAceptar;
+	private JButton btnsig;
 	private JLabel textIntentos;
 	JLabel cantidadDeIntentos;
+	private JLabel  palabraERA;
 	private JTextPane letra0;
 	private JTextPane letra1;
 	private JTextPane letra2;
@@ -65,7 +68,7 @@ public class JuegoInterface {
 
 		// inicializo
 
-		JLabel palabraERA = new JLabel(juego.palabra);
+		palabraERA = new JLabel(juego.palabra);
 		palabraERA.setBounds(315, 67, 57, 14);
 		frame.getContentPane().add(palabraERA);
 		
@@ -109,7 +112,14 @@ public class JuegoInterface {
 				}
 				textField.setText(null);
 				
+				if (juego.adivinoPalabra(palabraUsuario)) {
+					crearBotonSiguientePalabra();
+				}
+				
 			}
+
+			
+			
 
 		});
 	}
@@ -209,6 +219,62 @@ public class JuegoInterface {
 		excepcion5Letras.setBounds(93, 121, 230, 24);
 		frame.getContentPane().add(excepcion5Letras);
 		excepcion5Letras.setVisible(false);
+	}
+	
+	private void reiniciarJuego() {
+		cambiarColor();
+		
+	}
+
+	private void cambiarColor() {
+		letra0.setBackground(Color.gray);
+		letra0.setContentType("");
+		letra1.setBackground(Color.gray);
+		letra1.setContentType("");
+		letra2.setBackground(Color.gray);
+		letra2.setContentType("");
+		letra3.setBackground(Color.gray);
+		letra3.setContentType("");
+		letra4.setBackground(Color.gray);
+		letra4.setContentType("");
+
+		
+		
+		
+		
+	}
+	private void ganarJuego() {
+		int opcion = JOptionPane.showConfirmDialog(frame, "¡Ganaste!, ¿Desea seguir jugando?", "",
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
+
+		if (opcion == 0) {
+			juego.cambiarPalabra();
+		}
+		if (opcion == 1) {
+			System.exit(0);
+		}
+	}
+
+	private void crearBotonSiguientePalabra() {
+		btnsig = new JButton("Siguiente Palabra");
+		btnsig.setBackground(Color.WHITE);
+		btnsig.setBounds(180, 90, 150, 30);
+		frame.getContentPane().add(btnsig);
+		
+		btnAceptar.addActionListener(new ActionListener() {
+			
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				juego.cambiarPalabra();
+				ganarJuego();
+				cambiarColor();
+								
+			}
+		
+//	    reiniciarJuego();
+//		btnsig.setVisible(false);
+	});
 	}
 
 }

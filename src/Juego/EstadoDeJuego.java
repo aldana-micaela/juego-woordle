@@ -13,28 +13,28 @@ public class EstadoDeJuego {
 			"carne", "falta", "fuego", "pluma", "tucan", "gatos", "fruta", "poste", "mesas", "motos", "tecla"};
 
 	public String palabra;
-	private char[] palabraSecreta;
-	private ArrayList<String> letrasAdivinadasEnPosicionCorrecta;
-	private ArrayList<String> letrasEnPosicionIncorrecta;
-	private ArrayList<String> palabrasIngresadas;	
+//	private char[] palabraSecreta;
+//	private ArrayList<String> letrasAdivinadasEnPosicionCorrecta;
+//	private ArrayList<String> letrasEnPosicionIncorrecta;
+//	private ArrayList<String> palabrasIngresadas;	
 	
 	private ArrayList<Integer> letras;
-	private int puntaje;
+//	private int puntaje;
 	private int intentos;
-	private boolean gano;
+//	private boolean gano;
 	
 	
 	public EstadoDeJuego() {
 
 		this.palabra = elegirPalabra();
-		this.palabraSecreta = palabraSecreta;
-		this.letrasAdivinadasEnPosicionCorrecta = new ArrayList<String>();
-		this.letrasEnPosicionIncorrecta = new ArrayList<String>();
-		this.palabrasIngresadas = new ArrayList<String>();
-		this.puntaje = 0;
+//		this.palabraSecreta = palabraSecreta;
+//		this.letrasAdivinadasEnPosicionCorrecta = new ArrayList<String>();
+//		this.letrasEnPosicionIncorrecta = new ArrayList<String>();
+//		this.palabrasIngresadas = new ArrayList<String>();
+//		this.puntaje = 0;
 		this.intentos = 6;
-		this.gano=false;
-		
+//		this.gano=false;
+//		
 		
 		this.letras = new ArrayList<Integer>();
 	}
@@ -99,7 +99,7 @@ public class EstadoDeJuego {
 				
 			}
 	
-			private void cambiarASiguientePalabra() {
+			public void cambiarASiguientePalabra() {
 				cambiarPalabra();
 				restablecerIntentos();	
 			}
@@ -110,6 +110,10 @@ public class EstadoDeJuego {
 					this.intentos = 0;
 				}
 
+			public boolean adivinoPalabra(String p) {
+				return p.equals(palabra);
+			}
+			
 	
 
 }
