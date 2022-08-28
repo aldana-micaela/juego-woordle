@@ -75,7 +75,6 @@ public class JuegoInterface {
 		palabraERA.setBounds(315, 67, 57, 14);
 		frame.getContentPane().add(palabraERA);
 		
-
 		
 
 		btnAceptar.addActionListener(new ActionListener() {
@@ -318,4 +317,15 @@ public class JuegoInterface {
 
 	});
 	}
+	
+	
+
+//	private JLabel crearLblPuntajeJuego() {
+//		JLabel lblPuntaje = new JLabel(juego.getPuntaje());
+//		lblPuntaje.setFont(new Font("Tahoma", Font.BOLD, 14));
+//		lblPuntaje.setBounds(10, 11, 93, 23);
+//		frame.getContentPane().add(lblPuntaje);
+//		return lblPuntaje;
+//	}
+
 }

@@ -32,7 +32,7 @@ public class EstadoDeJuego {
 //		this.letrasAdivinadasEnPosicionCorrecta = new ArrayList<String>();
 //		this.letrasEnPosicionIncorrecta = new ArrayList<String>();
 //		this.palabrasIngresadas = new ArrayList<String>();
-		this.puntaje = 0;
+		this.puntaje=0;
 		this.intentos = 6;
 //		this.gano=false;
 //		
@@ -112,7 +112,11 @@ public class EstadoDeJuego {
 				}
 
 			public boolean adivinoPalabra(String p) {
-				return p.equals(this.palabra);
+				if(p.equals(this.palabra)) {
+					sumarPuntaje();
+					return true;
+				}
+				return false;
 			}
 
 
