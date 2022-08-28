@@ -13,6 +13,8 @@ import java.util.TimerTask;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JTextPane;
+import javax.swing.UIManager;
+
 import java.awt.Font;
 
 public class JuegoInterface {
@@ -35,7 +37,7 @@ public class JuegoInterface {
 	private JLabel excepcion5Letras;
 	private static MenuInterface menu;
 	private String palabraUsuario;
-	private Timer time = new Timer();
+	private Timer time;
 
 	/**
 	 * Launch the application.
@@ -61,7 +63,14 @@ public class JuegoInterface {
 	 */
 	public JuegoInterface() {
 
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		initialize();
+
 	}
 
 	/**
@@ -136,7 +145,7 @@ public class JuegoInterface {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				siguientePalabra();
 				restarPuntaje();
 			}
@@ -182,6 +191,7 @@ public class JuegoInterface {
 	}
 
 	private void crearDiseñoJuego() {
+
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.PINK);
 		frame.setBackground(Color.WHITE);
@@ -267,6 +277,8 @@ public class JuegoInterface {
 		excepcion5Letras.setBounds(93, 121, 230, 24);
 		frame.getContentPane().add(excepcion5Letras);
 		excepcion5Letras.setVisible(false);
+
+		time = new Timer();
 	}
 
 	private void cambiarColor() {
@@ -287,19 +299,19 @@ public class JuegoInterface {
 	}
 
 	private void ganarJuego() {
-		
-		if(juego.ganaste()) {
-		
+
+		if (juego.ganaste()) {
+
 			int opcion = JOptionPane.showConfirmDialog(frame, "¡Ganaste!, ¿Desea seguir jugando?", "",
 					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
-	
+
 			if (opcion == 0) {
 				juego.resetearJuego();
 				cantidadDeIntentos.setText(juego.getIntentos());
 				PuntajeCant.setText(juego.getPuntaje());
 				excepcion5Letras.setVisible(false);
 			}
-			
+
 			if (opcion == 1) {
 				System.exit(0);
 			}
@@ -345,18 +357,4 @@ public class JuegoInterface {
 
 	}
 
-	private void crearBotonSiguientePalabra() {
-
-		// btnsig.setVisible(true);
-
-		btnsig.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				juego.cambiarPalabra();
-				cambiarColor();
-			}
-
-		});
-	}
 }
