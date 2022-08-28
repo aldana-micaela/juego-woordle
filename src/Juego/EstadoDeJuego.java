@@ -9,12 +9,14 @@ import java.util.Set;
 public class EstadoDeJuego {
 	
 	
-	private String[] palabras = { "orden", "joven", "botas", "calma", "palma", "jugar", "apodo", "dulce", "vocal",
-			"barco", "regla", "letra", "nadar", "torta", "atomo", "boton", "libro", "cielo", "falso",
-			"carne", "falta", "fuego", "pluma", "tucan", "gatos", "fruta", "poste", "mesas", "motos", "tecla"};
+	private String[] palabras = { "orden", "joven", "botas"}; 				// lo hice mas corto para probar los casos de ganar!
 	
+//	private String[] palabras = { "orden", "joven", "botas", "calma", "palma", "jugar", "apodo", "dulce", "vocal",
+//			"barco", "regla", "letra", "nadar", "torta", "atomo", "boton", "libro", "cielo", "falso",
+//			"carne", "falta", "fuego", "pluma", "tucan", "gatos", "fruta", "poste", "mesas", "motos", "tecla"};
+//	
 	private Set<String> palabrasEnJuego= new HashSet<String>();
-
+	private boolean ganaste;
 	private String palabra;
 //	private char[] palabraSecreta;
 //	private ArrayList<String> letrasAdivinadasEnPosicionCorrecta;
@@ -25,7 +27,6 @@ public class EstadoDeJuego {
 	private int puntaje;
 	private int intentos;
 //	private boolean gano;
-	
 	
 	
 	public EstadoDeJuego() {
@@ -51,10 +52,15 @@ public class EstadoDeJuego {
 		while(palabrasEnJuego.contains(palabras[elem]) && !palabrasEnJuego.isEmpty())   // este while verifica que no se jueguen palabras repetidas
 			elem = random.nextInt(this.palabras.length);
 		
-		palabrasEnJuego.add(palabras[elem]);
+		//palabrasEnJuego.add(palabras[elem]);
 		return this.palabras[elem];
 	}
 	
+	
+	public void adivinoPalabra() {
+		palabrasEnJuego.add(palabra);
+		
+	}
 	
 	
 	public void limpiarArregloDeNumeros() {
@@ -168,6 +174,13 @@ public class EstadoDeJuego {
 				// TODO Auto-generated method stub
 				return this.intentos;
 			}
+			
+			
+			public boolean ganaste () {
+				return palabras.length == palabrasEnJuego.size();
+			}
+			
+			
 
 			public void resetearJuego() {
 				vaciarConjuntoDePalabras();

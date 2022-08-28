@@ -23,10 +23,10 @@ public class JuegoInterface {
 	private JButton btnAceptar;
 	private JButton btnsig;
 	private JLabel textIntentos;
-	private JLabel  PuntajeCant;
-	private JLabel  Puntaje;
+	private JLabel PuntajeCant;
+	private JLabel Puntaje;
 	private JLabel cantidadDeIntentos;
-	private JLabel  palabraERA;
+	private JLabel palabraERA;
 	private JTextPane letra0;
 	private JTextPane letra1;
 	private JTextPane letra2;
@@ -35,7 +35,7 @@ public class JuegoInterface {
 	private JLabel excepcion5Letras;
 	private static MenuInterface menu;
 	private String palabraUsuario;
-	private Timer time= new Timer();
+	private Timer time = new Timer();
 
 	/**
 	 * Launch the application.
@@ -70,23 +70,19 @@ public class JuegoInterface {
 	private void initialize() {
 		crearDiseñoJuego();
 
-		juego = new EstadoDeJuego();			
+		juego = new EstadoDeJuego();
 
 		// inicializo
 
 		palabraERA = new JLabel(juego.getpalabra());
 		palabraERA.setBounds(369, 98, 57, 14);
 		frame.getContentPane().add(palabraERA);
-		
-
-		
 
 		btnAceptar.addActionListener(new ActionListener() {
-			
 
 			public void actionPerformed(ActionEvent e) {
-				
-			    palabraUsuario = textField.getText().toLowerCase();
+
+				palabraUsuario = textField.getText().toLowerCase();
 				juego.limpiarArregloDeNumeros();
 
 				if (palabraUsuario.length() != 5) {
@@ -101,8 +97,7 @@ public class JuegoInterface {
 					excepcion5Letras.setVisible(false);
 					juego.verificarPalabra(palabraUsuario);
 
-					
-					for (int i = 0; i < 5; i++) {						
+					for (int i = 0; i < 5; i++) {
 						letraQueSeAgrega = palabraUsuario.charAt(i);
 
 						if (juego.obtenerNumero(i) == 1) {
@@ -112,53 +107,50 @@ public class JuegoInterface {
 
 						else if (juego.obtenerNumero(i) == 2) {
 							cambiarColor(i, Color.yellow, letraQueSeAgrega);
-						}
-						else {
+						} else {
 							cambiarColor(i, Color.gray, letraQueSeAgrega);
 						}
 					}
 				}
 				textField.setText(null);
-				
-				if (juego.adivinoPalabra(palabraUsuario)) {
-					
-					sumarPuntaje();
-					frenarTiempoDeLosColores();
-					//crearBotonSiguientePalabra();
 
-					
-				  }else {
+				if (juego.adivinoPalabra(palabraUsuario)) {
+					juego.adivinoPalabra();
+					sumarPuntaje();
+					ganarJuego();
+					frenarTiempoDeLosColores();
+
+				} else {
 					restarIntentos();
 				}
-				
-				if(juego.IntentosCero()==0) {
+
+				if (juego.IntentosCero() == 0) {
 					perderJuego();
 				}
 
-				
 			}
-			
+
 		});
-		
-		
+
 		btnsig.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				siguientePalabra();
 				restarPuntaje();
 			}
 
-	});
+		});
 	}
 
 	private void cambiarColor(int n, Color color, char letra) {
 
-		String l= String.valueOf(letra);
+		String l = String.valueOf(letra);
 		if (n == 0) {
 			letra0.setBackground(color);
 			letra0.setText(l);
-			
+
 		} else if (n == 1) {
 			letra1.setBackground(color);
 			letra1.setText(l);
@@ -172,22 +164,21 @@ public class JuegoInterface {
 			letra4.setBackground(color);
 			letra4.setText(l);
 		}
-		
-	}
-	
-	public void frenarTiempoDeLosColores() {
-	
-	TimerTask tarea= new TimerTask() {
-		@Override
-		public void run() {
-			
-			siguientePalabra();
 
-		}
-	};
-	
-	
-	time.schedule(tarea, 1000);
+	}
+
+	public void frenarTiempoDeLosColores() {
+
+		TimerTask tarea = new TimerTask() {
+			@Override
+			public void run() {
+
+				siguientePalabra();
+
+			}
+		};
+
+		time.schedule(tarea, 1000);
 	}
 
 	private void crearDiseñoJuego() {
@@ -255,15 +246,15 @@ public class JuegoInterface {
 		letra4.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		letra4.setBounds(318, 165, 62, 47);
 		frame.getContentPane().add(letra4);
-		
+
 		Puntaje = new JLabel("Puntaje:");
 		Puntaje.setBounds(329, 26, 46, 14);
 		frame.getContentPane().add(Puntaje);
-		
+
 		PuntajeCant = new JLabel("0");
 		PuntajeCant.setBounds(385, 26, 17, 14);
 		frame.getContentPane().add(PuntajeCant);
-		
+
 		btnsig = new JButton("Siguiente Palabra");
 		btnsig.setBackground(Color.WHITE);
 		btnsig.setBounds(205, 58, 145, 30);
@@ -277,8 +268,6 @@ public class JuegoInterface {
 		frame.getContentPane().add(excepcion5Letras);
 		excepcion5Letras.setVisible(false);
 	}
-	
-	
 
 	private void cambiarColor() {
 		letra0.setBackground(Color.gray);
@@ -291,32 +280,36 @@ public class JuegoInterface {
 		letra3.setContentType("");
 		letra4.setBackground(Color.gray);
 		letra4.setContentType("");
-		
+
 		juego.cambiarPalabra();
 		palabraERA.setText(juego.getpalabra());
 
-		
-		
-		
-		
 	}
-	private void ganarJuego() {
-		int opcion = JOptionPane.showConfirmDialog(frame, "¡Ganaste!, ¿Desea seguir jugando?", "",
-				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
 
-		if (opcion == 0) {
-			juego.cambiarPalabra();
-		}
+	private void ganarJuego() {
 		
-		if (opcion == 1) {
-			System.exit(0);
+		if(juego.ganaste()) {
+		
+			int opcion = JOptionPane.showConfirmDialog(frame, "¡Ganaste!, ¿Desea seguir jugando?", "",
+					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
+	
+			if (opcion == 0) {
+				juego.resetearJuego();
+				cantidadDeIntentos.setText(juego.getIntentos());
+				PuntajeCant.setText(juego.getPuntaje());
+				excepcion5Letras.setVisible(false);
+			}
+			
+			if (opcion == 1) {
+				System.exit(0);
+			}
 		}
 	}
-	
+
 	private void perderJuego() {
 		int opcion = JOptionPane.showConfirmDialog(frame, "¡Game Over!, ¿Desea seguir jugando?", "",
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
-		
+
 		if (opcion == 0) {
 			cambiarColor();
 			juego.resetearJuego();
@@ -329,39 +322,41 @@ public class JuegoInterface {
 			System.exit(0);
 		}
 	}
+
 	private void sumarPuntaje() {
 		juego.sumarPuntaje();
 		PuntajeCant.setText(juego.getPuntaje());
 
 	}
-	
+
 	private void restarIntentos() {
 		juego.quitarIntentos();
 		cantidadDeIntentos.setText(juego.getIntentos());
 	}
-	
+
 	private void restarPuntaje() {
 		juego.restarPuntaje();
 		PuntajeCant.setText(juego.getPuntaje());
 	}
-	
+
 	private void siguientePalabra() {
 		juego.cambiarPalabra();
-		cambiarColor();	
-		
+		cambiarColor();
+
 	}
+
 	private void crearBotonSiguientePalabra() {
-		
-		//btnsig.setVisible(true);
-		
+
+		// btnsig.setVisible(true);
+
 		btnsig.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				juego.cambiarPalabra();
-				cambiarColor();		
+				cambiarColor();
 			}
 
-	});
+		});
 	}
 }
