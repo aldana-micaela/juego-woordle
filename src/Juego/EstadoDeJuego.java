@@ -1,28 +1,31 @@
 package Juego;
 
-import java.awt.TextField;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
-import javax.swing.JTextField;
-import javax.swing.text.StyledDocument;
 
 public class EstadoDeJuego {
+	
 	
 	private String[] palabras = { "orden", "joven", "botas", "calma", "palma", "jugar", "apodo", "dulce", "vocal",
 			"barco", "regla", "letra", "nadar", "torta", "atomo", "boton", "libro", "cielo", "falso",
 			"carne", "falta", "fuego", "pluma", "tucan", "gatos", "fruta", "poste", "mesas", "motos", "tecla"};
+	
+	private Set<String> palabrasEnJuego= new HashSet<String>();
 
-	public String palabra;
+	private String palabra;
 //	private char[] palabraSecreta;
 //	private ArrayList<String> letrasAdivinadasEnPosicionCorrecta;
 //	private ArrayList<String> letrasEnPosicionIncorrecta;
 //	private ArrayList<String> palabrasIngresadas;	
 	
-	private ArrayList<Integer> letras;
+	private ArrayList<Integer> estadoDeLetrasEnNumeros;      // hice un cunjunto de palabras para que no se repitan e ir agregando las palabras que se usaron
 	private int puntaje;
 	private int intentos;
 //	private boolean gano;
+	
 	
 	
 	public EstadoDeJuego() {
@@ -35,28 +38,37 @@ public class EstadoDeJuego {
 		this.puntaje=0;
 		this.intentos = 6;
 //		this.gano=false;
-//		
 		
-		this.letras = new ArrayList<Integer>();
+		this.estadoDeLetrasEnNumeros = new ArrayList<Integer>();
 	}
 
 
 	private String elegirPalabra() {
 		Random random = new Random();
 		int elem = random.nextInt(this.palabras.length);
+		
+		
+		while(palabrasEnJuego.contains(palabras[elem]) && !palabrasEnJuego.isEmpty())   // este while verifica que no se jueguen palabras repetidas
+			elem = random.nextInt(this.palabras.length);
+		
+		palabrasEnJuego.add(palabras[elem]);
 		return this.palabras[elem];
 	}
 	
 	
 	
 	public void limpiarArregloDeNumeros() {
-		letras.clear();
+		estadoDeLetrasEnNumeros.clear();
 	}
 	
 	public int obtenerNumero(int i) {
-		return letras.get(i);
+		return estadoDeLetrasEnNumeros.get(i);
 	}
 	
+	
+	public void vaciarConjuntoDePalabras() {
+		palabrasEnJuego.clear();
+	}
 	
 	
 	private boolean estaLaLetraEnLaPalabra(char letra) {
@@ -75,29 +87,29 @@ public class EstadoDeJuego {
 			for(int i = 0; i<palabra.length(); i++) {
 				
 				if(palabraUSER.charAt(i) == palabra.charAt(i)) {
-					letras.add(i, 1);
+					estadoDeLetrasEnNumeros.add(i, 1);
 				}
 				
 				else if(estaLaLetraEnLaPalabra(palabraUSER.charAt(i))) {
-					letras.add(i, 2);
+					estadoDeLetrasEnNumeros.add(i, 2);
 				}
 				
 				else {
-					letras.add(i, 0);
+					estadoDeLetrasEnNumeros.add(i, 0);
 				}
 				
 			}
 	}
 			public void cambiarPalabra() {
-				String viejaPalabra = this.palabra;
-				String nuevaPalabra = elegirPalabra();
-
-				while (nuevaPalabra == viejaPalabra)
-					nuevaPalabra = elegirPalabra();
-
-				
-				this.palabra = nuevaPalabra;
-				
+//				String viejaPalabra = this.palabra;			//verifique que las palabras no se repitan en el while del metodo elegirPalabra()
+//				String nuevaPalabra = elegirPalabra();
+//
+//				while (nuevaPalabra == viejaPalabra)
+//					nuevaPalabra = elegirPalabra();
+//				
+//				this.palabra = nuevaPalabra;
+//				
+				this.palabra=elegirPalabra();
 			}
 	
 			public void cambiarASiguientePalabra() {
@@ -108,7 +120,7 @@ public class EstadoDeJuego {
 			
 			private void restablecerIntentos() {
 			
-					this.intentos = 0;
+					this.intentos = 6;
 				}
 
 			public boolean adivinoPalabra(String p) {
@@ -127,9 +139,15 @@ public class EstadoDeJuego {
 
 
 			public void sumarPuntaje() {
-				this.puntaje=+5;
+				this.puntaje= this.puntaje + 5;
+				
 				
 			}
+			
+			public void restarPuntaje() {
+				this.puntaje--;
+			}
+			
 
 
 			public String getpalabra() {
@@ -155,5 +173,12 @@ public class EstadoDeJuego {
 				return this.intentos;
 			}
 
+			public void resetearJuego() {
+				vaciarConjuntoDePalabras();
+				cambiarPalabra();
+				restablecerIntentos();
+				puntaje= 0;
+				
+			}
 
 }
