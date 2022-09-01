@@ -9,10 +9,15 @@ import java.util.Set;
 public class EstadoDeJuego {
 	
 	
+//	private String[] palabras = { "orden", "joven", "botas"}; 				// lo hice mas corto para probar los casos de ganar!
+	
 	private String[] palabras = { "orden", "joven", "botas", "calma", "palma", "jugar", "apodo", "dulce", "vocal",
 			"barco", "regla", "letra", "nadar", "torta", "atomo", "boton", "libro", "cielo", "falso",
 			"carne", "falta", "fuego", "pluma", "tucan", "gatos", "fruta", "poste", "mesas", "motos", "tecla"};
 	
+	
+	private String[] palabrasingles = {"beach", "hairs","queen","apple", "banks", "sleep", "house", "snake","lives", 
+			"river", "cards", "tools", "dance" };
 	private Set<String> palabrasEnJuego= new HashSet<String>();
 
 	private String palabra;
@@ -25,7 +30,7 @@ public class EstadoDeJuego {
 	private int puntaje;
 	private int intentos;
 //	private boolean gano;
-	
+	private String dificultad;
 	
 	
 	public EstadoDeJuego() {
@@ -38,7 +43,7 @@ public class EstadoDeJuego {
 		this.puntaje=0;
 		this.intentos = 6;
 //		this.gano=false;
-		
+		this.dificultad= "Normal";
 		this.estadoDeLetrasEnNumeros = new ArrayList<Integer>();
 	}
 
@@ -51,10 +56,15 @@ public class EstadoDeJuego {
 		while(palabrasEnJuego.contains(palabras[elem]) && !palabrasEnJuego.isEmpty())   // este while verifica que no se jueguen palabras repetidas
 			elem = random.nextInt(this.palabras.length);
 		
-		palabrasEnJuego.add(palabras[elem]);
+		//palabrasEnJuego.add(palabras[elem]);
 		return this.palabras[elem];
 	}
 	
+	
+	public void adivinoPalabra() {
+		palabrasEnJuego.add(palabra);
+		
+	}
 	
 	
 	public void limpiarArregloDeNumeros() {
@@ -137,6 +147,10 @@ public class EstadoDeJuego {
 				return this.puntaje + "";
 			}
 
+			public int Puntaje() {
+				// TODO Auto-generated method stub
+				return this.puntaje;
+			}
 
 			public void sumarPuntaje() {
 				this.puntaje= this.puntaje + 5;
@@ -172,6 +186,13 @@ public class EstadoDeJuego {
 				// TODO Auto-generated method stub
 				return this.intentos;
 			}
+			
+			
+			public boolean ganaste () {
+				return palabras.length == palabrasEnJuego.size();
+			}
+			
+			
 
 			public void resetearJuego() {
 				vaciarConjuntoDePalabras();
@@ -180,5 +201,35 @@ public class EstadoDeJuego {
 				puntaje= 0;
 				
 			}
+			
+			public  void cambiarDificultad(String dificultad) {
+				if (dificultad.equals("Fácil")) {
+					this.dificultad = dificultad;
+					this.intentos = 8;
+				}
+				if (dificultad.equals("Difícil")) {
+					this.dificultad = dificultad;
+					this.intentos = 4;
+				}
+			}
+
+
+			public String getDificultad() {
+				// TODO Auto-generated method stub
+				return this.dificultad;
+			}
+			
+			public void setIdiomaIngles() {
+				this.palabras = this.palabrasingles;
+				cambiarPalabra();
+			}
+
+
+			public String setIdioma() {
+				// TODO Auto-generated method stub
+				return this.setIdioma();
+			}
+
+
 
 }
