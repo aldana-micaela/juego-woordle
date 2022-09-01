@@ -256,7 +256,7 @@ public class JuegoInterface {
 				cantidadDeIntentos.setText(juego.getIntentos());
 				PuntajeCant.setText(juego.getPuntaje());
 				excepcion5Letras.setVisible(false);
-				cambiarIdioma();
+//				cambiarIdioma();
 			}
 
 			if (opcion == 1) {
