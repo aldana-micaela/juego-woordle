@@ -18,18 +18,17 @@ public class EstadoDeJuego {
 	
 	private String[] palabrasingles = {"beach", "hairs","queen","apple", "banks", "sleep", "house", "snake","lives", 
 			"river", "cards", "tools", "dance" };
-	private Set<String> palabrasEnJuego= new HashSet<String>();
+	
+	private Set<String> palabrasEnJuego= new HashSet<String>();		// hice un cunjunto de palabras para que no se repitan e ir agregando las palabras que se usaron
 
 	private String palabra;
 //	private char[] palabraSecreta;
 //	private ArrayList<String> letrasAdivinadasEnPosicionCorrecta;
 //	private ArrayList<String> letrasEnPosicionIncorrecta;
 //	private ArrayList<String> palabrasIngresadas;	
-	
-	private ArrayList<Integer> estadoDeLetrasEnNumeros;      // hice un cunjunto de palabras para que no se repitan e ir agregando las palabras que se usaron
+	private ArrayList<Integer> estadoDeLetrasEnNumeros;      
 	private int puntaje;
 	private int intentos;
-//	private boolean gano;
 	private String dificultad;
 	
 	
@@ -42,7 +41,6 @@ public class EstadoDeJuego {
 //		this.palabrasIngresadas = new ArrayList<String>();
 		this.puntaje=0;
 		this.intentos = 6;
-//		this.gano=false;
 		this.dificultad= "Normal";
 		this.estadoDeLetrasEnNumeros = new ArrayList<Integer>();
 	}
@@ -52,11 +50,9 @@ public class EstadoDeJuego {
 		Random random = new Random();
 		int elem = random.nextInt(this.palabras.length);
 		
-		
 		while(palabrasEnJuego.contains(palabras[elem]) && !palabrasEnJuego.isEmpty())   // este while verifica que no se jueguen palabras repetidas
 			elem = random.nextInt(this.palabras.length);
 		
-		//palabrasEnJuego.add(palabras[elem]);
 		return this.palabras[elem];
 	}
 	
@@ -143,12 +139,10 @@ public class EstadoDeJuego {
 
 
 			public String getPuntaje() {
-				// TODO Auto-generated method stub
 				return this.puntaje + "";
 			}
 
 			public int Puntaje() {
-				// TODO Auto-generated method stub
 				return this.puntaje;
 			}
 
@@ -165,7 +159,6 @@ public class EstadoDeJuego {
 
 
 			public String getpalabra() {
-				// TODO Auto-generated method stub
 				return palabra;
 			}
 			
@@ -177,13 +170,11 @@ public class EstadoDeJuego {
 
 
 			public String getIntentos() {
-				// TODO Auto-generated method stub
 				return this.intentos + "";
 			}
 
 
 			public int IntentosCero() {
-				// TODO Auto-generated method stub
 				return this.intentos;
 			}
 			
@@ -215,7 +206,6 @@ public class EstadoDeJuego {
 
 
 			public String getDificultad() {
-				// TODO Auto-generated method stub
 				return this.dificultad;
 			}
 			
@@ -226,7 +216,6 @@ public class EstadoDeJuego {
 
 
 			public String setIdioma() {
-				// TODO Auto-generated method stub
 				return this.setIdioma();
 			}
 

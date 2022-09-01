@@ -79,12 +79,8 @@ public class JuegoInterface {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
-		crearDiseñoJuego();
-//		cambiarIdioma();
-		juego = new EstadoDeJuego();
-        
 		// inicializo
+		crearDiseñoJuego();        
 //		cambiarIdioma(); //Este cambiar idioma genera error pero funciona en ganar juego
         ganarJuego();
         
@@ -134,6 +130,8 @@ public class JuegoInterface {
 	}
 
 	private void crearDiseñoJuego() {
+		
+		juego = new EstadoDeJuego();
 
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.PINK);
@@ -252,10 +250,7 @@ public class JuegoInterface {
 					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
 
 			if (opcion == 0) {
-				juego.resetearJuego();
-				cantidadDeIntentos.setText(juego.getIntentos());
-				PuntajeCant.setText(juego.getPuntaje());
-				excepcion5Letras.setVisible(false);
+				resetearJuegoYDiseño();
 //				cambiarIdioma();
 			}
 
@@ -265,16 +260,20 @@ public class JuegoInterface {
 		}
 	}
 
+	private void resetearJuegoYDiseño() {
+		juego.resetearJuego();
+		cantidadDeIntentos.setText(juego.getIntentos());
+		PuntajeCant.setText(juego.getPuntaje());
+		excepcion5Letras.setVisible(false);
+	}
+
 	private void perderJuego() {
 		int opcion = JOptionPane.showConfirmDialog(frame, "¡Game Over!, ¿Desea seguir jugando?", "",
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
 
 		if (opcion == 0) {
 			cambiarColor();
-			juego.resetearJuego();
-			cantidadDeIntentos.setText(juego.getIntentos());
-			PuntajeCant.setText(juego.getPuntaje());
-			excepcion5Letras.setVisible(false);
+			resetearJuegoYDiseño();
 
 		}
 		if (opcion == 1 || opcion == -1) {
@@ -336,7 +335,6 @@ public class JuegoInterface {
 		palabraERA.setText(juego.getpalabra());
 	}
 
-	
 	private void botones() {
 	
 	btnAceptar.addActionListener(new ActionListener() {
