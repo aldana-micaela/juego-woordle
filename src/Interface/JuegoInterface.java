@@ -182,6 +182,7 @@ public class JuegoInterface {
 		btnsig.setBounds(205, 58, 145, 30);
 		frame.getContentPane().add(btnsig);
 		btnsig.setVisible(true);
+		btnsig.setEnabled(false);
 	}
 
 
@@ -334,17 +335,20 @@ public class JuegoInterface {
 	private void sumarPuntaje() {
 		juego.sumarPuntaje();
 		PuntajeCant.setText(juego.getPuntaje());
+		btnsig.setEnabled(true);
 
 	}
 
 	private void restarIntentos() {
 		juego.quitarIntentos();
 		cantidadDeIntentos.setText(juego.getIntentos());
+
 	}
 
 	private void restarPuntaje() {
 		juego.restarPuntaje();
 		PuntajeCant.setText(juego.getPuntaje());
+		
 	}
 
 	private void siguientePalabra() {
@@ -435,6 +439,7 @@ public class JuegoInterface {
 				perderJuego();
 			}
 
+
 		}
 
 	});
@@ -447,9 +452,17 @@ public class JuegoInterface {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				siguientePalabra();
-				restarPuntaje();
+				
+				if(juego.Puntaje()==1) {
+					restarPuntaje();
+					siguientePalabra();
+					btnsig.setEnabled(false);
+				}
+				
+				else {
+					restarPuntaje();
+					siguientePalabra();
+				}
 			}
 
 		});

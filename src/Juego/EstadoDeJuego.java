@@ -123,11 +123,7 @@ public class EstadoDeJuego {
 				}
 
 			public boolean adivinoPalabra(String p) {
-				if(p.equals(this.palabra)) {
-					sumarPuntaje();
-					return true;
-				}
-				return false;
+					return p.equals(this.palabra);
 			}
 
 
