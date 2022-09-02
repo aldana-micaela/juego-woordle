@@ -25,6 +25,7 @@ public class EstadoDeJuego {
 	private int puntaje;
 	private int intentos;
 	private String dificultad;
+	private int intentosDeAyuda;
 	
 	
 	public EstadoDeJuego(int idioma) {
@@ -41,6 +42,7 @@ public class EstadoDeJuego {
 		this.intentos = 6;
 		this.dificultad= "Normal";
 		this.estadoDeLetrasEnNumeros = new ArrayList<Integer>();
+		this.intentosDeAyuda=3;
 		
 			
 	}
@@ -136,13 +138,13 @@ public class EstadoDeJuego {
 			}
 
 			public void sumarPuntaje() {
-				this.puntaje= this.puntaje + 5;
+				this.puntaje += 10;
 				
 				
 			}
 			
 			public void restarPuntaje() {
-				this.puntaje--;
+				this.puntaje-=5;
 			}
 			
 
@@ -196,6 +198,14 @@ public class EstadoDeJuego {
 
 			public String getDificultad() {
 				return this.dificultad;
+			}
+			
+			public void restarIntentosAyuda() {
+				this.intentosDeAyuda--;
+			}
+			
+			public int getIntentosAyuda() {
+				return this.intentosDeAyuda;
 			}
 			
 //			public void setIdiomaIngles() {
