@@ -475,15 +475,12 @@ public class JuegoInterface {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				if(juego.Puntaje()<=5) {
+				if(juego.Puntaje()>=5) {
 					restarPuntaje();
 					siguientePalabra();
-					btnsig.setEnabled(false);
-				}
-				
-				else {
-					restarPuntaje();
-					siguientePalabra();
+					
+					if(juego.Puntaje()<5)
+						btnsig.setEnabled(false);
 				}
 			}
 
