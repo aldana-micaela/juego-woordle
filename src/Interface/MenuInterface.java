@@ -5,18 +5,25 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+import javax.swing.JPanel;
 
 
 public class MenuInterface {
 
 	private JFrame frame;
-	private JComboBox<String> idiomaComboBox;
+	JButton btnIniciarJuego;
+	JLabel lblNewLabel;
+	JLabel Imagen;
+	JPanel panel;
+	private JComboBox idiomaComboBox;
+	private int idioma;
 
 	/**
 	 * Launch the application.
@@ -25,6 +32,7 @@ public class MenuInterface {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					MenuInterface window = new MenuInterface();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
@@ -46,59 +54,72 @@ public class MenuInterface {
 	 */
 	private void initialize() {
 		crearMenu();	
+		eventoBotonIniciarJuego();
 		
-		crearIdiomaComboBox();
 	
 	}
 	
 	private void crearMenu() {
+		crearFrame();
+		crearTitulo_MenuPrincipal();
+		crearBtn_IniciarJuego();
+		crearIdiomaComboBox();
+		ponerImagenDeFondo();
+		
+	}
+
+	private void crearFrame() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(144, 238, 144));
-		frame.setBackground(new Color(139, 0, 139));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Men\u00FA Principal");
-		lblNewLabel.setFont(new Font("Eras Bold ITC", Font.PLAIN, 23));
-		lblNewLabel.setBounds(126, 0, 206, 30);
-		frame.getContentPane().add(lblNewLabel);
-		
-		JLabel Imagen = new JLabel("");
+	}
+
+	private void ponerImagenDeFondo() {
+		Imagen = new JLabel();
 		Imagen.setIcon(new ImageIcon(MenuInterface.class.getResource("/Img/wordle-logo2.png")));
 		Imagen.setBounds(10, -34, 434, 335);
 		frame.getContentPane().add(Imagen);
-		crearBotonIniciarJuego();
 	}
 
-	private void crearBotonIniciarJuego() {
-		JButton btnIniciarJuego = new JButton("Jugar");
+	private void crearBtn_IniciarJuego() {
+		btnIniciarJuego = new JButton("Jugar");
+		btnIniciarJuego.setBounds(160, 224, 117, 26);
 		btnIniciarJuego.setBackground(Color.GREEN);
+		btnIniciarJuego.setFont(new Font("Dialog", Font.PLAIN, 14));
+		frame.getContentPane().add(btnIniciarJuego);
+	}
+
+	private void crearTitulo_MenuPrincipal() {
+		lblNewLabel = new JLabel("Men\u00FA Principal");
+		lblNewLabel.setFont(new Font("Eras Bold ITC", Font.PLAIN, 23));
+		lblNewLabel.setBounds(126, 0, 206, 30);
+		frame.getContentPane().add(lblNewLabel);
+	}
+
+	private void eventoBotonIniciarJuego() {
 		btnIniciarJuego.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
-				new JuegoInterface();
-				frame.setVisible(false);
+				
+				idioma= idiomaComboBox.getSelectedIndex();
+				new JuegoInterface(idioma);
 				
 			}
 		});
-		btnIniciarJuego.setFont(new Font("Dialog", Font.PLAIN, 14));
-		btnIniciarJuego.setBounds(160, 224, 117, 26);
-		frame.getContentPane().add(btnIniciarJuego);
 	}
 	private void crearIdiomaComboBox() {
-		JComboBox<String> idiomaComboBox = new JComboBox<String>();
-		idiomaComboBox.setBackground(new Color(209, 166, 117, 22));
-		idiomaComboBox.setFont(new Font("Dialog", Font.PLAIN, 14));
-		idiomaComboBox.setBounds(160, 176, 117, 22);
-		idiomaComboBox.addItem("Español");
-		idiomaComboBox.addItem("English");
-		this.idiomaComboBox = idiomaComboBox;
+	
+		idiomaComboBox = new JComboBox();
+		idiomaComboBox.setBounds(160, 40, 117, 22);
 		frame.getContentPane().add(idiomaComboBox);
+		idiomaComboBox.setModel(new DefaultComboBoxModel(new String[] {"Español", "Ingles" }));
 	}
 
 	
-	public String getIdioma() {
-		return (String) this.idiomaComboBox.getSelectedItem();
+	public int getIdioma() {
+		return idioma;
 	}
 
 

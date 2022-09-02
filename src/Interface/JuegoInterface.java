@@ -39,19 +39,26 @@ public class JuegoInterface {
 	private static MenuInterface menu;
 	private String palabraUsuario;
 	private Timer time;
+	private int idioma;
 	
 
 	/**
 	 * Launch the application.
 	 */
+	
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			
 			public void run() {
 				try {
-					JuegoInterface window = new JuegoInterface();
+					
+					menu = new MenuInterface();
+					
+					JuegoInterface window = new JuegoInterface(menu.getIdioma());
+					
 					window.frame.setVisible(true);
 
-					menu = new MenuInterface();
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -63,8 +70,9 @@ public class JuegoInterface {
 	/**
 	 * Create the application.
 	 */
-	public JuegoInterface() {
-
+	public JuegoInterface(int idioma) {
+		
+		this.idioma= idioma;		
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
@@ -81,15 +89,17 @@ public class JuegoInterface {
 	private void initialize() {
 		// inicializo
 		crearDiseñoJuego();        
-//		cambiarIdioma(); //Este cambiar idioma genera error pero funciona en ganar juego
         ganarJuego();
+        boton_Aceptar();
+        boton_SiguientePalabra();
         
+		
+	}
+
+	private void palabraERA() {
 		palabraERA = new JLabel(juego.getpalabra());
 		palabraERA.setBounds(369, 98, 57, 14);
 		frame.getContentPane().add(palabraERA);
-
-        botones();
-		
 	}
 
 	private void cambiarColor(int n, Color color, char letra) {
@@ -130,39 +140,64 @@ public class JuegoInterface {
 	}
 
 	private void crearDiseñoJuego() {
+
+		juego = new EstadoDeJuego(this.idioma);
+
+		crearFrame();
+		crearTextoIngresarPalabra();
+		crearCampoDeTexto();
+		crearBotonAceptar();
+		crearTexto_Intentos();
+		cuadradosDeLasLetras();
+		crearTexto_Puntaje();
+		crearBoton_siguientePalabra();
+		excepcion5Letras();
+		palabraERA();
 		
-		juego = new EstadoDeJuego();
+		if(idioma==0) {
+			buildIdiomaEspañol();
+		}
+		else if(idioma==1) {
+			buildIdiomaIngles();
+		}
+		
 
-		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.PINK);
-		frame.setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		frame.setVisible(true);
+		time = new Timer();
+		
+		
+	}
 
-		 textIngresarPalabra = new JLabel("Ingresar palabra:");
-		textIngresarPalabra.setBounds(30, 26, 97, 24);
-		frame.getContentPane().add(textIngresarPalabra);
+	private void excepcion5Letras() {
+		excepcion5Letras = new JLabel();
+		excepcion5Letras.setForeground(Color.RED);
+		excepcion5Letras.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		excepcion5Letras.setBounds(93, 121, 230, 24);
+		frame.getContentPane().add(excepcion5Letras);
+		excepcion5Letras.setVisible(false);
+	}
 
-		textField = new JTextField();
-		textField.setBounds(156, 29, 96, 19);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+	private void crearBoton_siguientePalabra() {
+		btnsig = new JButton();
+		btnsig.setBackground(Color.WHITE);
+		btnsig.setBounds(205, 58, 145, 30);
+		frame.getContentPane().add(btnsig);
+		btnsig.setVisible(true);
+	}
 
-		btnAceptar = new JButton("Aceptar");
-		btnAceptar.setBackground(Color.WHITE);
-		btnAceptar.setBounds(93, 60, 102, 28);
-		frame.getContentPane().add(btnAceptar);
 
-		textIntentos = new JLabel("Intentos:");
-		textIntentos.setBounds(329, 0, 57, 14);
-		frame.getContentPane().add(textIntentos);
+	private void crearTexto_Puntaje() {
+		Puntaje = new JLabel();
+		Puntaje.setBounds(329, 26, 46, 14);
+		frame.getContentPane().add(Puntaje);
+		
+		PuntajeCant = new JLabel("0");
+		PuntajeCant.setBounds(385, 26, 17, 14);
+		frame.getContentPane().add(PuntajeCant);
+		
+		
+	}
 
-		cantidadDeIntentos = new JLabel("6");
-		cantidadDeIntentos.setBounds(385, 0, 17, 14);
-		frame.getContentPane().add(cantidadDeIntentos);
-
+	private void cuadradosDeLasLetras() {
 		letra0 = new JTextPane();
 		letra0.setEditable(false);
 		letra0.setBackground(Color.LIGHT_GRAY);
@@ -197,32 +232,48 @@ public class JuegoInterface {
 		letra4.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		letra4.setBounds(318, 165, 62, 47);
 		frame.getContentPane().add(letra4);
+	}
 
-		Puntaje = new JLabel("Puntaje:");
-		Puntaje.setBounds(329, 26, 46, 14);
-		frame.getContentPane().add(Puntaje);
 
-		PuntajeCant = new JLabel("0");
-		PuntajeCant.setBounds(385, 26, 17, 14);
-		frame.getContentPane().add(PuntajeCant);
 
-		btnsig = new JButton("Siguiente Palabra");
-		btnsig.setBackground(Color.WHITE);
-		btnsig.setBounds(205, 58, 145, 30);
-		frame.getContentPane().add(btnsig);
-		btnsig.setVisible(true);
-
-		excepcion5Letras = new JLabel("Ingrese una palabra de 5 letras!");
-		excepcion5Letras.setForeground(Color.RED);
-		excepcion5Letras.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		excepcion5Letras.setBounds(93, 121, 230, 24);
-		frame.getContentPane().add(excepcion5Letras);
-		excepcion5Letras.setVisible(false);
-
-		time = new Timer();
+	private void crearTexto_Intentos() {
+		textIntentos = new JLabel();
+		textIntentos.setBounds(329, 0, 57, 14);
+		frame.getContentPane().add(textIntentos);
 		
-		
+		cantidadDeIntentos = new JLabel("6");
+		cantidadDeIntentos.setBounds(385, 0, 17, 14);
+		frame.getContentPane().add(cantidadDeIntentos);
+	}
 
+	private void crearBotonAceptar() {
+		btnAceptar = new JButton();
+		btnAceptar.setBackground(Color.WHITE);
+		btnAceptar.setBounds(93, 60, 102, 28);
+		frame.getContentPane().add(btnAceptar);
+	}
+
+	private void crearCampoDeTexto() {
+		textField = new JTextField();
+		textField.setBounds(156, 29, 96, 19);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+	}
+
+	private void crearTextoIngresarPalabra() {
+		textIngresarPalabra = new JLabel();
+		textIngresarPalabra.setBounds(30, 26, 97, 24);
+		frame.getContentPane().add(textIngresarPalabra);
+	}
+
+	private void crearFrame() {
+		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.PINK);
+		frame.setBackground(Color.WHITE);
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		frame.setVisible(true);
 	}
 
 	private void cambiarColor() {
@@ -251,7 +302,6 @@ public class JuegoInterface {
 
 			if (opcion == 0) {
 				resetearJuegoYDiseño();
-//				cambiarIdioma();
 			}
 
 			if (opcion == 1) {
@@ -303,25 +353,24 @@ public class JuegoInterface {
 
 	}
 	 
-	private void cambiarIdioma() {
-//		String idioma = menu.getIdioma();
-//		if (idioma.equals("English")) {
-			juego.setIdiomaIngles();
-			buildIdiomaIngles();
-//			botones();
-//		} else {
-//			buildIdiomaEspañol();
-//		}
-	}
+//	private void cambiarIdioma() {
+////		String idioma = menu.getIdioma();
+////		if (idioma.equals("English")) {
+//			juego.setIdiomaIngles();
+//			buildIdiomaIngles();
+////			botones();
+////		} else {
+////			buildIdiomaEspañol();
+////		}
+//	}
 
 	private void buildIdiomaEspañol() {
 		textIngresarPalabra.setText("Ingrese palabra:");
 		btnAceptar.setText("Aceptar");
 		textIntentos.setText("Intentos");
-		Puntaje.setText("Score");
-		excepcion5Letras.setText("Enter 5 letter words");
-		btnsig.setText("Next word");
-		palabraERA.setText(juego.getpalabra());
+		Puntaje.setText("Puntaje");
+		excepcion5Letras.setText("Ingrese una palabra de 5 letras!");
+		btnsig.setText("Siguiente Palabra");
 		
 	}
 
@@ -332,10 +381,9 @@ public class JuegoInterface {
 		Puntaje.setText("Score");
 		excepcion5Letras.setText("Enter 5 letter words");
 		btnsig.setText("Next word");
-		palabraERA.setText(juego.getpalabra());
 	}
 
-	private void botones() {
+	private void boton_Aceptar() {
 	
 	btnAceptar.addActionListener(new ActionListener() {
 
@@ -391,16 +439,20 @@ public class JuegoInterface {
 
 	});
 
-	btnsig.addActionListener(new ActionListener() {
+	
+	}
 
-		@Override
-		public void actionPerformed(ActionEvent e) {
+	private void boton_SiguientePalabra() {
+		btnsig.addActionListener(new ActionListener() {
 
-			siguientePalabra();
-			restarPuntaje();
-		}
+			@Override
+			public void actionPerformed(ActionEvent e) {
 
-	});
+				siguientePalabra();
+				restarPuntaje();
+			}
+
+		});
 	}
 
 

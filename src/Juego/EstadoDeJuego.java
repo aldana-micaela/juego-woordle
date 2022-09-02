@@ -8,10 +8,9 @@ import java.util.Set;
 
 public class EstadoDeJuego {
 	
-	
 //	private String[] palabras = { "orden", "joven", "botas"}; 				// lo hice mas corto para probar los casos de ganar!
 	
-	private String[] palabras = { "orden", "joven", "botas", "calma", "palma", "jugar", "apodo", "dulce", "vocal",
+	private String[] palabrasEspañol = { "orden", "joven", "botas", "calma", "palma", "jugar", "apodo", "dulce", "vocal",
 			"barco", "regla", "letra", "nadar", "torta", "atomo", "boton", "libro", "cielo", "falso",
 			"carne", "falta", "fuego", "pluma", "tucan", "gatos", "fruta", "poste", "mesas", "motos", "tecla"};
 	
@@ -19,41 +18,43 @@ public class EstadoDeJuego {
 	private String[] palabrasingles = {"beach", "hairs","queen","apple", "banks", "sleep", "house", "snake","lives", 
 			"river", "cards", "tools", "dance" };
 	
+	private String[] palabrasAux;
 	private Set<String> palabrasEnJuego= new HashSet<String>();		// hice un cunjunto de palabras para que no se repitan e ir agregando las palabras que se usaron
-
-	private String palabra;
-//	private char[] palabraSecreta;
-//	private ArrayList<String> letrasAdivinadasEnPosicionCorrecta;
-//	private ArrayList<String> letrasEnPosicionIncorrecta;
-//	private ArrayList<String> palabrasIngresadas;	
+	private String palabra;	
 	private ArrayList<Integer> estadoDeLetrasEnNumeros;      
 	private int puntaje;
 	private int intentos;
 	private String dificultad;
 	
 	
-	public EstadoDeJuego() {
+	public EstadoDeJuego(int idioma) {
 
+		if(idioma==0) {
+			this.palabrasAux= palabrasEspañol;
+		}
+		else {
+			this.palabrasAux = palabrasingles;
+		}
+		
 		this.palabra = elegirPalabra();
-//		this.palabraSecreta = palabraSecreta;
-//		this.letrasAdivinadasEnPosicionCorrecta = new ArrayList<String>();
-//		this.letrasEnPosicionIncorrecta = new ArrayList<String>();
-//		this.palabrasIngresadas = new ArrayList<String>();
 		this.puntaje=0;
 		this.intentos = 6;
 		this.dificultad= "Normal";
 		this.estadoDeLetrasEnNumeros = new ArrayList<Integer>();
+		
+			
 	}
 
 
 	private String elegirPalabra() {
 		Random random = new Random();
-		int elem = random.nextInt(this.palabras.length);
 		
-		while(palabrasEnJuego.contains(palabras[elem]) && !palabrasEnJuego.isEmpty())   // este while verifica que no se jueguen palabras repetidas
-			elem = random.nextInt(this.palabras.length);
+		int	elem = random.nextInt(this.palabrasAux.length);
 		
-		return this.palabras[elem];
+		while(palabrasEnJuego.contains(palabrasAux[elem]) && !palabrasEnJuego.isEmpty())   // este while verifica que no se jueguen palabras repetidas
+			elem = random.nextInt(this.palabrasAux.length);
+		
+		return this.palabrasAux[elem];
 	}
 	
 	
@@ -107,14 +108,6 @@ public class EstadoDeJuego {
 			}
 	}
 			public void cambiarPalabra() {
-//				String viejaPalabra = this.palabra;			//verifique que las palabras no se repitan en el while del metodo elegirPalabra()
-//				String nuevaPalabra = elegirPalabra();
-//
-//				while (nuevaPalabra == viejaPalabra)
-//					nuevaPalabra = elegirPalabra();
-//				
-//				this.palabra = nuevaPalabra;
-//				
 				this.palabra=elegirPalabra();
 			}
 	
@@ -180,7 +173,7 @@ public class EstadoDeJuego {
 			
 			
 			public boolean ganaste () {
-				return palabras.length == palabrasEnJuego.size();
+				return palabrasAux.length == palabrasEnJuego.size();
 			}
 			
 			
@@ -209,15 +202,15 @@ public class EstadoDeJuego {
 				return this.dificultad;
 			}
 			
-			public void setIdiomaIngles() {
-				this.palabras = this.palabrasingles;
-				cambiarPalabra();
-			}
+//			public void setIdiomaIngles() {
+//				this.palabrasAux = this.palabrasingles;
+//				cambiarPalabra();
+//			}
 
 
-			public String setIdioma() {
-				return this.setIdioma();
-			}
+//			public String setIdioma() {
+//				return this.setIdioma();
+//			}
 
 
 
