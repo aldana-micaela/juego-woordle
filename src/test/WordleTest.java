@@ -61,8 +61,10 @@ public class WordleTest {
 		String palabra=wordleTest.getpalabra();
 		String palabra2=wordleTest.elegirPalabra();
 		boolean acum= palabra!=palabra2;
-		for(int i=0; i< wordleTest.getPalabrasEspañol().length; i++) {
-			acum= acum && palabra!=wordleTest.elegirPalabra();		}
+//		for(int i=0; i< wordleTest.getPalabrasEspañol().length; i++) {
+//			acum= acum && palabra!=wordleTest.elegirPalabra();		}
 		assertTrue(acum);
 		}
+	
+	
 }
