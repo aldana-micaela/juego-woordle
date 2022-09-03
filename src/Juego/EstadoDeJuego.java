@@ -207,16 +207,7 @@ public class EstadoDeJuego {
 			public int getIntentosAyuda() {
 				return this.intentosDeAyuda;
 			}
-			
-//			public void setIdiomaIngles() {
-//				this.palabrasAux = this.palabrasingles;
-//				cambiarPalabra();
-//			}
 
-
-//			public String setIdioma() {
-//				return this.setIdioma();
-//			}
 
 
 

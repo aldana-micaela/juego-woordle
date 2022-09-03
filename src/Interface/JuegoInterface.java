@@ -1,6 +1,7 @@
 package Interface;
 
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -16,8 +17,7 @@ import javax.swing.JTextPane;
 import javax.swing.UIManager;
 
 import java.awt.Font;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+
 
 public class JuegoInterface {
 
@@ -312,7 +312,7 @@ public class JuegoInterface {
 
 		if (juego.Puntaje()>50) {
 
-			int opcion = JOptionPane.showConfirmDialog(frame, "¡Ganaste!, ¿Desea seguir jugando en el siguiente nivel en Ingles?", "",
+			int opcion = JOptionPane.showConfirmDialog(frame, "¡Ganaste!, ¿Desea seguir jugando?", "",
 					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
 
 			if (opcion == 0) {
@@ -371,16 +371,7 @@ public class JuegoInterface {
 
 	}
 	 
-//	private void cambiarIdioma() {
-////		String idioma = menu.getIdioma();
-////		if (idioma.equals("English")) {
-//			juego.setIdiomaIngles();
-//			buildIdiomaIngles();
-////			botones();
-////		} else {
-////			buildIdiomaEspañol();
-////		}
-//	}
+
 
 	private void buildIdiomaEspañol() {
 		textIngresarPalabra.setText("Ingrese palabra:");

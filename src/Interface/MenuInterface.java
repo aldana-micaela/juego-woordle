@@ -22,7 +22,7 @@ public class MenuInterface {
 	JLabel lblNewLabel;
 	JLabel Imagen;
 	JPanel panel;
-	private JComboBox idiomaComboBox;
+	private JComboBox<String> idiomaComboBox;
 	private int idioma;
 
 	/**
@@ -111,10 +111,10 @@ public class MenuInterface {
 	}
 	private void crearIdiomaComboBox() {
 	
-		idiomaComboBox = new JComboBox();
+		idiomaComboBox = new JComboBox<String>();
 		idiomaComboBox.setBounds(160, 40, 117, 22);
 		frame.getContentPane().add(idiomaComboBox);
-		idiomaComboBox.setModel(new DefaultComboBoxModel(new String[] {"Español", "Ingles" }));
+		idiomaComboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Español", "Ingles" }));
 	}
 
 	
