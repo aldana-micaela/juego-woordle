@@ -24,7 +24,7 @@ public class EstadoDeJuego {
 	private ArrayList<Integer> estadoDeLetrasEnNumeros;      
 	private int puntaje;
 	private int intentos;
-	private String dificultad;
+//	private String dificultad;
 	private int intentosDeAyuda;
 	
 	
@@ -40,7 +40,7 @@ public class EstadoDeJuego {
 		this.palabra = elegirPalabra();
 		this.puntaje=0;
 		this.intentos = 6;
-		this.dificultad= "Normal";
+//		this.dificultad= "Normal";
 		this.estadoDeLetrasEnNumeros = new ArrayList<Integer>();
 		this.intentosDeAyuda=3;
 		
@@ -184,28 +184,34 @@ public class EstadoDeJuego {
 				
 			}
 			
-			public  void cambiarDificultad(String dificultad) {
-				if (dificultad.equals("Fácil")) {
-					this.dificultad = dificultad;
-					this.intentos = 8;
-				}
-				if (dificultad.equals("Difícil")) {
-					this.dificultad = dificultad;
-					this.intentos = 4;
-				}
-			}
-
-
-			public String getDificultad() {
-				return this.dificultad;
-			}
-			
+//			public  void cambiarDificultad(String dificultad) {
+//				if (dificultad.equals("Fácil")) {
+//					this.dificultad = dificultad;
+//					this.intentos = 8;
+//				}
+//				if (dificultad.equals("Difícil")) {
+//					this.dificultad = dificultad;
+//					this.intentos = 4;
+//				}
+//			}
+//
+//
+//			public String getDificultad() {
+//				return this.dificultad;
+//			}
+//			
 			public void restarIntentosAyuda() {
 				this.intentosDeAyuda--;
 			}
 			
 			public int getIntentosAyuda() {
 				return this.intentosDeAyuda;
+			}
+
+
+			public ArrayList<Integer> getestadoDeLetrasEnNumeros() {
+				// TODO Auto-generated method stub
+				return estadoDeLetrasEnNumeros;
 			}
 
 
