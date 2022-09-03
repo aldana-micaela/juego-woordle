@@ -10,7 +10,7 @@ Docentes: Javier Marenco, Patricia Bagnes (Com-01);
  v1, 2022-09-03.
 
 
-== Descrpción:
+== Descripción:
 El trabajo consiste en la implementación del  juego “Wordle” en el lenguaje Java.
 El propósito de este juego es adivinar una palabra secreta de cinco letras que propone la aplicación. Al iniciar
 el juego, la aplicación selecciona aleatoriamente la palabra secreta de una lista de palabras, y
