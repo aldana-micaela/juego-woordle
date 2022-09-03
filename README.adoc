@@ -19,6 +19,7 @@ el usuario debe adivinar la palabra secreta arriesgando palabras por turnos.
 En cada turno el usuario le informa al juego una palabra. Si la palabra que introdujo el usuario coincide
 con la palabra secreta, el usuario gana el juego. Si no, la aplicaci´on le informa al usuario el
 “status” de cada letra de la palabra:
+
     • Si la letra no está en la palabra secreta, se marca en gris.
 
     • Si la letra está en la palabra secreta pero no est´a en la misma posici´on que en la palabra
