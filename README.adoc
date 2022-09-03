@@ -1,5 +1,4 @@
-= Juego Wordle : Titule
-
+= Juego Wordle: Trabajo Practico 1 - Programación III
 :hardbreaks:
 :title-page:
 :numbered:
