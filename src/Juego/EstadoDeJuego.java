@@ -48,7 +48,7 @@ public class EstadoDeJuego {
 	}
 
 
-	private String elegirPalabra() {
+	public String elegirPalabra() {
 		Random random = new Random();
 		
 		int	elem = random.nextInt(this.palabrasAux.length);
@@ -208,10 +208,29 @@ public class EstadoDeJuego {
 				return this.intentosDeAyuda;
 			}
 
+			public void jugar(String palabra) {
+				if(adivinoPalabra(palabra)) {
+					sumarPuntaje();
+					adivinoPalabra();
+					elegirPalabra();
+					
+					
+				}else {
+					restarPuntaje();
+				    quitarIntentos();
+				}
+
+			}
 
 			public ArrayList<Integer> getestadoDeLetrasEnNumeros() {
-				// TODO Auto-generated method stub
+				
 				return estadoDeLetrasEnNumeros;
+			}
+
+
+			public String[] getPalabrasEspañol() {
+				// TODO Auto-generated method stub
+				return palabrasEspañol;
 			}
 
 

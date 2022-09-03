@@ -30,4 +30,39 @@ public class WordleTest {
 		p.clear();
 		assertEquals(p,wordleTest.getestadoDeLetrasEnNumeros());
 	}
+	
+	@Test
+	public void restarIntentos() {
+		wordleTest=new EstadoDeJuego(0);
+//		String palabra=wordleTest.elegirPalabra();
+		wordleTest.jugar("asdfg");
+		assertEquals("5", wordleTest.getIntentos());
+		}
+	
+	@Test
+	public void sumarPunateje() {
+		wordleTest=new EstadoDeJuego(0);
+		String palabra=wordleTest.getpalabra();
+		wordleTest.jugar(palabra);
+		assertEquals("10", wordleTest.getPuntaje());
+		}
+	
+	@Test
+	public void restarPuntaje() {
+		wordleTest=new EstadoDeJuego(0);
+		String palabra=wordleTest.getpalabra();
+		wordleTest.jugar("werty");
+		assertEquals("-5", wordleTest.getPuntaje());
+		}
+	
+	@Test
+	public void ElegirPalabraNoRepetida() {
+		wordleTest=new EstadoDeJuego(0);
+		String palabra=wordleTest.getpalabra();
+		String palabra2=wordleTest.elegirPalabra();
+		boolean acum= palabra!=palabra2;
+		for(int i=0; i< wordleTest.getPalabrasEspañol().length; i++) {
+			acum= acum && palabra!=wordleTest.elegirPalabra();		}
+		assertTrue(acum);
+		}
 }

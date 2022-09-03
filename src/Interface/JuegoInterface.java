@@ -273,6 +273,7 @@ public class JuegoInterface {
 		textField.setBounds(156, 29, 96, 19);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
+
 	}
 
 	private void crearTextoIngresarPalabra() {
