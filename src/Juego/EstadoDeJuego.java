@@ -24,11 +24,11 @@ public class EstadoDeJuego {
 	private ArrayList<Integer> estadoDeLetrasEnNumeros;      
 	private int puntaje;
 	private int intentos;
-//	private String dificultad;
+	private String dificultad;
 	private int intentosDeAyuda;
 	
 	
-	public EstadoDeJuego(int idioma) {
+	public EstadoDeJuego(int idioma, int dificultad) {
 
 		if(idioma==0) {
 			this.palabrasAux= palabrasEspañol;
@@ -37,14 +37,32 @@ public class EstadoDeJuego {
 			this.palabrasAux = palabrasingles;
 		}
 		
+		
+		
 		this.palabra = elegirPalabra();
 		this.puntaje=0;
 		this.intentos = 6;
-//		this.dificultad= "Normal";
+		this.dificultad= cambiarDificultad(dificultad);;
 		this.estadoDeLetrasEnNumeros = new ArrayList<Integer>();
 		this.intentosDeAyuda=3;
 		
 			
+	}
+
+
+	private String cambiarDificultad(int dif) {
+		String d="";
+		if(dif==0) {
+			this.intentos=8;
+			d="Fácil";
+		}if(dif==1) {
+			this.intentos=6;
+			d="Normal";
+		}if(dif==2) {
+			this.intentos=4;
+			d="Difícil";
+		}
+		return d;
 	}
 
 
@@ -229,11 +247,12 @@ public class EstadoDeJuego {
 
 
 			public String[] getPalabrasEspañol() {
-				// TODO Auto-generated method stub
 				return palabrasEspañol;
 			}
 
-
+			public String getDificultad() {
+				return this.dificultad;
+			}
 
 
 }

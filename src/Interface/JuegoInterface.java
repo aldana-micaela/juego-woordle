@@ -43,6 +43,7 @@ public class JuegoInterface {
 	private String palabraUsuario;
 	private Timer time;
 	private int idioma;
+	private int dificultad;
 	
 
 	/**
@@ -58,7 +59,7 @@ public class JuegoInterface {
 					
 					menu = new MenuInterface();
 					
-					JuegoInterface window = new JuegoInterface(menu.getIdioma());
+					JuegoInterface window = new JuegoInterface(menu.getIdioma(), menu.getDificultad());
 					
 					window.frame.setVisible(true);
 
@@ -73,9 +74,10 @@ public class JuegoInterface {
 	/**
 	 * Create the application.
 	 */
-	public JuegoInterface(int idioma) {
+	public JuegoInterface(int idioma, int Dificultad) {
 		
-		this.idioma= idioma;		
+		this.idioma= idioma;
+		this.dificultad= Dificultad;
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
@@ -145,7 +147,7 @@ public class JuegoInterface {
 
 	private void crearDiseñoJuego() {
 
-		juego = new EstadoDeJuego(this.idioma);
+		juego = new EstadoDeJuego(this.idioma, this.dificultad);
 
 		crearFrame();
 		crearTextoIngresarPalabra();
@@ -165,7 +167,17 @@ public class JuegoInterface {
 		else if(idioma==1) {
 			buildIdiomaIngles();
 		}
-		
+	    
+		if(dificultad==0) {
+			cantidadDeIntentos.setText("8");
+			
+		}if(dificultad==1) {
+			cantidadDeIntentos.setText("6");
+			
+		}if(dificultad==2) {
+			cantidadDeIntentos.setText("4");
+			
+		}
 
 		time = new Timer();
 		

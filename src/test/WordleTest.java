@@ -14,7 +14,7 @@ public class WordleTest {
 	
 	@Test
 	public void sumarPuntajeTest() {
-		wordleTest=new EstadoDeJuego(0);
+		wordleTest=new EstadoDeJuego(0,0);
 		wordleTest.cambiarPalabra();
 		String palabra= wordleTest.getpalabra();
 		
@@ -24,7 +24,7 @@ public class WordleTest {
 	@Test
 	public void LimpiarEstadoDeLetrasEnNumerosTest() {
 		ArrayList<Integer> p= new ArrayList<Integer>(1);
-		wordleTest=new EstadoDeJuego(0);
+		wordleTest=new EstadoDeJuego(0,1);
 		wordleTest.cambiarPalabra();
 		wordleTest.limpiarArregloDeNumeros();
 		p.clear();
@@ -33,7 +33,7 @@ public class WordleTest {
 	
 	@Test
 	public void restarIntentos() {
-		wordleTest=new EstadoDeJuego(0);
+		wordleTest=new EstadoDeJuego(0,1);
 //		String palabra=wordleTest.elegirPalabra();
 		wordleTest.jugar("asdfg");
 		assertEquals("5", wordleTest.getIntentos());
@@ -41,7 +41,7 @@ public class WordleTest {
 	
 	@Test
 	public void sumarPunateje() {
-		wordleTest=new EstadoDeJuego(0);
+		wordleTest=new EstadoDeJuego(0,1);
 		String palabra=wordleTest.getpalabra();
 		wordleTest.jugar(palabra);
 		assertEquals("10", wordleTest.getPuntaje());
@@ -49,15 +49,14 @@ public class WordleTest {
 	
 	@Test
 	public void restarPuntaje() {
-		wordleTest=new EstadoDeJuego(0);
-		String palabra=wordleTest.getpalabra();
+		wordleTest=new EstadoDeJuego(0,2);
 		wordleTest.jugar("werty");
 		assertEquals("-5", wordleTest.getPuntaje());
 		}
 	
 	@Test
 	public void ElegirPalabraNoRepetida() {
-		wordleTest=new EstadoDeJuego(0);
+		wordleTest=new EstadoDeJuego(0,1);
 		String palabra=wordleTest.getpalabra();
 		String palabra2=wordleTest.elegirPalabra();
 		boolean acum= palabra!=palabra2;

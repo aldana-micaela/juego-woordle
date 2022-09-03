@@ -23,7 +23,10 @@ public class MenuInterface {
 	JLabel Imagen;
 	JPanel panel;
 	private JComboBox<String> idiomaComboBox;
+	private JComboBox<String> difComboBox;
 	private int idioma;
+	private int dificultad;
+
 
 	/**
 	 * Launch the application.
@@ -64,6 +67,7 @@ public class MenuInterface {
 		crearTitulo_MenuPrincipal();
 		crearBtn_IniciarJuego();
 		crearIdiomaComboBox();
+	    crearIDificultadComboBox();
 		ponerImagenDeFondo();
 		
 	}
@@ -79,7 +83,7 @@ public class MenuInterface {
 	private void ponerImagenDeFondo() {
 		Imagen = new JLabel();
 		Imagen.setIcon(new ImageIcon(MenuInterface.class.getResource("/Img/wordle-logo2.png")));
-		Imagen.setBounds(10, -34, 434, 335);
+		Imagen.setBounds(10, -28, 434, 335);
 		frame.getContentPane().add(Imagen);
 	}
 
@@ -104,7 +108,8 @@ public class MenuInterface {
 			public void actionPerformed(ActionEvent e) {
 				
 				idioma= idiomaComboBox.getSelectedIndex();
-				new JuegoInterface(idioma);
+				dificultad = difComboBox.getSelectedIndex();	
+				new JuegoInterface(idioma, dificultad);
 				
 			}
 		});
@@ -112,7 +117,7 @@ public class MenuInterface {
 	private void crearIdiomaComboBox() {
 	
 		idiomaComboBox = new JComboBox<String>();
-		idiomaComboBox.setBounds(160, 40, 117, 22);
+		idiomaComboBox.setBounds(160, 41, 117, 22);
 		frame.getContentPane().add(idiomaComboBox);
 		idiomaComboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Español", "Ingles" }));
 	}
@@ -122,6 +127,17 @@ public class MenuInterface {
 		return idioma;
 	}
 
+	private void crearIDificultadComboBox() {
+		
+		difComboBox = new JComboBox<String>();
+		difComboBox.setBounds(160, 176, 109, 22);
+		frame.getContentPane().add(difComboBox);
+		difComboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Fácil", "Normal", "Difícil" }));
+	}
 
+	
+	public int getDificultad() {
+		return dificultad;
+	}
 
 }
