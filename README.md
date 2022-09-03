@@ -1,5 +1,11 @@
 = Juego Wordle
 
+:hardbreaks:
+:title-page:
+:numbered:
+:source-highlighter: coderay
+:tabsize: 4
+
 Autores:Aldana Micaela Filiberto <@gmail.com>; Juliana Camila Nuñez <julicamila14@gmail.com>;
 
 == Descrpción:
