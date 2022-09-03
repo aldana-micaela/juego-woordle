@@ -5,7 +5,7 @@
 :source-highlighter: coderay
 :tabsize: 4
 
-Autores:Aldana Micaela Filiberto <@gmail.com>; Juliana Camila Nuñez <julicamila14@gmail.com> 41573679/2017;
+Autores:Aldana Micaela Filiberto <@gmail.com>; Juliana Camila Nuñez <julicamila14@gmail.com>;
 Docentes: Javier Marenco, Patricia Bagnes (Com-01);
  v1, 2022-09-03.
 
