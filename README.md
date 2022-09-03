@@ -1,4 +1,4 @@
-= Juego Wordle
+= Juego Wordle : Titule
 
 :hardbreaks:
 :title-page:
