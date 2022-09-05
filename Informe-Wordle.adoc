@@ -1,0 +1,56 @@
+= Juego Wordle: Trabajo Practico 1 - Programación III
+:hardbreaks:
+:title-page:
+:numbered:
+:source-highlighter: coderay
+:tabsize: 4
+
+Autores:Aldana Micaela Filiberto <Aldana.filiberto17@gmail.com>; Juliana Camila Nuñez <julicamila14@gmail.com>;
+Docentes: Javier Marenco, Patricia Bagnes (Com-01);
+ v1, {docdate}.
+
+
+== Introducción:
+El trabajo consiste en la implementación del  juego “Wordle” en el lenguaje Java.
+El propósito de este juego es adivinar una palabra secreta de cinco letras que propone la aplicación. Al iniciar el juego, la aplicación selecciona aleatoriamente la palabra secreta de una lista de palabras, y
+el usuario debe adivinar la palabra secreta arriesgando palabras por turnos.
+En cada turno el usuario le informa al juego una palabra. Si la palabra que introdujo el usuario coincide con la palabra secreta, el usuario gana el juego. Si no, la aplicación le informa al usuario el “status” de cada letra de la palabra.
+El usuario tiene diferentes cantidades de intentos para descubrir la palabra secreta. Dependiendo la dificultad que el usuario elija. Si luego de, la cantidad de intentos seleccionada no lo consigue, pierde el juego.
+
+Por último, el juego consiste con la posibilidad de configurar el idioma del juego (Inglés-Español).
+
+
+== Descripción:
+Durante la implementación del juego se nos presentaron varias
+dificultades, algunas de ellas fueron:
+Permitir que el idioma sea configurable. Primero lo pensamos de esta forma:
+
+.InterfaceJuego
+
+[source, java]
+----
+ 	private void cambiarIdioma() {
+		String idioma = menu.getIdioma();
+		if (idioma.equals("English")) {
+			juego.setIdiomaIngles();
+			buildIdiomaIngles();
+		} else {
+		buildIdiomaEspaol();
+    	}
+	}
+
+----
+
+Como de esta forma no funcionaba como lo esperabamos, decimos cambiar el constructor de la clase EstadoDeJuego y de la clase JuegoInterface. De esta forma, cuando inicializamos ambas clases se pasa por parametro el idioma.
+
+Esta fue la solución que encontramos para dicho problema.
+
+Otro problema que se nos presentó, fue hacer implementar la dificultad del juego. Al igual que el idioma, lo solucionamos de la misma forma.
+
+Las decisiones que tomamos rescpeto al juego, fue que el usuario pueda cambiar de palabra solo tres veces. Pero al cambiar la palabra pierde un intento. También decidimos colocar un botón de ayuda en donde le indica al usuario el significado de la palabra. Este botón de ayuda, solo puede ser usado tres veces.
+
+Con respecto a la dificultad, se puede configurar en tres formas:
+En el caso de que el usuario seleccione la opción "Fácil" contara con ocho (8) intentos. Pero si el usuario selecciona la opción "Normal" contara con seís (6) intentos. Por último, si el usuario elige la opción "Difícil" solo tendrá cuatro (4) intentos para adivinar la palabra asignada. 
+
+
+
