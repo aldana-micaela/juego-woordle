@@ -1,0 +1,30 @@
+= Juego Wordle: Trabajo Practico 1 - Programación III
+:hardbreaks:
+:title-page:
+:numbered:
+:source-highlighter: coderay
+:tabsize: 4
+
+Autores:Aldana Micaela Filiberto <@gmail.com>; Juliana Camila Nuñez <julicamila14@gmail.com>;
+Docentes: Javier Marenco, Patricia Bagnes (Com-01);
+ v1, {docdate}.
+
+
+== Descripción:
+El trabajo consiste en la implementación del  juego “Wordle” en el lenguaje Java.
+El propósito de este juego es adivinar una palabra secreta de cinco letras que propone la aplicación. Al iniciar
+el juego, la aplicación selecciona aleatoriamente la palabra secreta de una lista de palabras, y
+el usuario debe adivinar la palabra secreta arriesgando palabras por turnos.
+En cada turno el usuario le informa al juego una palabra. Si la palabra que introdujo el usuario coincide
+con la palabra secreta, el usuario gana el juego. Si no, la aplicaci´on le informa al usuario el
+“status” de cada letra de la palabra:
+
+    • Si la letra no está en la palabra secreta, se marca en gris.
+
+    • Si la letra está en la palabra secreta pero no est´a en la misma posici´on que en la palabra
+      que dio el usuario, se marca en amarillo.
+
+    • Si la letra está en la palabra secreta y en la posición correcta, se marca en verde.
+
+El usuario tiene seis intentos para descubrir la palabra secreta. Si luego de los seis intentos
+no lo consigue, pierde el juego.
