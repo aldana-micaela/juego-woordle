@@ -129,7 +129,7 @@ public class MenuInterface {
 
 			public void actionPerformed(ActionEvent e) {
 
-				JOptionPane.showMessageDialog(frame, "Reglas del juego:\n-Se debe adivinar la palabra en un lapzo limitado de intentos.\n"
+				JOptionPane.showMessageDialog(frame, "Reglas del juego:\n-Se debe adivinar la palabra en un lapso limitado de intentos.\n"
 						+ "-El jugador cuenta con la opcion de usar el boton de pistas <?> 3 veces.\n"
 						+ "-El jugador cuenta con una unica ayuda para adivinar la palabra.");
 

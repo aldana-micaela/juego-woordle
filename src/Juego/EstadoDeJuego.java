@@ -59,7 +59,7 @@ public class EstadoDeJuego {
 		palabrasEspañolMap = new HashMap<String, String>();
 
 		palabrasEspañolMap.put("orden", "A las personas con TOC les gusta el...");
-		palabrasEspañolMap.put("joven", "Alguien menor de 50 años.");
+		palabrasEspañolMap.put("joven", "Alguien menor de 50 años es...");
 		palabrasEspañolMap.put("botas", "Calazado de pies.");
 		palabrasEspañolMap.put("calma", "En la playa hay...");
 		palabrasEspañolMap.put("palma", "Está en el centro y tiene 5 dedos.");
@@ -284,6 +284,7 @@ public class EstadoDeJuego {
 	public void restarIntentosAyuda() {
 		this.intentosDeAyuda--;
 	}
+	
 	public void restarIntentosPista() {
 		this.intentosDePista--;
 	}
@@ -291,6 +292,7 @@ public class EstadoDeJuego {
 	public int getIntentosAyuda() {
 		return this.intentosDeAyuda;
 	}
+	
 	public int getIntentosPista() {
 		return this.intentosDePista;
 	}

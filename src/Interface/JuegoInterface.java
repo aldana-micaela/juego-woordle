@@ -396,6 +396,7 @@ public class JuegoInterface {
 		cambiarColor();
 		jLabelPista.setVisible(false);
 		jLabelPista.setText(juego.getValor());
+		
 		if(juego.getIntentosPista()>0)
 			btnPista.setEnabled(true);
 
@@ -436,13 +437,10 @@ public class JuegoInterface {
 				if (palabraUsuario.length() != 5) {
 					textField.setText(null);
 					excepcion5Letras.setVisible(true);
-
-				}
-
-				else {
-
+				} else {
 					verificacionDeLasLetras();
 				}
+				
 				textField.setText(null);
 
 				if (juego.adivinoPalabra(palabraUsuario)) {
