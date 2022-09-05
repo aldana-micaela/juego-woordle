@@ -296,7 +296,7 @@ public class JuegoInterface {
 
 	private void crearFrame() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.PINK);
+		frame.getContentPane().setBackground(new Color(152, 251, 152));
 		frame.setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
