@@ -18,21 +18,21 @@ import javax.swing.UIManager;
 
 import java.awt.Font;
 
-
 public class JuegoInterface {
 
 	private JFrame frame;
 	private EstadoDeJuego juego;
-	private JTextField textField;
 	private JButton btnAceptar;
 	private JButton btnsig;
-	private JButton btnAyuda;
-	private JLabel textIntentos;
+	private JButton btnPista;
+	private JButton btnPalabraSecreta;
 	private JLabel PuntajeCant;
 	private JLabel Puntaje;
 	private JLabel cantidadDeIntentos;
+	private JLabel textIntentos;
 	private JLabel palabraERA;
 	private JLabel textIngresarPalabra;
+	private JTextField textField;
 	private JTextPane letra0;
 	private JTextPane letra1;
 	private JTextPane letra2;
@@ -44,25 +44,23 @@ public class JuegoInterface {
 	private Timer time;
 	private int idioma;
 	private int dificultad;
-	
+	private JLabel jLabelPista;
 
 	/**
 	 * Launch the application.
 	 */
-	
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-			
+
 			public void run() {
 				try {
-					
-					menu = new MenuInterface();
-					
-					JuegoInterface window = new JuegoInterface(menu.getIdioma(), menu.getDificultad());
-					
-					window.frame.setVisible(true);
 
+					menu = new MenuInterface();
+
+					JuegoInterface window = new JuegoInterface(menu.getIdioma(), menu.getDificultad());
+
+					window.frame.setVisible(true);
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -75,9 +73,9 @@ public class JuegoInterface {
 	 * Create the application.
 	 */
 	public JuegoInterface(int idioma, int Dificultad) {
-		
-		this.idioma= idioma;
-		this.dificultad= Dificultad;
+
+		this.idioma = idioma;
+		this.dificultad = Dificultad;
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
@@ -93,19 +91,19 @@ public class JuegoInterface {
 	 */
 	private void initialize() {
 		// inicializo
-		crearDiseñoJuego();        		
-        boton_Aceptar();
-        boton_SiguientePalabra();
-        boton_Ayuda();
-        
-		
+		crearDiseñoJuego();
+		boton_Aceptar();
+		boton_SiguientePalabra();
+		boton_pista();
+		boton_palabraSecreta();
+
 	}
 
 	private void palabraERA() {
 		palabraERA = new JLabel(juego.getpalabra());
-		palabraERA.setBounds(369, 98, 57, 14);
+		palabraERA.setBounds(179, 5, 57, 14);
 		frame.getContentPane().add(palabraERA);
-		
+
 	}
 
 	private void cambiarColor(int n, Color color, char letra) {
@@ -157,40 +155,50 @@ public class JuegoInterface {
 		cuadradosDeLasLetras();
 		crearTexto_Puntaje();
 		crearBoton_siguientePalabra();
-		crearBotonAyuda();
+		crearBotonPista();
+		crearBoton_palabraSecreta();
 		excepcion5Letras();
+		JLabelPista();
 		palabraERA();
-		
-		if(idioma==0) {
+
+		if (idioma == 0) {
 			buildIdiomaEspañol();
-		}
-		else if(idioma==1) {
+		} else if (idioma == 1) {
 			buildIdiomaIngles();
 		}
-	    
-		if(dificultad==0) {
+
+		if (dificultad == 0) {
 			cantidadDeIntentos.setText("8");
-			
-		}if(dificultad==1) {
+
+		}
+		if (dificultad == 1) {
 			cantidadDeIntentos.setText("6");
-			
-		}if(dificultad==2) {
+
+		}
+		if (dificultad == 2) {
 			cantidadDeIntentos.setText("4");
-			
+
 		}
 
 		time = new Timer();
-		
-		
+
 	}
 
 	private void excepcion5Letras() {
 		excepcion5Letras = new JLabel();
 		excepcion5Letras.setForeground(Color.RED);
 		excepcion5Letras.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		excepcion5Letras.setBounds(93, 121, 230, 24);
+		excepcion5Letras.setBounds(101, 131, 230, 24);
 		frame.getContentPane().add(excepcion5Letras);
 		excepcion5Letras.setVisible(false);
+	}
+
+	private void JLabelPista() {
+		jLabelPista = new JLabel("");
+		jLabelPista.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
+		jLabelPista.setBounds(44, 98, 358, 28);
+		frame.getContentPane().add(jLabelPista);
+		jLabelPista.setVisible(false);
 	}
 
 	private void crearBoton_siguientePalabra() {
@@ -202,17 +210,24 @@ public class JuegoInterface {
 		btnsig.setEnabled(false);
 	}
 
+	private void crearBoton_palabraSecreta() {
+
+		btnPalabraSecreta = new JButton();
+		btnPalabraSecreta.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnPalabraSecreta.setBounds(133, 232, 175, 21);
+		frame.getContentPane().add(btnPalabraSecreta);
+
+	}
 
 	private void crearTexto_Puntaje() {
 		Puntaje = new JLabel();
 		Puntaje.setBounds(329, 26, 46, 14);
 		frame.getContentPane().add(Puntaje);
-		
+
 		PuntajeCant = new JLabel("0");
 		PuntajeCant.setBounds(385, 26, 17, 14);
 		frame.getContentPane().add(PuntajeCant);
-		
-		
+
 	}
 
 	private void cuadradosDeLasLetras() {
@@ -252,13 +267,11 @@ public class JuegoInterface {
 		frame.getContentPane().add(letra4);
 	}
 
-
-
 	private void crearTexto_Intentos() {
 		textIntentos = new JLabel();
 		textIntentos.setBounds(329, 0, 57, 14);
 		frame.getContentPane().add(textIntentos);
-		
+
 		cantidadDeIntentos = new JLabel("6");
 		cantidadDeIntentos.setBounds(385, 0, 17, 14);
 		frame.getContentPane().add(cantidadDeIntentos);
@@ -270,14 +283,14 @@ public class JuegoInterface {
 		btnAceptar.setBounds(93, 60, 102, 28);
 		frame.getContentPane().add(btnAceptar);
 	}
-	
-	private void crearBotonAyuda() {
-		btnAyuda = new JButton("?");
-		btnAyuda.setBackground(Color.ORANGE);
-		btnAyuda.setForeground(Color.RED);
-		btnAyuda.setFont(new Font("Tahoma", Font.BOLD, 16));
-		btnAyuda.setBounds(385, 175, 41, 33);
-		frame.getContentPane().add(btnAyuda);
+
+	private void crearBotonPista() {
+		btnPista = new JButton("?");
+		btnPista.setBackground(Color.ORANGE);
+		btnPista.setForeground(Color.RED);
+		btnPista.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnPista.setBounds(385, 175, 41, 33);
+		frame.getContentPane().add(btnPista);
 	}
 
 	private void crearCampoDeTexto() {
@@ -323,7 +336,7 @@ public class JuegoInterface {
 
 	private void ganarJuego() {
 
-		if (juego.Puntaje()>50) {
+		if (juego.Puntaje() > 50) {
 
 			int opcion = JOptionPane.showConfirmDialog(frame, "¡Ganaste!, ¿Desea seguir jugando?", "",
 					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
@@ -375,16 +388,18 @@ public class JuegoInterface {
 	private void restarPuntaje() {
 		juego.restarPuntaje();
 		PuntajeCant.setText(juego.getPuntaje());
-		
+
 	}
 
 	private void siguientePalabra() {
 		juego.cambiarPalabra();
 		cambiarColor();
+		jLabelPista.setVisible(false);
+		jLabelPista.setText(juego.getValor());
+		if(juego.getIntentosPista()>0)
+			btnPista.setEnabled(true);
 
 	}
-	 
-
 
 	private void buildIdiomaEspañol() {
 		textIngresarPalabra.setText("Ingrese palabra:");
@@ -393,7 +408,9 @@ public class JuegoInterface {
 		Puntaje.setText("Puntaje");
 		excepcion5Letras.setText("Ingrese una palabra de 5 letras!");
 		btnsig.setText("Siguiente Palabra");
-		
+		jLabelPista.setText(juego.getValor());
+		btnPalabraSecreta.setText("Dime la palabra");
+
 	}
 
 	private void buildIdiomaIngles() {
@@ -403,67 +420,65 @@ public class JuegoInterface {
 		Puntaje.setText("Score");
 		excepcion5Letras.setText("Enter 5 letter words");
 		btnsig.setText("Next word");
+		jLabelPista.setText(juego.getValor());
+		btnPalabraSecreta.setText("Tell me the word");
 	}
-	
 
 	private void boton_Aceptar() {
-	
-	btnAceptar.addActionListener(new ActionListener() {
 
-		public void actionPerformed(ActionEvent e) {
+		btnAceptar.addActionListener(new ActionListener() {
 
-			palabraUsuario = textField.getText().toLowerCase();
-			juego.limpiarArregloDeNumeros();
+			public void actionPerformed(ActionEvent e) {
 
-			if (palabraUsuario.length() != 5) {
+				palabraUsuario = textField.getText().toLowerCase();
+				juego.limpiarArregloDeNumeros();
+
+				if (palabraUsuario.length() != 5) {
+					textField.setText(null);
+					excepcion5Letras.setVisible(true);
+
+				}
+
+				else {
+
+					verificacionDeLasLetras();
+				}
 				textField.setText(null);
-				excepcion5Letras.setVisible(true);
+
+				if (juego.adivinoPalabra(palabraUsuario)) {
+					juego.agregarPalabraAlConjunto();
+					sumarPuntaje();
+					ganarJuego();
+					frenarTiempoDeLosColores();
+
+				} else {
+					restarIntentos();
+				}
+
+				if (juego.IntentosCero() == 0) {
+					perderJuego();
+				}
 
 			}
 
-			else {
+		});
 
-				verificacionDeLasLetras();
-			}
-			textField.setText(null);
-
-			if (juego.adivinoPalabra(palabraUsuario)) {
-				juego.adivinoPalabra();
-				sumarPuntaje();
-				ganarJuego();
-				frenarTiempoDeLosColores();
-
-			} else {
-				restarIntentos();
-			}
-
-			if (juego.IntentosCero() == 0) {
-				perderJuego();
-			}
-
-
-		}
-
-
-	});
-
-	
 	}
-	
+
 	private void verificacionDeLasLetras() {
-		
+
 		char letraQueSeAgrega;
 		excepcion5Letras.setVisible(false);
 		juego.verificarPalabra(palabraUsuario);
-		
+
 		for (int i = 0; i < 5; i++) {
 			letraQueSeAgrega = palabraUsuario.charAt(i);
-			
+
 			if (juego.obtenerNumero(i) == 1) {
-				
+
 				cambiarColor(i, Color.green, letraQueSeAgrega);
 			}
-			
+
 			else if (juego.obtenerNumero(i) == 2) {
 				cambiarColor(i, Color.yellow, letraQueSeAgrega);
 			} else {
@@ -478,12 +493,12 @@ public class JuegoInterface {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				if(juego.Puntaje()>=5) {
+
+				if (juego.Puntaje() >= 5) {
 					restarPuntaje();
 					siguientePalabra();
-					
-					if(juego.Puntaje()<5)
+
+					if (juego.Puntaje() < 5)
 						btnsig.setEnabled(false);
 				}
 			}
@@ -491,28 +506,45 @@ public class JuegoInterface {
 		});
 	}
 
-	private void boton_Ayuda() {
-		
-		btnAyuda.addActionListener(new ActionListener() {
+	private void boton_pista() {
+
+		btnPista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				if(juego.getIntentosAyuda()>0) {
-					palabraUsuario= juego.getpalabra();
+
+				if (juego.getIntentosPista() > 0) {
+
+					jLabelPista.setVisible(true);
+					juego.restarIntentosPista();
+					btnPista.setEnabled(false);
+
+					if (juego.getIntentosPista() == 0)
+						btnPista.setEnabled(false);
+
+				}
+
+			}
+		});
+
+	}
+
+	private void boton_palabraSecreta() {
+
+		btnPalabraSecreta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (juego.getIntentosAyuda() > 0) {
+					palabraUsuario = juego.getpalabra();
 					verificacionDeLasLetras();
-					juego.adivinoPalabra();
+					juego.agregarPalabraAlConjunto();
 					ganarJuego();
 					frenarTiempoDeLosColores();
 					juego.restarIntentosAyuda();
-				
-						if(juego.getIntentosAyuda()==0)
-							btnAyuda.setEnabled(false);
+					btnPalabraSecreta.setEnabled(false);
 				}
 
-				
 			}
 		});
-		
+
 	}
 
 }
-
