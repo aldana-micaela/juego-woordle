@@ -97,19 +97,19 @@ public class EstadoDeJuego {
 	private void agregarPalabrasIngles() {
 		palabrasInglesMap = new HashMap<String, String>();
 
-		palabrasInglesMap.put("beach", "...");
-		palabrasInglesMap.put("hairs", "...");
-		palabrasInglesMap.put("queen", "...");
-		palabrasInglesMap.put("apple", "...");
-		palabrasInglesMap.put("banks", "...");
-		palabrasInglesMap.put("sleep", "...");
-		palabrasInglesMap.put("house", "...");
-		palabrasInglesMap.put("snake", "...");
-		palabrasInglesMap.put("lives", "...");
-		palabrasInglesMap.put("river", "...");
-		palabrasInglesMap.put("cards", "...");
-		palabrasInglesMap.put("tools", "...");
-		palabrasInglesMap.put("dance", "...");
+		palabrasInglesMap.put("beach", "Almost flat extension of sand or stones on the shore of the sea, a river or a lake.");
+		palabrasInglesMap.put("hairs", "A thin, flexible filament that develops in the skin of most mammals and other animals.");
+		palabrasInglesMap.put("queen", "Woman who exercises real power in her own right.");
+		palabrasInglesMap.put("apple", "Fruit, can be red or green");
+		palabrasInglesMap.put("banks", "Commercial company that performs financial operations with money from shareholders and customers.");
+		palabrasInglesMap.put("sleep", "Rest, with eyes closed, in an unconscious state in which sensory functions and voluntary movements are suspended.");
+		palabrasInglesMap.put("house", "Covered construction destined to be inhabited.");
+		palabrasInglesMap.put("snake", "It has two hollow teeth in the upper jaw, through which it pours, when biting, its poison, which can be fatal to man.");
+		palabrasInglesMap.put("lives", "To exist a person, an animal or a thing for a certain time");
+		palabrasInglesMap.put("river", "Natural current of water that flows permanently and ends up in another, in a lake or in the sea.");
+		palabrasInglesMap.put("cards", "Conjunto de los naipes que se utilizan para jugar a algún juego.");
+		palabrasInglesMap.put("tools", "Instrument, usually made of iron or steel, used to make or repair something and that is used with the hands.");
+		palabrasInglesMap.put("dance", "Move the body and limbs rhythmically following the beat of a piece of music.");
 		
 		this.palabra = elegirPalabra();
 		this.valor = palabrasInglesMap.get(this.palabra);
