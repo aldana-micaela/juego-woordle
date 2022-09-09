@@ -35,7 +35,7 @@ public class MenuInterface {
 	Dificultad normal= Dificultad.Normal;
 	Dificultad dificil= Dificultad.Difícil;
 	
-	Dificultad dificultadSeleccionada=Dificultad.Fácil;
+	Dificultad dificultadSeleccionada=Dificultad.Normal;
 	
 	
 
