@@ -197,7 +197,7 @@ public class EstadoDeJuego {
 	public void cambiarPalabra() {
 		this.palabra = elegirPalabra();
 		
-		if(this.idioma.equals("Español"))
+		if(this.idioma.name().equals("Español"))
 			this.valor = palabrasEspañolMap.get(this.palabra);
 		else
 			this.valor = palabrasInglesMap.get(this.palabra);
