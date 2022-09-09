@@ -78,7 +78,6 @@ public class JuegoInterface {
 	public JuegoInterface(Idioma idioma, Dificultad dificultad) {
 
 		juego = new EstadoDeJuego(idioma, dificultad);
-		
 		this.idioma = idioma.name();
 		this.dificultad = dificultad.name();
 		try {

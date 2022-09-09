@@ -29,13 +29,13 @@ public class MenuInterface {
 	Idioma español= Idioma.Español;
 	Idioma ingles= Idioma.Ingles;
 	
-	Idioma idiomaSeleccionado;
+	Idioma idiomaSeleccionado=Idioma.Español;
 	
 	Dificultad facil= Dificultad.Fácil;
 	Dificultad normal= Dificultad.Normal;
 	Dificultad dificil= Dificultad.Difícil;
 	
-	Dificultad dificultadSeleccionada;
+	Dificultad dificultadSeleccionada=Dificultad.Fácil;
 	
 	
 
