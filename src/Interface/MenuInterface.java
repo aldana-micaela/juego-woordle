@@ -149,7 +149,8 @@ public class MenuInterface {
 
 				JOptionPane.showMessageDialog(frame, "Reglas del juego:\n-Se debe adivinar la palabra en un lapso limitado de intentos.\n"
 						+ "-El jugador cuenta con la opcion de usar el boton de pistas <?> 3 veces.\n"
-						+ "-El jugador cuenta con una unica ayuda para adivinar la palabra.");
+						+ "-El jugador cuenta con una unica ayuda para adivinar la palabra.\n"
+						+ "-El juego se podrá ganar despues de superar los 100 puntos");
 
 			}
 		});
