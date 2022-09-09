@@ -16,6 +16,9 @@ import java.awt.Color;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 
+import Interface.MenuInterface.Dificultad;
+import Interface.MenuInterface.Idioma;
+
 import java.awt.Font;
 
 public class JuegoInterface {
@@ -42,8 +45,8 @@ public class JuegoInterface {
 	private static MenuInterface menu;
 	private String palabraUsuario;
 	private Timer time;
-	private int idioma;
-	private int dificultad;
+	private String idioma;
+	private String dificultad;
 	private JLabel jLabelPista;
 
 	/**
@@ -72,10 +75,12 @@ public class JuegoInterface {
 	/**
 	 * Create the application.
 	 */
-	public JuegoInterface(int idioma, int Dificultad) {
+	public JuegoInterface(Idioma idioma, Dificultad dificultad) {
 
-		this.idioma = idioma;
-		this.dificultad = Dificultad;
+		juego = new EstadoDeJuego(idioma, dificultad);
+		
+		this.idioma = idioma.name();
+		this.dificultad = dificultad.name();
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
@@ -97,6 +102,45 @@ public class JuegoInterface {
 		boton_pista();
 		boton_palabraSecreta();
 
+	}
+	private void crearDiseñoJuego() {
+		
+		
+		crearFrame();
+		crearTextoIngresarPalabra();
+		crearCampoDeTexto();
+		crearBotonAceptar();
+		crearTexto_Intentos();
+		cuadradosDeLasLetras();
+		crearTexto_Puntaje();
+		crearBoton_siguientePalabra();
+		crearBotonPista();
+		crearBoton_palabraSecreta();
+		excepcion5Letras();
+		JLabelPista();
+		palabraERA();
+		
+		if (idioma.equals("Español")) {
+			buildIdiomaEspañol();
+		} else if(idioma.equals("Ingles")) {
+			buildIdiomaIngles();
+		}
+		
+		if (dificultad.equals("Fácil")) {
+			cantidadDeIntentos.setText("8");
+			
+		}
+		if (dificultad.equals("Normal")) {
+			cantidadDeIntentos.setText("6");
+			
+		}
+		if (dificultad.equals("Difícil")) {
+			cantidadDeIntentos.setText("4");
+			
+		}
+		
+		time = new Timer();
+		
 	}
 
 	private void palabraERA() {
@@ -143,46 +187,6 @@ public class JuegoInterface {
 		time.schedule(tarea, 1000);
 	}
 
-	private void crearDiseñoJuego() {
-
-		juego = new EstadoDeJuego(this.idioma, this.dificultad);
-
-		crearFrame();
-		crearTextoIngresarPalabra();
-		crearCampoDeTexto();
-		crearBotonAceptar();
-		crearTexto_Intentos();
-		cuadradosDeLasLetras();
-		crearTexto_Puntaje();
-		crearBoton_siguientePalabra();
-		crearBotonPista();
-		crearBoton_palabraSecreta();
-		excepcion5Letras();
-		JLabelPista();
-		palabraERA();
-
-		if (idioma == 0) {
-			buildIdiomaEspañol();
-		} else if (idioma == 1) {
-			buildIdiomaIngles();
-		}
-
-		if (dificultad == 0) {
-			cantidadDeIntentos.setText("8");
-
-		}
-		if (dificultad == 1) {
-			cantidadDeIntentos.setText("6");
-
-		}
-		if (dificultad == 2) {
-			cantidadDeIntentos.setText("4");
-
-		}
-
-		time = new Timer();
-
-	}
 
 	private void excepcion5Letras() {
 		excepcion5Letras = new JLabel();

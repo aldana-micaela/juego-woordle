@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import Interface.MenuInterface.Dificultad;
+import Interface.MenuInterface.Idioma;
+
 public class EstadoDeJuego {
 
 //	private String[] palabras = { "orden", "joven", "botas"}; 				// lo hice mas corto para probar los casos de ganar!
@@ -28,14 +31,14 @@ public class EstadoDeJuego {
 	private ArrayList<Integer> estadoDeLetrasEnNumeros;
 	private int puntaje;
 	private int intentos;
-	private String dificultad;
 	private int intentosDePista;
 	private int intentosDeAyuda;
-	private int idioma;
+	private Idioma idioma;
+	private Dificultad dificultad;
 
-	public EstadoDeJuego(int idioma, int dificultad) {
+	public EstadoDeJuego(Idioma idioma, Dificultad dificultad) {
 
-		if (idioma == 0) {
+		if (idioma.name().equals("Español")) {
 			this.palabrasAux = palabrasEspañol;
 			agregarPalabrasEspañol();
 			
@@ -121,21 +124,17 @@ public class EstadoDeJuego {
 
 	}
 
-	private String cambiarDificultad(int dif) {
-		String d = "";
-		if (dif == 0) {
+	private Dificultad cambiarDificultad(Dificultad dif) {
+		if (dif.name().equals("Fácil")) {
 			this.intentos = 8;
-			d = "Fácil";
 		}
-		if (dif == 1) {
+		if (dif.name().equals("Normal")) {
 			this.intentos = 6;
-			d = "Normal";
 		}
-		if (dif == 2) {
+		if (dif.name().equals("Difícil")) {
 			this.intentos = 4;
-			d = "Difícil";
 		}
-		return d;
+		return dif;
 	}
 
 	public String elegirPalabra() {
@@ -198,7 +197,7 @@ public class EstadoDeJuego {
 	public void cambiarPalabra() {
 		this.palabra = elegirPalabra();
 		
-		if(this.idioma==0)
+		if(this.idioma.equals("Español"))
 			this.valor = palabrasEspañolMap.get(this.palabra);
 		else
 			this.valor = palabrasInglesMap.get(this.palabra);
@@ -320,7 +319,7 @@ public class EstadoDeJuego {
 	}
 
 	public String getDificultad() {
-		return this.dificultad;
+		return this.dificultad.name();
 	}
 
 }

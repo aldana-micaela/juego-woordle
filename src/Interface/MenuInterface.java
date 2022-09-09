@@ -22,8 +22,22 @@ public class MenuInterface {
 	private JLabel Imagen;
 	private JComboBox<String> idiomaComboBox;
 	private JComboBox<String> difComboBox;
-	private int idioma;
-	private int dificultad;
+	public enum Idioma{Español, Ingles}
+	public enum Dificultad {Fácil, Normal, Difícil}
+	
+	
+	Idioma español= Idioma.Español;
+	Idioma ingles= Idioma.Ingles;
+	
+	Idioma idiomaSeleccionado;
+	
+	Dificultad facil= Dificultad.Fácil;
+	Dificultad normal= Dificultad.Normal;
+	Dificultad dificil= Dificultad.Difícil;
+	
+	Dificultad dificultadSeleccionada;
+	
+	
 
 	/**
 	 * Launch the application.
@@ -116,9 +130,13 @@ public class MenuInterface {
 
 			public void actionPerformed(ActionEvent e) {
 
-				idioma = idiomaComboBox.getSelectedIndex();
-				dificultad = difComboBox.getSelectedIndex();
-				new JuegoInterface(idioma, dificultad);
+				String id =(String) idiomaComboBox.getSelectedItem();
+				String dif = (String) difComboBox.getSelectedItem();
+				
+				idiomaSeleccionado= Enum.valueOf(Idioma.class, id);
+				dificultadSeleccionada= Enum.valueOf(Dificultad.class, dif);
+				
+				new JuegoInterface(idiomaSeleccionado, dificultadSeleccionada);
 
 			}
 		});
@@ -145,8 +163,8 @@ public class MenuInterface {
 		idiomaComboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Español", "Ingles" }));
 	}
 
-	public int getIdioma() {
-		return idioma;
+	public Idioma getIdioma() {
+		return idiomaSeleccionado;
 	}
 
 	private void crearIDificultadComboBox() {
@@ -157,8 +175,8 @@ public class MenuInterface {
 		difComboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Fácil", "Normal", "Difícil" }));
 	}
 
-	public int getDificultad() {
-		return dificultad;
+	public Dificultad getDificultad() {
+		return dificultadSeleccionada;
 	}
 
 }
