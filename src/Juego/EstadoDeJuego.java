@@ -328,16 +328,16 @@ public class EstadoDeJuego {
 		}
 	}
 	
-	public EstadoDeLetras getAcertado() {
-		return acertado;
+	public String getAcertado() {
+		return acertado.name();
 	}
 
-	public EstadoDeLetras getNoAcertado() {
-		return noAcertado;
+	public String getNoAcertado() {
+		return noAcertado.name();
 	}
 
-	public EstadoDeLetras getLetraEnOtraPosicion() {
-		return letraEnOtraPosicion;
+	public String getLetraEnOtraPosicion() {
+		return letraEnOtraPosicion.name();
 	}
 
 }

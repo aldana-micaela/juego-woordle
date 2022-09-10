@@ -210,11 +210,11 @@ public class JuegoInterface {
 		for (int i = 0; i < 5; i++) {
 			letraQueSeAgrega = palabraUsuario.charAt(i);
 
-			if (juego.obtenerEstadoLetras(i).equals("Acertado")) {
+			if (juego.obtenerEstadoLetras(i).equals(juego.getAcertado())) {
 				cambiarColor(i, Color.green, letraQueSeAgrega);
 			}
 
-			else if (juego.obtenerEstadoLetras(i).equals("LetraEnOtraPosicion")) {
+			else if (juego.obtenerEstadoLetras(i).equals(juego.getLetraEnOtraPosicion())) {
 				cambiarColor(i, Color.yellow, letraQueSeAgrega);
 
 			} else {
