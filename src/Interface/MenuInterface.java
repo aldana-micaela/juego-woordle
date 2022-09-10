@@ -22,20 +22,11 @@ public class MenuInterface {
 	private JLabel Imagen;
 	private JComboBox<String> idiomaComboBox;
 	private JComboBox<String> difComboBox;
+	
 	public enum Idioma{Español, Ingles}
 	public enum Dificultad {Fácil, Normal, Difícil}
-	
-	
-	Idioma español= Idioma.Español;
-	Idioma ingles= Idioma.Ingles;
-	
-	Idioma idiomaSeleccionado=Idioma.Español;
-	
-	Dificultad facil= Dificultad.Fácil;
-	Dificultad normal= Dificultad.Normal;
-	Dificultad dificil= Dificultad.Difícil;
-	
-	Dificultad dificultadSeleccionada=Dificultad.Normal;
+	private Idioma idiomaSeleccionado=Idioma.Español;
+	private Dificultad dificultadSeleccionada=Dificultad.Normal;
 	
 	
 

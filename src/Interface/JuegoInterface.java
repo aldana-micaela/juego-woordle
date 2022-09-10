@@ -102,9 +102,129 @@ public class JuegoInterface {
 		boton_palabraSecreta();
 
 	}
+
+	private void boton_Aceptar() {
+
+		btnAceptar.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+
+				palabraUsuario = textField.getText().toLowerCase();
+				juego.limpiarArregloDeNumeros();
+
+				if (palabraUsuario.length() != 5) {
+					textField.setText(null);
+					excepcion5Letras.setVisible(true);
+				} else {
+					verificacionDeLasLetras();
+				}
+
+				textField.setText(null);
+
+				if (juego.adivinoPalabra(palabraUsuario)) {
+					juego.agregarPalabraAlConjunto();
+					sumarPuntaje();
+					ganarJuego();
+					frenarTiempoDeLosColores();
+
+				} else {
+					restarIntentos();
+				}
+
+				if (juego.IntentosCero() == 0) {
+					perderJuego();
+				}
+
+			}
+
+		});
+
+	}
+
+	private void boton_SiguientePalabra() {
+
+		btnsig.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				if (juego.Puntaje() >= 5) {
+					restarPuntaje();
+					siguientePalabra();
+
+					if (juego.Puntaje() < 5)
+						btnsig.setEnabled(false);
+				}
+			}
+
+		});
+	}
+
+	private void boton_pista() {
+
+		btnPista.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (juego.getIntentosPista() > 0) {
+
+					jLabelPista.setVisible(true);
+					juego.restarIntentosPista();
+					btnPista.setEnabled(false);
+
+					if (juego.getIntentosPista() == 0)
+						btnPista.setEnabled(false);
+
+				}
+
+			}
+		});
+
+	}
+
+	private void boton_palabraSecreta() {
+
+		btnPalabraSecreta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (juego.getIntentosAyuda() > 0) {
+					palabraUsuario = juego.getpalabra();
+					verificacionDeLasLetras();
+					juego.agregarPalabraAlConjunto();
+					ganarJuego();
+					frenarTiempoDeLosColores();
+					juego.restarIntentosAyuda();
+					btnPalabraSecreta.setEnabled(false);
+				}
+
+			}
+		});
+
+	}
+
+	private void verificacionDeLasLetras() {
+
+		char letraQueSeAgrega;
+		excepcion5Letras.setVisible(false);
+		juego.verificarPalabra(palabraUsuario);
+
+		for (int i = 0; i < 5; i++) {
+			letraQueSeAgrega = palabraUsuario.charAt(i);
+
+			if (juego.obtenerEstadoLetras(i).equals("Acertado")) {
+				cambiarColor(i, Color.green, letraQueSeAgrega);
+			}
+
+			else if (juego.obtenerEstadoLetras(i).equals("LetraEnOtraPosicion")) {
+				cambiarColor(i, Color.yellow, letraQueSeAgrega);
+
+			} else {
+				cambiarColor(i, Color.gray, letraQueSeAgrega);
+			}
+		}
+	}
+
 	private void crearDiseñoJuego() {
-		
-		
+
 		crearFrame();
 		crearTextoIngresarPalabra();
 		crearCampoDeTexto();
@@ -118,28 +238,51 @@ public class JuegoInterface {
 		excepcion5Letras();
 		JLabelPista();
 		palabraERA();
-		
+
 		if (idioma.equals("Español")) {
 			buildIdiomaEspañol();
-		} else if(idioma.equals("Ingles")) {
+		} else if (idioma.equals("Ingles")) {
 			buildIdiomaIngles();
 		}
-		
+
 		if (dificultad.equals("Fácil")) {
 			cantidadDeIntentos.setText("8");
-			
+
 		}
 		if (dificultad.equals("Normal")) {
 			cantidadDeIntentos.setText("6");
-			
+
 		}
 		if (dificultad.equals("Difícil")) {
 			cantidadDeIntentos.setText("4");
-			
+
 		}
-		
+
 		time = new Timer();
-		
+
+	}
+
+	private void buildIdiomaEspañol() {
+		textIngresarPalabra.setText("Ingrese palabra:");
+		btnAceptar.setText("Aceptar");
+		textIntentos.setText("Intentos");
+		Puntaje.setText("Puntaje");
+		excepcion5Letras.setText("Ingrese una palabra de 5 letras!");
+		btnsig.setText("Siguiente Palabra");
+		jLabelPista.setText(juego.getPista());
+		btnPalabraSecreta.setText("Dime la palabra");
+
+	}
+
+	private void buildIdiomaIngles() {
+		textIngresarPalabra.setText("Enter word:");
+		btnAceptar.setText("Accept");
+		textIntentos.setText("Attempts");
+		Puntaje.setText("Score");
+		excepcion5Letras.setText("Enter 5 letter words");
+		btnsig.setText("Next word");
+		jLabelPista.setText(juego.getPista());
+		btnPalabraSecreta.setText("Tell me the word");
 	}
 
 	private void palabraERA() {
@@ -186,6 +329,35 @@ public class JuegoInterface {
 		time.schedule(tarea, 1000);
 	}
 
+	private void siguientePalabra() {
+		juego.cambiarPalabra();
+		cambiarColor();
+		jLabelPista.setVisible(false);
+		jLabelPista.setText(juego.getPista());
+
+		if (juego.getIntentosPista() > 0)
+			btnPista.setEnabled(true);
+
+	}
+	
+	private void sumarPuntaje() {
+		juego.sumarPuntaje();
+		PuntajeCant.setText(juego.getPuntaje());
+		btnsig.setEnabled(true);
+
+	}
+
+	private void restarIntentos() {
+		juego.quitarIntentos();
+		cantidadDeIntentos.setText(juego.getIntentos());
+
+	}
+
+	private void restarPuntaje() {
+		juego.restarPuntaje();
+		PuntajeCant.setText(juego.getPuntaje());
+
+	}
 
 	private void excepcion5Letras() {
 		excepcion5Letras = new JLabel();
@@ -337,9 +509,16 @@ public class JuegoInterface {
 
 	}
 
+	private void resetearJuegoYDiseño() {
+		juego.resetearJuego();
+		cantidadDeIntentos.setText(juego.getIntentos());
+		PuntajeCant.setText(juego.getPuntaje());
+		excepcion5Letras.setVisible(false);
+	}
+
 	private void ganarJuego() {
 
-		if (juego.Puntaje() > 50) {
+		if (juego.Puntaje() > 100) {
 
 			int opcion = JOptionPane.showConfirmDialog(frame, "¡Ganaste!, ¿Desea seguir jugando?", "",
 					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
@@ -352,13 +531,6 @@ public class JuegoInterface {
 				System.exit(0);
 			}
 		}
-	}
-
-	private void resetearJuegoYDiseño() {
-		juego.resetearJuego();
-		cantidadDeIntentos.setText(juego.getIntentos());
-		PuntajeCant.setText(juego.getPuntaje());
-		excepcion5Letras.setVisible(false);
 	}
 
 	private void perderJuego() {
@@ -374,178 +546,9 @@ public class JuegoInterface {
 			System.exit(0);
 		}
 	}
-
-	private void sumarPuntaje() {
-		juego.sumarPuntaje();
-		PuntajeCant.setText(juego.getPuntaje());
-		btnsig.setEnabled(true);
-
-	}
-
-	private void restarIntentos() {
-		juego.quitarIntentos();
-		cantidadDeIntentos.setText(juego.getIntentos());
-
-	}
-
-	private void restarPuntaje() {
-		juego.restarPuntaje();
-		PuntajeCant.setText(juego.getPuntaje());
-
-	}
-
-	private void siguientePalabra() {
-		juego.cambiarPalabra();
-		cambiarColor();
-		jLabelPista.setVisible(false);
-		jLabelPista.setText(juego.getValor());
-		
-		if(juego.getIntentosPista()>0)
-			btnPista.setEnabled(true);
-
-	}
-
-	private void buildIdiomaEspañol() {
-		textIngresarPalabra.setText("Ingrese palabra:");
-		btnAceptar.setText("Aceptar");
-		textIntentos.setText("Intentos");
-		Puntaje.setText("Puntaje");
-		excepcion5Letras.setText("Ingrese una palabra de 5 letras!");
-		btnsig.setText("Siguiente Palabra");
-		jLabelPista.setText(juego.getValor());
-		btnPalabraSecreta.setText("Dime la palabra");
-
-	}
-
-	private void buildIdiomaIngles() {
-		textIngresarPalabra.setText("Enter word:");
-		btnAceptar.setText("Accept");
-		textIntentos.setText("Attempts");
-		Puntaje.setText("Score");
-		excepcion5Letras.setText("Enter 5 letter words");
-		btnsig.setText("Next word");
-		jLabelPista.setText(juego.getValor());
-		btnPalabraSecreta.setText("Tell me the word");
-	}
-
-	private void boton_Aceptar() {
-
-		btnAceptar.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-
-				palabraUsuario = textField.getText().toLowerCase();
-				juego.limpiarArregloDeNumeros();
-
-				if (palabraUsuario.length() != 5) {
-					textField.setText(null);
-					excepcion5Letras.setVisible(true);
-				} else {
-					verificacionDeLasLetras();
-				}
-				
-				textField.setText(null);
-
-				if (juego.adivinoPalabra(palabraUsuario)) {
-					juego.agregarPalabraAlConjunto();
-					sumarPuntaje();
-					ganarJuego();
-					frenarTiempoDeLosColores();
-
-				} else {
-					restarIntentos();
-				}
-
-				if (juego.IntentosCero() == 0) {
-					perderJuego();
-				}
-
-			}
-
-		});
-
-	}
-
-	private void verificacionDeLasLetras() {
-
-		char letraQueSeAgrega;
-		excepcion5Letras.setVisible(false);
-		juego.verificarPalabra(palabraUsuario);
-
-		for (int i = 0; i < 5; i++) {
-			letraQueSeAgrega = palabraUsuario.charAt(i);
-
-			if (juego.obtenerNumero(i) == 1) {
-
-				cambiarColor(i, Color.green, letraQueSeAgrega);
-			}
-
-			else if (juego.obtenerNumero(i) == 2) {
-				cambiarColor(i, Color.yellow, letraQueSeAgrega);
-			} else {
-				cambiarColor(i, Color.gray, letraQueSeAgrega);
-			}
-		}
-	}
-
-	private void boton_SiguientePalabra() {
-
-		btnsig.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				if (juego.Puntaje() >= 5) {
-					restarPuntaje();
-					siguientePalabra();
-
-					if (juego.Puntaje() < 5)
-						btnsig.setEnabled(false);
-				}
-			}
-
-		});
-	}
-
-	private void boton_pista() {
-
-		btnPista.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				if (juego.getIntentosPista() > 0) {
-
-					jLabelPista.setVisible(true);
-					juego.restarIntentosPista();
-					btnPista.setEnabled(false);
-
-					if (juego.getIntentosPista() == 0)
-						btnPista.setEnabled(false);
-
-				}
-
-			}
-		});
-
-	}
-
-	private void boton_palabraSecreta() {
-
-		btnPalabraSecreta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				if (juego.getIntentosAyuda() > 0) {
-					palabraUsuario = juego.getpalabra();
-					verificacionDeLasLetras();
-					juego.agregarPalabraAlConjunto();
-					ganarJuego();
-					frenarTiempoDeLosColores();
-					juego.restarIntentosAyuda();
-					btnPalabraSecreta.setEnabled(false);
-				}
-
-			}
-		});
-
-	}
-
+	
+	
+	
+	
+	
 }

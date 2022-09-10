@@ -12,8 +12,6 @@ import Interface.MenuInterface.Idioma;
 
 public class EstadoDeJuego {
 
-//	private String[] palabras = { "orden", "joven", "botas"}; 				// lo hice mas corto para probar los casos de ganar!
-
 	private String[] palabrasEspañol = { "orden", "joven", "botas", "calma", "palma", "jugar", "apodo", "dulce",
 			"vocal", "barco", "regla", "letra", "nadar", "torta", "atomo", "boton", "libro", "cielo", "falso", "carne",
 			"falta", "fuego", "pluma", "tucan", "gatos", "fruta", "poste", "mesas", "motos", "tecla" };
@@ -23,18 +21,25 @@ public class EstadoDeJuego {
 
 	private Map<String, String> palabrasEspañolMap;
 	private Map<String, String> palabrasInglesMap;
-	private Set<String> palabrasEnJuego = new HashSet<String>(); // hice un cunjunto de palabras para que no se repitan
-																	// e ir agregando las palabras que se usaron
-	private String valor;
+	private Set<String> palabrasEnJuego = new HashSet<String>(); 
+	
+	public enum EstadoDeLetras {Acertado, NOacertado, LetraEnOtraPosicion}
+	private EstadoDeLetras acertado = EstadoDeLetras.Acertado;
+	private EstadoDeLetras noAcertado = EstadoDeLetras.NOacertado;
+	private EstadoDeLetras letraEnOtraPosicion = EstadoDeLetras.LetraEnOtraPosicion;
+	private ArrayList<EstadoDeLetras> estadoDeLetras;
+	
+	private Idioma idioma;
+	private Dificultad dificultad;
+	
+	private String pista;
 	private String[] palabrasAux;
-	private String palabra;
-	private ArrayList<Integer> estadoDeLetrasEnNumeros;
+	private String palabraSecreta;
+	
 	private int puntaje;
 	private int intentos;
 	private int intentosDePista;
 	private int intentosDeAyuda;
-	private Idioma idioma;
-	private Dificultad dificultad;
 
 	public EstadoDeJuego(Idioma idioma, Dificultad dificultad) {
 
@@ -52,7 +57,8 @@ public class EstadoDeJuego {
 		this.puntaje = 0;
 		this.intentos = 6;
 		this.dificultad = cambiarDificultad(dificultad);
-		this.estadoDeLetrasEnNumeros = new ArrayList<Integer>();
+		//this.estadoDeLetrasEnNumeros = new ArrayList<Integer>();
+		this.estadoDeLetras = new ArrayList<EstadoDeLetras>();
 		this.intentosDePista = 3;
 		this.intentosDeAyuda = 1;
 
@@ -92,8 +98,8 @@ public class EstadoDeJuego {
 		palabrasEspañolMap.put("motos", "A los motoqueros les gusta las...");
 		palabrasEspañolMap.put("tecla", "Elemento de una computadora.");
 		
-		this.palabra = elegirPalabra();
-		this.valor = palabrasEspañolMap.get(this.palabra);
+		this.palabraSecreta = elegirPalabra();
+		this.pista = palabrasEspañolMap.get(this.palabraSecreta);
 
 	}
 
@@ -114,13 +120,8 @@ public class EstadoDeJuego {
 		palabrasInglesMap.put("tools", "Instrument, usually made of iron or steel, used to make or repair something and that is used with the hands.");
 		palabrasInglesMap.put("dance", "Move the body and limbs rhythmically following the beat of a piece of music.");
 		
-		this.palabra = elegirPalabra();
-		this.valor = palabrasInglesMap.get(this.palabra);
-
-	}
-
-	public String getValor() {
-		return this.valor;
+		this.palabraSecreta = elegirPalabra();
+		this.pista = palabrasInglesMap.get(this.palabraSecreta);
 
 	}
 
@@ -149,16 +150,16 @@ public class EstadoDeJuego {
 	}
 
 	public void agregarPalabraAlConjunto() {
-		palabrasEnJuego.add(palabra);
+		palabrasEnJuego.add(palabraSecreta);
 
 	}
 
 	public void limpiarArregloDeNumeros() {
-		estadoDeLetrasEnNumeros.clear();
+		estadoDeLetras.clear();
 	}
 
-	public int obtenerNumero(int i) {
-		return estadoDeLetrasEnNumeros.get(i);
+	public String obtenerEstadoLetras(int i) {
+		return estadoDeLetras.get(i).name();
 	}
 
 	public void vaciarConjuntoDePalabras() {
@@ -167,8 +168,8 @@ public class EstadoDeJuego {
 
 	private boolean estaLaLetraEnLaPalabra(char letra) {
 
-		for (int i = 0; i < palabra.length(); i++) {
-			if (palabra.charAt(i) == letra) {
+		for (int i = 0; i < palabraSecreta.length(); i++) {
+			if (palabraSecreta.charAt(i) == letra) {
 				return true;
 			}
 		}
@@ -177,30 +178,30 @@ public class EstadoDeJuego {
 
 	public void verificarPalabra(String palabraUSER) {
 
-		for (int i = 0; i < palabra.length(); i++) {
+		for (int i = 0; i < palabraSecreta.length(); i++) {
 
-			if (palabraUSER.charAt(i) == palabra.charAt(i)) {
-				estadoDeLetrasEnNumeros.add(i, 1);
+			if (palabraUSER.charAt(i) == palabraSecreta.charAt(i)) {
+				estadoDeLetras.add(i, acertado);
 			}
 
 			else if (estaLaLetraEnLaPalabra(palabraUSER.charAt(i))) {
-				estadoDeLetrasEnNumeros.add(i, 2);
+				estadoDeLetras.add(i, letraEnOtraPosicion);
 			}
 
 			else {
-				estadoDeLetrasEnNumeros.add(i, 0);
+				estadoDeLetras.add(i, noAcertado);
 			}
 
 		}
 	}
 
 	public void cambiarPalabra() {
-		this.palabra = elegirPalabra();
+		this.palabraSecreta = elegirPalabra();
 		
 		if(this.idioma.name().equals("Español"))
-			this.valor = palabrasEspañolMap.get(this.palabra);
+			this.pista = palabrasEspañolMap.get(this.palabraSecreta);
 		else
-			this.valor = palabrasInglesMap.get(this.palabra);
+			this.pista = palabrasInglesMap.get(this.palabraSecreta);
 	}
 
 	public void cambiarASiguientePalabra() {
@@ -214,11 +215,7 @@ public class EstadoDeJuego {
 	}
 
 	public boolean adivinoPalabra(String p) {
-		return p.equals(this.palabra);
-	}
-
-	public String getPuntaje() {
-		return this.puntaje + "";
+		return p.equals(this.palabraSecreta);
 	}
 
 	public int Puntaje() {
@@ -232,20 +229,6 @@ public class EstadoDeJuego {
 
 	public void restarPuntaje() {
 		this.puntaje -= 5;
-	}
-
-	public String getpalabra() {
-		return palabra;
-	}
-
-	public void quitarIntentos() {
-		if (this.intentos > 0) {
-			this.intentos--;
-		}
-	}
-
-	public String getIntentos() {
-		return this.intentos + "";
 	}
 
 	public int IntentosCero() {
@@ -296,22 +279,22 @@ public class EstadoDeJuego {
 		return this.intentosDePista;
 	}
 
-	public void jugar(String palabra) {
-		if (adivinoPalabra(palabra)) {
-			sumarPuntaje();
-			agregarPalabraAlConjunto();
-			elegirPalabra();
+//	public void jugar(String palabra) {
+//		if (adivinoPalabra(palabra)) {
+//			sumarPuntaje();
+//			agregarPalabraAlConjunto();
+//			elegirPalabra();
+//
+//		} else {
+//			restarPuntaje();
+//			quitarIntentos();
+//		}
+//
+//	}
 
-		} else {
-			restarPuntaje();
-			quitarIntentos();
-		}
+	public ArrayList<EstadoDeLetras> getestadoDeLetras() {
 
-	}
-
-	public ArrayList<Integer> getestadoDeLetrasEnNumeros() {
-
-		return estadoDeLetrasEnNumeros;
+		return estadoDeLetras;
 	}
 
 	public String[] getPalabrasEspañol() {
@@ -320,6 +303,41 @@ public class EstadoDeJuego {
 
 	public String getDificultad() {
 		return this.dificultad.name();
+	}
+	
+	public String getpalabra() {
+		return palabraSecreta;
+	}
+	
+	public String getPista() {
+		return this.pista;
+
+	}
+	
+	public String getIntentos() {
+		return this.intentos + "";
+	}
+	
+	public String getPuntaje() {
+		return this.puntaje + "";
+	}
+
+	public void quitarIntentos() {
+		if (this.intentos > 0) {
+			this.intentos--;
+		}
+	}
+	
+	public EstadoDeLetras getAcertado() {
+		return acertado;
+	}
+
+	public EstadoDeLetras getNoAcertado() {
+		return noAcertado;
+	}
+
+	public EstadoDeLetras getLetraEnOtraPosicion() {
+		return letraEnOtraPosicion;
 	}
 
 }
