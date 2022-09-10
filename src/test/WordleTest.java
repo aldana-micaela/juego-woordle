@@ -90,6 +90,27 @@ public class WordleTest {
 		
 	}
 	
+	  @Test 
+	  public void verIdiomaIngles() {
+			Idioma id= Idioma.Inglés;
+			Dificultad dif= Dificultad.Difícil;
+			wordleTest= new EstadoDeJuego(id, dif);
+			
+			assertNull(wordleTest.getPalabrasEspañolMap());
+			assertFalse(wordleTest.getPalabrasInglesMap().isEmpty());
+		  
+	  }
+	
+	  @Test 
+	  public void verIdiomaEspañol() {
+		  Idioma id= Idioma.Español;
+		  Dificultad dif= Dificultad.Difícil;
+		  wordleTest= new EstadoDeJuego(id, dif);
+		  
+		  assertNull(wordleTest.getPalabrasInglesMap());
+		  assertFalse(wordleTest.getPalabrasEspañolMap().isEmpty());
+		  
+	  }
 	
 	@Test
 	public void ver_Si_Se_Agrega_La_Palabra () {

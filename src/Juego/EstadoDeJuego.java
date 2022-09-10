@@ -287,10 +287,6 @@ public class EstadoDeJuego {
 		return estadoDeLetras;
 	}
 
-	public String[] getPalabrasEspañol() {
-		return palabrasEspañol;
-	}
-
 	public String getDificultad() {
 		return this.dificultad.name();
 	}
@@ -330,7 +326,13 @@ public class EstadoDeJuego {
 		return palabrasEnJuego;
 	}
 	
-	
+	public Map<String, String> getPalabrasEspañolMap() {
+		return palabrasEspañolMap;
+	}
+
+	public Map<String, String> getPalabrasInglesMap() {
+		return palabrasInglesMap;
+	}
 	
 	
 }

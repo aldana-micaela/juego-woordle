@@ -154,6 +154,7 @@ public class JuegoInterface {
 				if (palabraUsuario.length() != 5) {
 					textField.setText(null);
 					excepcion5Letras.setVisible(true);
+					
 				} else {
 					verificacionDeLasLetras();
 				}
@@ -161,7 +162,6 @@ public class JuegoInterface {
 				actualizacionIntefaz_btnAceptar();
 
 			}
-
 
 		});
 
@@ -204,7 +204,6 @@ public class JuegoInterface {
 		});
 	}
 
-
 	private void boton_pista() {
 
 		btnPista.addActionListener(new ActionListener() {
@@ -226,7 +225,6 @@ public class JuegoInterface {
 
 	}
 
-
 	private void boton_palabraSecreta() {
 
 		btnPalabraSecreta.addActionListener(new ActionListener() {
@@ -241,6 +239,7 @@ public class JuegoInterface {
 		});
 
 	}
+	
 	private void actualizacionDeInterfaz_btnPalabraSecreta() {
 		
 		palabraUsuario = juego.getpalabra();
@@ -251,7 +250,6 @@ public class JuegoInterface {
 		juego.restarIntentosAyuda();
 		btnPalabraSecreta.setEnabled(false);
 	}
-
 
 	private void verificacionDeLasLetras() {
 
@@ -275,8 +273,6 @@ public class JuegoInterface {
 		}
 	}
 
-
-
 	private void buildIdiomaEspañol() {
 		textIngresarPalabra.setText("Ingrese palabra:");
 		btnAceptar.setText("Aceptar");
@@ -289,7 +285,6 @@ public class JuegoInterface {
 
 	}
 
-
 	private void buildIdiomaIngles() {
 		textIngresarPalabra.setText("Enter word:");
 		btnAceptar.setText("Accept");
@@ -301,14 +296,12 @@ public class JuegoInterface {
 		btnPalabraSecreta.setText("Tell me the word");
 	}
 
-
 	private void palabraERA() {
 		palabraERA = new JLabel(juego.getpalabra());
 		palabraERA.setBounds(179, 5, 57, 14);
 		frame.getContentPane().add(palabraERA);
 
 	}
-
 
 	private void cambiarColor(int n, Color color, char letra) {
 
@@ -333,7 +326,6 @@ public class JuegoInterface {
 
 	}
 
-
 	public void frenarTiempoDeLosColores() {
 
 		TimerTask tarea = new TimerTask() {
@@ -348,7 +340,6 @@ public class JuegoInterface {
 		time.schedule(tarea, 1000);
 	}
 
-
 	private void siguientePalabra() {
 		juego.cambiarPalabra();
 		cambiarColor();
@@ -360,7 +351,6 @@ public class JuegoInterface {
 
 	}
 	
-
 	private void sumarPuntaje() {
 		juego.sumarPuntaje();
 		PuntajeCant.setText(juego.getPuntaje());
@@ -368,20 +358,17 @@ public class JuegoInterface {
 
 	}
 
-
 	private void restarIntentos() {
 		juego.quitarIntentos();
 		cantidadDeIntentos.setText(Integer.toString(juego.getIntentos()));
 
 	}
 
-
 	private void restarPuntaje() {
 		juego.restarPuntaje();
 		PuntajeCant.setText(juego.getPuntaje());
 
 	}
-
 
 	private void excepcion5Letras() {
 		excepcion5Letras = new JLabel();
@@ -392,7 +379,6 @@ public class JuegoInterface {
 		excepcion5Letras.setVisible(false);
 	}
 
-
 	private void JLabelPista() {
 		jLabelPista = new JLabel("");
 		jLabelPista.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
@@ -400,7 +386,6 @@ public class JuegoInterface {
 		frame.getContentPane().add(jLabelPista);
 		jLabelPista.setVisible(false);
 	}
-
 
 	private void crearBoton_siguientePalabra() {
 		btnsig = new JButton();
@@ -411,7 +396,6 @@ public class JuegoInterface {
 		btnsig.setEnabled(false);
 	}
 
-
 	private void crearBoton_palabraSecreta() {
 
 		btnPalabraSecreta = new JButton();
@@ -420,7 +404,6 @@ public class JuegoInterface {
 		frame.getContentPane().add(btnPalabraSecreta);
 
 	}
-
 
 	private void crearTexto_Puntaje() {
 		Puntaje = new JLabel();
@@ -432,7 +415,6 @@ public class JuegoInterface {
 		frame.getContentPane().add(PuntajeCant);
 
 	}
-
 
 	private void cuadradosDeLasLetras() {
 		letra0 = new JTextPane();
@@ -471,7 +453,6 @@ public class JuegoInterface {
 		frame.getContentPane().add(letra4);
 	}
 
-
 	private void crearTexto_Intentos() {
 		textIntentos = new JLabel();
 		textIntentos.setBounds(329, 0, 57, 14);
@@ -482,14 +463,12 @@ public class JuegoInterface {
 		frame.getContentPane().add(cantidadDeIntentos);
 	}
 
-
 	private void crearBotonAceptar() {
 		btnAceptar = new JButton();
 		btnAceptar.setBackground(Color.WHITE);
 		btnAceptar.setBounds(93, 60, 102, 28);
 		frame.getContentPane().add(btnAceptar);
 	}
-
 
 	private void crearBotonPista() {
 		btnPista = new JButton("?");
@@ -500,7 +479,6 @@ public class JuegoInterface {
 		frame.getContentPane().add(btnPista);
 	}
 
-
 	private void crearCampoDeTexto() {
 		textField = new JTextField();
 		textField.setBounds(156, 29, 96, 19);
@@ -509,13 +487,11 @@ public class JuegoInterface {
 
 	}
 
-
 	private void crearTextoIngresarPalabra() {
 		textIngresarPalabra = new JLabel();
 		textIngresarPalabra.setBounds(30, 26, 97, 24);
 		frame.getContentPane().add(textIngresarPalabra);
 	}
-
 
 	private void crearFrame() {
 		frame = new JFrame();
@@ -526,7 +502,6 @@ public class JuegoInterface {
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
 	}
-
 
 	private void cambiarColor() {
 		letra0.setBackground(Color.gray);
@@ -544,7 +519,6 @@ public class JuegoInterface {
 		palabraERA.setText(juego.getpalabra());
 
 	}
-
 
 	private void resetearJuegoYDiseño() {
 		juego.resetearJuego();
