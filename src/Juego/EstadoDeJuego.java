@@ -23,6 +23,7 @@ public class EstadoDeJuego {
 	private Map<String, String> palabrasInglesMap;
 	private Set<String> palabrasEnJuego = new HashSet<String>(); 
 	
+
 	public enum EstadoDeLetras {Acertado, NOacertado, LetraEnOtraPosicion}
 	private EstadoDeLetras acertado = EstadoDeLetras.Acertado;
 	private EstadoDeLetras noAcertado = EstadoDeLetras.NOacertado;
@@ -55,9 +56,8 @@ public class EstadoDeJuego {
 
 		this.idioma= idioma;
 		this.puntaje = 0;
-		this.intentos = 6;
-		this.dificultad = cambiarDificultad(dificultad);
-		//this.estadoDeLetrasEnNumeros = new ArrayList<Integer>();
+		this.dificultad=dificultad;
+		cambiarDificultad(dificultad);
 		this.estadoDeLetras = new ArrayList<EstadoDeLetras>();
 		this.intentosDePista = 3;
 		this.intentosDeAyuda = 1;
@@ -125,7 +125,8 @@ public class EstadoDeJuego {
 
 	}
 
-	private Dificultad cambiarDificultad(Dificultad dif) {
+	public void cambiarDificultad(Dificultad dif) {
+		
 		if (dif.name().equals("Fácil")) {
 			this.intentos = 8;
 		}
@@ -135,7 +136,6 @@ public class EstadoDeJuego {
 		if (dif.name().equals("Difícil")) {
 			this.intentos = 4;
 		}
-		return dif;
 	}
 
 	public String elegirPalabra() {
@@ -166,7 +166,7 @@ public class EstadoDeJuego {
 		palabrasEnJuego.clear();
 	}
 
-	private boolean estaLaLetraEnLaPalabra(char letra) {
+	public boolean estaLaLetraEnLaPalabra(char letra) {
 
 		for (int i = 0; i < palabraSecreta.length(); i++) {
 			if (palabraSecreta.charAt(i) == letra) {
@@ -203,17 +203,7 @@ public class EstadoDeJuego {
 		else
 			this.pista = palabrasInglesMap.get(this.palabraSecreta);
 	}
-
-	public void cambiarASiguientePalabra() {
-		cambiarPalabra();
-		restablecerIntentos();
-	}
-
-	private void restablecerIntentos() {
-
-		this.intentos = 6;
-	}
-
+	
 	public boolean adivinoPalabra(String p) {
 		return p.equals(this.palabraSecreta);
 	}
@@ -231,7 +221,7 @@ public class EstadoDeJuego {
 		this.puntaje -= 5;
 	}
 
-	public int IntentosCero() {
+	public int getIntentos() {
 		return this.intentos;
 	}
 
@@ -242,7 +232,7 @@ public class EstadoDeJuego {
 	public void resetearJuego() {
 		vaciarConjuntoDePalabras();
 		cambiarPalabra();
-		restablecerIntentos();
+		cambiarDificultad(dificultad);
 		puntaje = 0;
 
 	}
@@ -313,11 +303,7 @@ public class EstadoDeJuego {
 		return this.pista;
 
 	}
-	
-	public String getIntentos() {
-		return this.intentos + "";
-	}
-	
+		
 	public String getPuntaje() {
 		return this.puntaje + "";
 	}
@@ -340,4 +326,11 @@ public class EstadoDeJuego {
 		return letraEnOtraPosicion.name();
 	}
 
+	public Set<String> getPalabrasEnJuego() {
+		return palabrasEnJuego;
+	}
+	
+	
+	
+	
 }

@@ -23,7 +23,7 @@ public class MenuInterface {
 	private JComboBox<String> idiomaComboBox;
 	private JComboBox<String> difComboBox;
 	
-	public enum Idioma{Español, Ingles}
+	public enum Idioma{Español, Inglés}
 	public enum Dificultad {Fácil, Normal, Difícil}
 	private Idioma idiomaSeleccionado=Idioma.Español;
 	private Dificultad dificultadSeleccionada=Dificultad.Normal;
@@ -108,7 +108,6 @@ public class MenuInterface {
 
 	}
 
-	
 	private void crearTitulo_MenuPrincipal() {
 		lblNewLabel = new JLabel("Men\u00FA Principal");
 		lblNewLabel.setFont(new Font("Eras Bold ITC", Font.PLAIN, 23));
@@ -152,7 +151,7 @@ public class MenuInterface {
 		idiomaComboBox = new JComboBox<String>();
 		idiomaComboBox.setBounds(160, 41, 117, 22);
 		frame.getContentPane().add(idiomaComboBox);
-		idiomaComboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Español", "Ingles" }));
+		idiomaComboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Español", "Inglés" }));
 	}
 
 	public Idioma getIdioma() {
