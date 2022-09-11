@@ -41,11 +41,20 @@ Permitir que el idioma sea configurable. Primero lo pensamos de esta forma:
 
 ----
 
-Como de esta forma no funcionaba como lo esperabamos, decimos cambiar el constructor de la clase EstadoDeJuego y de la clase JuegoInterface. De esta forma, cuando inicializamos ambas clases se pasa por parametro el idioma.
+Como de esta forma no funcionaba como lo esperabamos, decimos cambiar el constructor de la clase EstadoDeJuego y de la clase JuegoInterface. De esta forma, cuando inicializamos ambas clases se pasa por parametro el idioma y la dificultad.
 
 Esta fue la solución que encontramos para dicho problema.
 
 Otro problema que se nos presentó, fue hacer implementar la dificultad del juego. Al igual que el idioma, lo solucionamos de la misma forma.
+
+También, hicimos cambios al agregar "Enum" en 2 oportunidades: 
+			1. Cuándo implementamos el idioma y la dificultad lo hicimos con números, dependiendo que idioma haya elegido el usuario y que
+			dificultad, se representaba en la implementación con 1 o 0 para el idioma(Español e Inglés) y 1, 2 y 3 para la dificultad(Fácil, 
+			Normal y Difícil).
+
+			2. Al verificar el estado de las letras (acertado, NOacertado, letraEnOtraPosicion) de la palabra que introdujo el usuario, se 
+			agregaban a un ArrayList <int> números. Estos números dependiendo el estado de la letra representaban si era acertada, si no lo era, 
+			o si la	letra estaba en una posisción incorrecta.
 
 Las decisiones que tomamos rescpeto al juego, fue que el usuario pueda cambiar de palabra solo tres veces. Pero al cambiar la palabra pierde un intento. También decidimos colocar un botón de ayuda en donde le indica al usuario el significado de la palabra. Este botón de ayuda, solo puede ser usado tres veces.
 
@@ -53,4 +62,218 @@ Con respecto a la dificultad, se puede configurar en tres formas:
 En el caso de que el usuario seleccione la opción "Fácil" contara con ocho (8) intentos. Pero si el usuario selecciona la opción "Normal" contara con seís (6) intentos. Por último, si el usuario elige la opción "Difícil" solo tendrá cuatro (4) intentos para adivinar la palabra asignada. 
 
 
+== Implementación:
 
+En total se implementaron 1 clase y 2 interfaces para el correcto funcionamiento del juego.
+
+------Descripción general de la implementación:------ 
+
+-La forma en que pensamos la implementación del juego fue que inicialmente se pueda acceder desde una interfaz de menú del juego, en la que el usuario puede seleccionar el idioma y el nivel de dificultad. Si el usuario no accede al juego por medio del menú, este tiene un modo predeterminado en la que el idioma es el español y la dificultad Normal. 
+
+-En cuanto a la lógica de la funcionalidad del juego es de la siguiente manera: 
+
+-Cuando el usuario selecciona el idioma, este es pasado como parámetro en el constructor de la clase que contiene la lógica e implementación del juego y dependiendo en que valor se inicializa, el diccionario que contiene las palabras (clave) en español o Ingles con sus correspondientes pistas (valor) para mostrar en la interfaz. 
+Algo parecido sucede con la dificultad, dependiendo la dificultad seleccionada los intentos que tiene el usuario para equivocarse al ingresar palabras es diferente. 
+ 
+-Cuando el usuario ingresa una palabra de 5 letras y le de click en el botón aceptar, internamente se guarda la palabra ingresada en minúscula. Luego se hace una verificación letra por letra y dependiendo del estado de la letra (si es acertada, si no lo es, o si está en una posición incorrecta) se va agregando a un ArrayList de 5 posiciones (1 posición por letra) en donde cada posición nos dice por medio de Enums que estado tiene la letra. Después de eso, la interfaz se actualiza dependiendo de la palabra ingresada (si es correcta o no).  
+
+En caso de que haya adivinado la palabra: 
+se suma el puntaje. 
+se agrega a un conjunto que contiene las palabras adivinadas. 
+se verifica si gano el juego. 
+Y, finalmente se cambia la palabra para seguir jugando en caso de no ganar el juego. 
+
+En caso de que no haya adivinado la palabra se restan los intentos y si los intentos son igual a cero pierde el juego. 
+
+-También, agregamos algunos extras como el botón de siguiente palabra. Este botón sirve en caso de que el usuario no pueda adivinar la palabra tenga la opción de cambiarla a cambio de 5 puntos, aunque eventualmente la palabra volverá a salir sorteada ya que por NO ser una palabra adivinada no se agrega al conjunto de palabras adivinadas. Si el usuario tiene menos de 5 puntos no puede usar esta opción.  
+ 
+-Otro extra que agregamos es la opción de usar por única vez un botón que nos diga la palabra. Este botón nos muestra en la interfaz cual era la palabra e internamente la agrega al conjunto de palabras "adivinadas", verifica si se ganó el juego y resta el conteo de usos de este botón (1 solo uso) para que no se pueda volver a usar. 
+ 
+-Otra ayuda que tenemos en la interfaz es el botón pistas(?). Este botón tiene un límite de 3 veces y cada vez que es presionado hace visible la pista correspondiente a la palabra que se está jugando, anteriormente cuando se elige la palabra, aparte de guardar la palabra secreta, también se guarda su correspondiente pista. 
+
+.[big]#Clase EstadoDeJuego#
+[source, java]
+----
+ 	public class EstadoDeJuego {
+		//Inicialización de variables.
+
+	public EstadoDeJuego(Idioma idioma, Dificultad dificultad) {
+
+		if (idioma.name().equals("Español")) {
+			this.palabrasAux = palabrasEspañol;
+			agregarPalabrasEspañol();
+			
+		} else {
+			this.palabrasAux = palabrasIngles;
+			agregarPalabrasIngles();
+
+		}
+         
+		 //Asignación de valores a cada atributo.
+		}
+----
+En el constructor, verifica el idioma para asignar el conjunto de palabras correcto. En el caso de ser "Español", asigna el conjunto palabrasEspañol. De lo contrario, asigna el conjunto palabrasIngles.
+
+[source, java]
+----
+private void agregarPalabrasEspañol() {
+		palabrasEspañolMap = new HashMap<String, String>();
+		//Agrega palabras y su significados a PalabrasEspañolMap.
+
+		this.palabraSecreta = elegirPalabra();
+		this.pista = palabrasEspañolMap.get(this.palabraSecreta);
+
+	}
+----
+En este método, se agregan las palabras y su significado al diccionario PalabrasEspañolMap, selecciona una palabra secreta que la guarda en la variable PalabraSecreta y también selecciona la pista de la palabra que se guardo anteriormente y la guarda en la variable pista.
+[source, java]
+----
+
+	public void cambiarDificultad(Dificultad dif) {
+		
+		if (dif.name().equals("Fácil")) {
+			this.intentos = 8;
+		}
+		if (dif.name().equals("Normal")) {
+			this.intentos = 6;
+		}
+		if (dif.name().equals("Difícil")) {
+			this.intentos = 4;
+		}
+	}
+----
+
+En el siguiente método, dependiendo la dificultad,  se le asigna una cierta cantidad a la variable intentos.
+
+[source, java]
+----
+public String elegirPalabra() {
+		Random random = new Random();
+
+		int elem = random.nextInt(this.palabrasAux.length);
+
+		while (palabrasEnJuego.contains(palabrasAux[elem]) && !palabrasEnJuego.isEmpty())
+			elem = random.nextInt(this.palabrasAux.length);
+
+		return this.palabrasAux[elem];
+	}
+----
+El método `elegirPalabra()` elige una palabra de forma aleatoria verificando que esta no sea repetida.
+
+[source, java]
+----
+public void agregarPalabraAlConjunto() {
+		palabrasEnJuego.add(palabraSecreta);
+
+	}
+----
+El método `agregarPalabraAlConjunto()` agrega la palabra secreta al conjunto palabrasEnJuego.
+
+[source, java]
+----
+public void limpiarArregloDeNumeros() {
+		estadoDeLetras.clear();
+	}
+
+----
+Este método limpia el arreglo estadoDeLetras.
+
+[source, java]
+----
+public String obtenerEstadoLetras(int i) {
+		return estadoDeLetras.get(i).name();
+	}
+
+----
+El siguiente método, recibe un índice y  devuelve el elemento que está en la posición i del arrayList de estadoDeLetras.
+
+[source, java]
+----
+public void vaciarConjuntoDePalabras() {
+		palabrasEnJuego.clear();
+	}
+----
+Al igual que el método `vaciarConjuntoDePalabras()` saca los elementos del conjunto palabrasEnJuego.
+
+[source, java]
+----
+public boolean estaLaLetraEnLaPalabra(char letra) {
+
+		for (int i = 0; i < palabraSecreta.length(); i++) {
+			if (palabraSecreta.charAt(i) == letra) {
+				return true;
+			}
+		}
+		return false;
+	}
+----
+En este método, verifica que la palabra la letra ingresada esté en la palabra secreta.
+
+[source, java]
+----
+public void verificarPalabra(String palabraUSER) {
+
+		for (int i = 0; i < palabraSecreta.length(); i++) {
+
+			if (palabraUSER.charAt(i) == palabraSecreta.charAt(i)) {
+				estadoDeLetras.add(i, acertado);
+			}
+
+			else if (estaLaLetraEnLaPalabra(palabraUSER.charAt(i))) {
+				estadoDeLetras.add(i, letraEnOtraPosicion);
+			}
+
+			else {
+				estadoDeLetras.add(i, noAcertado);
+			}
+
+		}
+	}
+----
+El método `verificarPalabra(String palabraUSER)` verifica que la palabra ingresada por el usuario, letra por letra, esté en posición correcta, en otra posición o no esté.
+
+[source, java]
+----
+public void cambiarPalabra() {
+		this.palabraSecreta = elegirPalabra();
+		
+		if(this.idioma.name().equals("Español"))
+			this.pista = palabrasEspañolMap.get(this.palabraSecreta);
+		else
+			this.pista = palabrasInglesMap.get(this.palabraSecreta);
+	}
+----
+
+Este método cambia la palabra secreta y dependiendo el idioma la agrega a la pista.
+
+[source, java]
+----
+public boolean adivinoPalabra(String p) {
+		return p.equals(this.palabraSecreta);
+	}
+----
+El método `adivinoPalabra(String p)` verifica que la variable p sea igual a la palabra secreta.
+
+[source, java]
+----
+public void sumarPuntaje() {
+		this.puntaje += 10;
+
+	}
+----
+
+Este método suma 10 puntos a la variable puntaje.
+
+[source, java]
+----
+	public void restarPuntaje() {
+		this.puntaje -= 5;
+	}
+----
+
+Este método resta 5 puntos a la variable puntaje.
+
+== Conclusión:
+En conclusión, a pesar de las dificultades que tuvimos aprendimos a utilizar la tecnología Window Builder de Java y nos pareció muy interesante la realización de un juego en este lenguaje.
+
+Por momentos nos preocupó como utilizábamos los diferentes métodos y como los implementabamos, pero encontramos la solución. Aprender esta nueva tecnología y el uso de interfaces, fue desafiante pero gratificador para nuestro aprendizaje.
