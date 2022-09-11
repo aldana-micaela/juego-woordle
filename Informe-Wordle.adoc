@@ -249,6 +249,6 @@ Este método suma 10 puntos a la variable puntaje.
 Este método resta 5 puntos a la variable puntaje.
 
 == Conclusión:
-En conclusión, a pesar de las dificultades que tuvimos aprendimos a utilizar la tecnoligía Window Builder de Java y nos pareció muy interesante la realización de un juego en este lenguaje.
+En conclusión, a pesar de las dificultades que tuvimos aprendimos a utilizar la tecnología Window Builder de Java y nos pareció muy interesante la realización de un juego en este lenguaje.
 
 Por momentos nos preocupó como utilizábamos los diferentes métodos y como los implementabamos, pero encontramos la solución. Aprender esta nueva tecnología y el uso de interfaces, fue desafiante pero gratificador para nuestro aprendizaje.
