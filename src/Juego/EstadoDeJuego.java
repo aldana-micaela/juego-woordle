@@ -212,6 +212,10 @@ public class EstadoDeJuego {
 		this.puntaje += 10;
 
 	}
+	
+	public void sumarPuntajeParaBTNayuda() {
+		this.puntaje += 5;
+	}
 
 	public void restarPuntaje() {
 		this.puntaje -= 5;

@@ -117,7 +117,7 @@ public class JuegoInterface {
 		crearBoton_palabraSecreta();
 		excepcion5Letras();
 		JLabelPista();
-		palabraERA();
+		//palabraERA();
 
 		if (idioma.equals("Español")) {
 			buildIdiomaEspañol();
@@ -245,6 +245,9 @@ public class JuegoInterface {
 		palabraUsuario = juego.getpalabra();
 		verificacionDeLasLetras();
 		juego.agregarPalabraAlConjunto();
+		juego.sumarPuntajeParaBTNayuda();
+		PuntajeCant.setText(Integer.toString(juego.getPuntaje()));
+		btnsig.setEnabled(true);
 		ganarJuego();
 		frenarTiempoDeLosColores();
 		juego.restarIntentosAyuda();
@@ -516,7 +519,7 @@ public class JuegoInterface {
 		letra4.setContentType("");
 
 		juego.cambiarPalabra();
-		palabraERA.setText(juego.getpalabra());
+		//palabraERA.setText(juego.getpalabra());
 
 	}
 
@@ -529,7 +532,7 @@ public class JuegoInterface {
 
 	private void ganarJuego() {
 
-		if (juego.getPuntaje() > 100) {
+		if (juego.getPuntaje() >= 50) {
 
 			int opcion = JOptionPane.showConfirmDialog(frame, "¡Ganaste!, ¿Desea seguir jugando?", "",
 					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
