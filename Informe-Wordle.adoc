@@ -66,6 +66,31 @@ En el caso de que el usuario seleccione la opción "Fácil" contara con ocho (8)
 
 En total se implementaron 1 clase y 2 interfaces para el correcto funcionamiento del juego.
 
+------Descripción general de la implementación:------ 
+
+-La forma en que pensamos la implementación del juego fue que inicialmente se pueda acceder desde una interfaz de menú del juego, en la que el usuario puede seleccionar el idioma y el nivel de dificultad. Si el usuario no accede al juego por medio del menú, este tiene un modo predeterminado en la que el idioma es el español y la dificultad Normal. 
+
+-En cuanto a la lógica de la funcionalidad del juego es de la siguiente manera: 
+
+-Cuando el usuario selecciona el idioma, este es pasado como parámetro en el constructor de la clase que contiene la lógica e implementación del juego y dependiendo en que valor se inicializa, el diccionario que contiene las palabras (clave) en español o Ingles con sus correspondientes pistas (valor) para mostrar en la interfaz. 
+Algo parecido sucede con la dificultad, dependiendo la dificultad seleccionada los intentos que tiene el usuario para equivocarse al ingresar palabras es diferente. 
+ 
+-Cuando el usuario ingresa una palabra de 5 letras y le de click en el botón aceptar, internamente se guarda la palabra ingresada en minúscula. Luego se hace una verificación letra por letra y dependiendo del estado de la letra (si es acertada, si no lo es, o si está en una posición incorrecta) se va agregando a un ArrayList de 5 posiciones (1 posición por letra) en donde cada posición nos dice por medio de Enums que estado tiene la letra. Después de eso, la interfaz se actualiza dependiendo de la palabra ingresada (si es correcta o no).  
+
+En caso de que haya adivinado la palabra: 
+se suma el puntaje. 
+se agrega a un conjunto que contiene las palabras adivinadas. 
+se verifica si gano el juego. 
+Y, finalmente se cambia la palabra para seguir jugando en caso de no ganar el juego. 
+
+En caso de que no haya adivinado la palabra se restan los intentos y si los intentos son igual a cero pierde el juego. 
+
+-También, agregamos algunos extras como el botón de siguiente palabra. Este botón sirve en caso de que el usuario no pueda adivinar la palabra tenga la opción de cambiarla a cambio de 5 puntos, aunque eventualmente la palabra volverá a salir sorteada ya que por NO ser una palabra adivinada no se agrega al conjunto de palabras adivinadas. Si el usuario tiene menos de 5 puntos no puede usar esta opción.  
+ 
+-Otro extra que agregamos es la opción de usar por única vez un botón que nos diga la palabra. Este botón nos muestra en la interfaz cual era la palabra e internamente la agrega al conjunto de palabras "adivinadas", verifica si se ganó el juego y resta el conteo de usos de este botón (1 solo uso) para que no se pueda volver a usar. 
+ 
+-Otra ayuda que tenemos en la interfaz es el botón pistas(?). Este botón tiene un límite de 3 veces y cada vez que es presionado hace visible la pista correspondiente a la palabra que se está jugando, anteriormente cuando se elige la palabra, aparte de guardar la palabra secreta, también se guarda su correspondiente pista. 
+
 .[big]#Clase EstadoDeJuego#
 [source, java]
 ----
