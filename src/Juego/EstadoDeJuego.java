@@ -208,10 +208,6 @@ public class EstadoDeJuego {
 		return p.equals(this.palabraSecreta);
 	}
 
-	public int Puntaje() {
-		return this.puntaje;
-	}
-
 	public void sumarPuntaje() {
 		this.puntaje += 10;
 
@@ -219,10 +215,6 @@ public class EstadoDeJuego {
 
 	public void restarPuntaje() {
 		this.puntaje -= 5;
-	}
-
-	public int getIntentos() {
-		return this.intentos;
 	}
 
 	public boolean ganaste() {
@@ -237,22 +229,6 @@ public class EstadoDeJuego {
 
 	}
 
-//			public  void cambiarDificultad(String dificultad) {
-//				if (dificultad.equals("Fácil")) {
-//					this.dificultad = dificultad;
-//					this.intentos = 8;
-//				}
-//				if (dificultad.equals("Difícil")) {
-//					this.dificultad = dificultad;
-//					this.intentos = 4;
-//				}
-//			}
-//
-//
-//			public String getDificultad() {
-//				return this.dificultad;
-//			}
-//			
 	public void restarIntentosAyuda() {
 		this.intentosDeAyuda--;
 	}
@@ -260,7 +236,15 @@ public class EstadoDeJuego {
 	public void restarIntentosPista() {
 		this.intentosDePista--;
 	}
-
+	
+	public int getPuntaje() {
+		return this.puntaje;
+	}
+	
+	public int getIntentos() {
+		return this.intentos;
+	}
+	
 	public int getIntentosAyuda() {
 		return this.intentosDeAyuda;
 	}
@@ -268,19 +252,6 @@ public class EstadoDeJuego {
 	public int getIntentosPista() {
 		return this.intentosDePista;
 	}
-
-//	public void jugar(String palabra) {
-//		if (adivinoPalabra(palabra)) {
-//			sumarPuntaje();
-//			agregarPalabraAlConjunto();
-//			elegirPalabra();
-//
-//		} else {
-//			restarPuntaje();
-//			quitarIntentos();
-//		}
-//
-//	}
 
 	public ArrayList<EstadoDeLetras> getestadoDeLetras() {
 
@@ -300,10 +271,6 @@ public class EstadoDeJuego {
 
 	}
 		
-	public String getPuntaje() {
-		return this.puntaje + "";
-	}
-
 	public void quitarIntentos() {
 		if (this.intentos > 0) {
 			this.intentos--;

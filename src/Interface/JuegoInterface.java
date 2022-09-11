@@ -192,11 +192,11 @@ public class JuegoInterface {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				if (juego.Puntaje() >= 5) {
+				if (juego.getPuntaje() >= 5) {
 					restarPuntaje();
 					siguientePalabra();
 
-					if (juego.Puntaje() < 5)
+					if (juego.getPuntaje() < 5)
 						btnsig.setEnabled(false);
 				}
 			}
@@ -353,7 +353,7 @@ public class JuegoInterface {
 	
 	private void sumarPuntaje() {
 		juego.sumarPuntaje();
-		PuntajeCant.setText(juego.getPuntaje());
+		PuntajeCant.setText(Integer.toString(juego.getPuntaje()));
 		btnsig.setEnabled(true);
 
 	}
@@ -366,7 +366,7 @@ public class JuegoInterface {
 
 	private void restarPuntaje() {
 		juego.restarPuntaje();
-		PuntajeCant.setText(juego.getPuntaje());
+		PuntajeCant.setText(Integer.toString(juego.getPuntaje()));
 
 	}
 
@@ -523,13 +523,13 @@ public class JuegoInterface {
 	private void resetearJuegoYDiseño() {
 		juego.resetearJuego();
 		cantidadDeIntentos.setText(Integer.toString(juego.getIntentos()));
-		PuntajeCant.setText(juego.getPuntaje());
+		PuntajeCant.setText(Integer.toString(juego.getPuntaje()));
 		excepcion5Letras.setVisible(false);
 	}
 
 	private void ganarJuego() {
 
-		if (juego.Puntaje() > 100) {
+		if (juego.getPuntaje() > 100) {
 
 			int opcion = JOptionPane.showConfirmDialog(frame, "¡Ganaste!, ¿Desea seguir jugando?", "",
 					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
