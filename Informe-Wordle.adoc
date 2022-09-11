@@ -62,6 +62,193 @@ Con respecto a la dificultad, se puede configurar en tres formas:
 En el caso de que el usuario seleccione la opción "Fácil" contara con ocho (8) intentos. Pero si el usuario selecciona la opción "Normal" contara con seís (6) intentos. Por último, si el usuario elige la opción "Difícil" solo tendrá cuatro (4) intentos para adivinar la palabra asignada. 
 
 
+== Implementación:
 
+En total se implementaron 1 clase y 2 interfaces para el correcto funcionamiento del juego.
 
+.[big]#Clase EstadoDeJuego#
+[source, java]
+----
+ 	public class EstadoDeJuego {
+		//Inicialización de variables.
 
+	public EstadoDeJuego(Idioma idioma, Dificultad dificultad) {
+
+		if (idioma.name().equals("Español")) {
+			this.palabrasAux = palabrasEspañol;
+			agregarPalabrasEspañol();
+			
+		} else {
+			this.palabrasAux = palabrasIngles;
+			agregarPalabrasIngles();
+
+		}
+         
+		 //Asignación de valores a cada atributo.
+		}
+----
+En el constructor, verifica el idioma para asignar el conjunto de palabras correcto. En el caso de ser "Español", asigna el conjunto palabrasEspañol. De lo contrario, asigna el conjunto palabrasIngles.
+
+[source, java]
+----
+private void agregarPalabrasEspañol() {
+		palabrasEspañolMap = new HashMap<String, String>();
+		//Agrega palabras y su significados a PalabrasEspañolMap.
+
+		this.palabraSecreta = elegirPalabra();
+		this.pista = palabrasEspañolMap.get(this.palabraSecreta);
+
+	}
+----
+En este método, se agregan las palabras y su significado al diccionario PalabrasEspañolMap, selecciona una palabra secreta que la guarda en la variable PalabraSecreta y también selecciona la pista de la palabra que se guardo anteriormente y la guarda en la variable pista.
+[source, java]
+----
+
+	public void cambiarDificultad(Dificultad dif) {
+		
+		if (dif.name().equals("Fácil")) {
+			this.intentos = 8;
+		}
+		if (dif.name().equals("Normal")) {
+			this.intentos = 6;
+		}
+		if (dif.name().equals("Difícil")) {
+			this.intentos = 4;
+		}
+	}
+----
+
+En el siguiente método, dependiendo la dificultad,  se le asigna una cierta cantidad a la variable intentos.
+
+[source, java]
+----
+public String elegirPalabra() {
+		Random random = new Random();
+
+		int elem = random.nextInt(this.palabrasAux.length);
+
+		while (palabrasEnJuego.contains(palabrasAux[elem]) && !palabrasEnJuego.isEmpty())
+			elem = random.nextInt(this.palabrasAux.length);
+
+		return this.palabrasAux[elem];
+	}
+----
+El método `elegirPalabra()` elige una palabra de forma aleatoria verificando que esta no sea repetida.
+
+[source, java]
+----
+public void agregarPalabraAlConjunto() {
+		palabrasEnJuego.add(palabraSecreta);
+
+	}
+----
+El método `agregarPalabraAlConjunto()` agrega la palabra secreta al conjunto palabrasEnJuego.
+
+[source, java]
+----
+public void limpiarArregloDeNumeros() {
+		estadoDeLetras.clear();
+	}
+
+----
+Este método limpia el arreglo estadoDeLetras.
+
+[source, java]
+----
+public String obtenerEstadoLetras(int i) {
+		return estadoDeLetras.get(i).name();
+	}
+
+----
+El siguiente método, recibe un índice y  devuelve el elemento que está en la posición i del arrayList de estadoDeLetras.
+
+[source, java]
+----
+public void vaciarConjuntoDePalabras() {
+		palabrasEnJuego.clear();
+	}
+----
+Al igual que el método `vaciarConjuntoDePalabras()` saca los elementos del conjunto palabrasEnJuego.
+
+[source, java]
+----
+public boolean estaLaLetraEnLaPalabra(char letra) {
+
+		for (int i = 0; i < palabraSecreta.length(); i++) {
+			if (palabraSecreta.charAt(i) == letra) {
+				return true;
+			}
+		}
+		return false;
+	}
+----
+En este método, verifica que la palabra la letra ingresada esté en la palabra secreta.
+
+[source, java]
+----
+public void verificarPalabra(String palabraUSER) {
+
+		for (int i = 0; i < palabraSecreta.length(); i++) {
+
+			if (palabraUSER.charAt(i) == palabraSecreta.charAt(i)) {
+				estadoDeLetras.add(i, acertado);
+			}
+
+			else if (estaLaLetraEnLaPalabra(palabraUSER.charAt(i))) {
+				estadoDeLetras.add(i, letraEnOtraPosicion);
+			}
+
+			else {
+				estadoDeLetras.add(i, noAcertado);
+			}
+
+		}
+	}
+----
+El método `verificarPalabra(String palabraUSER)` verifica que la palabra ingresada por el usuario, letra por letra, esté en posición correcta, en otra posición o no esté.
+
+[source, java]
+----
+public void cambiarPalabra() {
+		this.palabraSecreta = elegirPalabra();
+		
+		if(this.idioma.name().equals("Español"))
+			this.pista = palabrasEspañolMap.get(this.palabraSecreta);
+		else
+			this.pista = palabrasInglesMap.get(this.palabraSecreta);
+	}
+----
+
+Este método cambia la palabra secreta y dependiendo el idioma la agrega a la pista.
+
+[source, java]
+----
+public boolean adivinoPalabra(String p) {
+		return p.equals(this.palabraSecreta);
+	}
+----
+El método `adivinoPalabra(String p)` verifica que la variable p sea igual a la palabra secreta.
+
+[source, java]
+----
+public void sumarPuntaje() {
+		this.puntaje += 10;
+
+	}
+----
+
+Este método suma 10 puntos a la variable puntaje.
+
+[source, java]
+----
+	public void restarPuntaje() {
+		this.puntaje -= 5;
+	}
+----
+
+Este método resta 5 puntos a la variable puntaje.
+
+== Conclusión:
+En conclusión, a pesar de las dificultades que tuvimos aprendimos a utilizar la tecnoligía Window Builder de Java y nos pareció muy interesante la realización de un juego en este lenguaje.
+
+Por momentos nos preocupó como utilizábamos los diferentes métodos y como los implementabamos, pero encontramos la solución. Aprender esta nueva tecnología y el uso de interfaces, fue desafiante pero gratificador para nuestro aprendizaje.
