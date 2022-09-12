@@ -514,7 +514,7 @@ public class JuegoInterface {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
-		//frame.setResizable(false);
+		frame.setResizable(false);
 	}
 
 	private void cambiarColor() {
