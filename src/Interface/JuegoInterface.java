@@ -282,7 +282,7 @@ public class JuegoInterface {
 		textIntentos.setText("Intentos:");
 		Puntaje.setText("Puntaje:");
 		excepcion5Letras.setText("Ingrese una palabra de 5 letras!");
-		btnsig.setText("Siguiente Palabra:");
+		btnsig.setText("Siguiente Palabra");
 		jLabelPista.setText(juego.getPista());
 		btnPalabraSecreta.setText("Dime la palabra");
 
@@ -294,7 +294,7 @@ public class JuegoInterface {
 		textIntentos.setText("Attempts:");
 		Puntaje.setText("Score:");
 		excepcion5Letras.setText("Enter 5 letter words");
-		btnsig.setText("Next word:");
+		btnsig.setText("Next word");
 		jLabelPista.setText(juego.getPista());
 		btnPalabraSecreta.setText("Tell me the word");
 	}
