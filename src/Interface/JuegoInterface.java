@@ -366,6 +366,7 @@ public class JuegoInterface {
 	private void restarIntentos() {
 		juego.quitarIntentos();
 		cantidadDeIntentos.setText(Integer.toString(juego.getIntentos()));
+		cambiarColorIntentos();
 
 	}
 
@@ -534,16 +535,30 @@ public class JuegoInterface {
 
 	}
 
+	private void cambiarColorIntentos() {
+		if(juego.getIntentos()<=3) {
+			textIntentos.setForeground(Color.RED);
+			cantidadDeIntentos.setForeground(Color.RED);
+		}
+			
+		else {
+			textIntentos.setForeground(Color.black);
+			cantidadDeIntentos.setForeground(Color.black);
+			
+		}
+	}
+	
 	private void resetearJuegoYDiseño() {
 		juego.resetearJuego();
 		cantidadDeIntentos.setText(Integer.toString(juego.getIntentos()));
 		PuntajeCant.setText(Integer.toString(juego.getPuntaje()));
 		excepcion5Letras.setVisible(false);
+		cambiarColorIntentos();
 	}
 
 	private void ganarJuego() {
 
-		if (juego.getPuntaje() >= 150) {
+		if (juego.getPuntaje() >= 50) {
 
 			int opcion = JOptionPane.showConfirmDialog(frame, "¡Ganaste!, ¿Desea seguir jugando?", "",
 					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
