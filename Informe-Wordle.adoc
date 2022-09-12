@@ -47,14 +47,11 @@ Esta fue la solución que encontramos para dicho problema.
 
 Otro problema que se nos presentó, fue hacer implementar la dificultad del juego. Al igual que el idioma, lo solucionamos de la misma forma.
 
-También, hicimos cambios al agregar "Enum" en 2 oportunidades, porque la implementacion que teniamos tambien funcionaba pero no era correcta. 
-		1. Cuándo implementamos el idioma y la dificultad lo hicimos con números, dependiendo que idioma haya elegido el usuario y que
-		dificultad, se representaba en la implementación con 1 o 0 para el idioma(Español e Inglés) y 1, 2 y 3 para la dificultad(Fácil,
-		Normal y Difícil).
+También, hicimos cambios al agregar "Enum" en 2 oportunidades, porque la implementacion que teniamos tambien funcionaba pero no era correcta: 
 
-		2. Al verificar el estado de las letras (acertado, NOacertado, letraEnOtraPosicion) de la palabra que introdujo el usuario, se
-		agregaban a un ArrayList <int> números. Estos números dependiendo el estado de la letra representaban si era acertada, si no lo era,
-		o si la	letra estaba en una posisción incorrecta.
+-Cuándo implementamos el idioma y la dificultad lo hicimos con números, dependiendo que idioma haya elegido el usuario y que dificultad, se representaba en la implementación con 1 o 0 para el idioma(Español e Inglés) y 1, 2 y 3 para la dificultad(Fácil, Normal y Difícil).
+
+-Al verificar el estado de las letras (acertado, NOacertado, letraEnOtraPosicion) de la palabra que introdujo el usuario, se agregaban a un ArrayList <int> números. Estos números dependiendo el estado de la letra representaban si era acertada, si no lo era, o si la	letra estaba en una posisción incorrecta.
 
 Las decisiones que tomamos rescpeto al juego, fue que el usuario pueda cambiar de palabra solo tres veces. Pero al cambiar la palabra pierde un intento. También decidimos colocar un botón de ayuda en donde le indica al usuario el significado de la palabra. Este botón de ayuda, solo puede ser usado tres veces.
 
