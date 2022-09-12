@@ -78,9 +78,10 @@ public class MenuInterface {
 	private void crearFrame() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(144, 238, 144));
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(500, 200, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setResizable(false);
 	}
 
 	private void ponerImagenDeFondo() {

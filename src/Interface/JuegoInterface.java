@@ -117,7 +117,7 @@ public class JuegoInterface {
 		crearBoton_palabraSecreta();
 		excepcion5Letras();
 		JLabelPista();
-		//palabraERA();
+		palabraERA();
 
 		if (idioma.equals("Español")) {
 			buildIdiomaEspañol();
@@ -277,12 +277,12 @@ public class JuegoInterface {
 	}
 
 	private void buildIdiomaEspañol() {
-		textIngresarPalabra.setText("Ingrese palabra:");
+		textIngresarPalabra.setText("Ingrese una palabra:");
 		btnAceptar.setText("Aceptar");
-		textIntentos.setText("Intentos");
-		Puntaje.setText("Puntaje");
+		textIntentos.setText("Intentos:");
+		Puntaje.setText("Puntaje:");
 		excepcion5Letras.setText("Ingrese una palabra de 5 letras!");
-		btnsig.setText("Siguiente Palabra");
+		btnsig.setText("Siguiente Palabra:");
 		jLabelPista.setText(juego.getPista());
 		btnPalabraSecreta.setText("Dime la palabra");
 
@@ -291,18 +291,20 @@ public class JuegoInterface {
 	private void buildIdiomaIngles() {
 		textIngresarPalabra.setText("Enter word:");
 		btnAceptar.setText("Accept");
-		textIntentos.setText("Attempts");
-		Puntaje.setText("Score");
+		textIntentos.setText("Attempts:");
+		Puntaje.setText("Score:");
 		excepcion5Letras.setText("Enter 5 letter words");
-		btnsig.setText("Next word");
+		btnsig.setText("Next word:");
 		jLabelPista.setText(juego.getPista());
 		btnPalabraSecreta.setText("Tell me the word");
 	}
 
 	private void palabraERA() {
 		palabraERA = new JLabel(juego.getpalabra());
-		palabraERA.setBounds(179, 5, 57, 14);
+		palabraERA.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		palabraERA.setBounds(321, 35, 132, 24);
 		frame.getContentPane().add(palabraERA);
+		palabraERA.setVisible(false);
 
 	}
 
@@ -376,24 +378,25 @@ public class JuegoInterface {
 	private void excepcion5Letras() {
 		excepcion5Letras = new JLabel();
 		excepcion5Letras.setForeground(Color.RED);
-		excepcion5Letras.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		excepcion5Letras.setBounds(101, 131, 230, 24);
+		excepcion5Letras.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		excepcion5Letras.setBounds(491, 69, 257, 33);
 		frame.getContentPane().add(excepcion5Letras);
 		excepcion5Letras.setVisible(false);
 	}
 
 	private void JLabelPista() {
 		jLabelPista = new JLabel("");
-		jLabelPista.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
-		jLabelPista.setBounds(44, 98, 358, 28);
+		jLabelPista.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		jLabelPista.setBounds(67, 174, 624, 47);
 		frame.getContentPane().add(jLabelPista);
 		jLabelPista.setVisible(false);
 	}
 
 	private void crearBoton_siguientePalabra() {
 		btnsig = new JButton();
+		btnsig.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnsig.setBackground(Color.WHITE);
-		btnsig.setBounds(205, 58, 145, 30);
+		btnsig.setBounds(399, 126, 149, 35);
 		frame.getContentPane().add(btnsig);
 		btnsig.setVisible(true);
 		btnsig.setEnabled(false);
@@ -402,19 +405,21 @@ public class JuegoInterface {
 	private void crearBoton_palabraSecreta() {
 
 		btnPalabraSecreta = new JButton();
-		btnPalabraSecreta.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnPalabraSecreta.setBounds(133, 232, 175, 21);
+		btnPalabraSecreta.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnPalabraSecreta.setBounds(287, 354, 191, 35);
 		frame.getContentPane().add(btnPalabraSecreta);
 
 	}
 
 	private void crearTexto_Puntaje() {
 		Puntaje = new JLabel();
-		Puntaje.setBounds(329, 26, 46, 14);
+		Puntaje.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		Puntaje.setBounds(623, 26, 82, 24);
 		frame.getContentPane().add(Puntaje);
 
 		PuntajeCant = new JLabel("0");
-		PuntajeCant.setBounds(385, 26, 17, 14);
+		PuntajeCant.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		PuntajeCant.setBounds(715, 31, 33, 19);
 		frame.getContentPane().add(PuntajeCant);
 
 	}
@@ -424,52 +429,55 @@ public class JuegoInterface {
 		letra0.setEditable(false);
 		letra0.setBackground(Color.LIGHT_GRAY);
 		letra0.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		letra0.setBounds(30, 165, 62, 47);
+		letra0.setBounds(67, 249, 82, 72);
 		frame.getContentPane().add(letra0);
 
 		letra1 = new JTextPane();
 		letra1.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		letra1.setBackground(Color.LIGHT_GRAY);
 		letra1.setEditable(false);
-		letra1.setBounds(102, 165, 62, 47);
+		letra1.setBounds(189, 249, 88, 72);
 		frame.getContentPane().add(letra1);
 
 		letra2 = new JTextPane();
 		letra2.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		letra2.setEditable(false);
 		letra2.setBackground(Color.LIGHT_GRAY);
-		letra2.setBounds(174, 165, 62, 47);
+		letra2.setBounds(332, 249, 82, 72);
 		frame.getContentPane().add(letra2);
 
 		letra3 = new JTextPane();
 		letra3.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		letra3.setEditable(false);
 		letra3.setBackground(Color.LIGHT_GRAY);
-		letra3.setBounds(246, 165, 62, 47);
+		letra3.setBounds(466, 249, 82, 72);
 		frame.getContentPane().add(letra3);
 
 		letra4 = new JTextPane();
 		letra4.setEditable(false);
 		letra4.setBackground(Color.LIGHT_GRAY);
 		letra4.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		letra4.setBounds(318, 165, 62, 47);
+		letra4.setBounds(588, 249, 82, 72);
 		frame.getContentPane().add(letra4);
 	}
 
 	private void crearTexto_Intentos() {
 		textIntentos = new JLabel();
-		textIntentos.setBounds(329, 0, 57, 14);
+		textIntentos.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textIntentos.setBounds(50, 26, 99, 24);
 		frame.getContentPane().add(textIntentos);
 
 		cantidadDeIntentos = new JLabel("6");
-		cantidadDeIntentos.setBounds(385, 0, 17, 14);
+		cantidadDeIntentos.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		cantidadDeIntentos.setBounds(159, 26, 33, 24);
 		frame.getContentPane().add(cantidadDeIntentos);
 	}
 
 	private void crearBotonAceptar() {
 		btnAceptar = new JButton();
+		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnAceptar.setBackground(Color.WHITE);
-		btnAceptar.setBounds(93, 60, 102, 28);
+		btnAceptar.setBounds(189, 126, 149, 35);
 		frame.getContentPane().add(btnAceptar);
 	}
 
@@ -478,13 +486,14 @@ public class JuegoInterface {
 		btnPista.setBackground(Color.ORANGE);
 		btnPista.setForeground(Color.RED);
 		btnPista.setFont(new Font("Tahoma", Font.BOLD, 16));
-		btnPista.setBounds(385, 175, 41, 33);
+		btnPista.setBounds(697, 265, 57, 47);
 		frame.getContentPane().add(btnPista);
 	}
 
 	private void crearCampoDeTexto() {
 		textField = new JTextField();
-		textField.setBounds(156, 29, 96, 19);
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textField.setBounds(265, 69, 216, 33);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 
@@ -492,7 +501,8 @@ public class JuegoInterface {
 
 	private void crearTextoIngresarPalabra() {
 		textIngresarPalabra = new JLabel();
-		textIngresarPalabra.setBounds(30, 26, 97, 24);
+		textIngresarPalabra.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textIngresarPalabra.setBounds(50, 69, 168, 33);
 		frame.getContentPane().add(textIngresarPalabra);
 	}
 
@@ -500,10 +510,11 @@ public class JuegoInterface {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(152, 251, 152));
 		frame.setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(350, 150, 783, 436);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
+		//frame.setResizable(false);
 	}
 
 	private void cambiarColor() {
@@ -519,7 +530,7 @@ public class JuegoInterface {
 		letra4.setContentType("");
 
 		juego.cambiarPalabra();
-		//palabraERA.setText(juego.getpalabra());
+		palabraERA.setText(juego.getpalabra());
 
 	}
 
@@ -532,7 +543,7 @@ public class JuegoInterface {
 
 	private void ganarJuego() {
 
-		if (juego.getPuntaje() >= 50) {
+		if (juego.getPuntaje() >= 150) {
 
 			int opcion = JOptionPane.showConfirmDialog(frame, "¡Ganaste!, ¿Desea seguir jugando?", "",
 					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
