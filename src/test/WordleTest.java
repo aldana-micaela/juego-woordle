@@ -3,7 +3,6 @@ package test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.*;
@@ -170,7 +169,7 @@ public class WordleTest {
 	
 	
 	@Test
-	public void ver_si_se_obtiene_el_estado_correcto_de_la_letra() {
+	public void verSiSeObtieneElEstadocorrectoDeLaLetra() {
 		Idioma id = Idioma.Español;
 		Dificultad dif = Dificultad.Difícil;
 		wordleTest= new EstadoDeJuego(id, dif);
@@ -182,7 +181,7 @@ public class WordleTest {
 	}
 	
 	@Test
-	public void ver_si_se_obtiene_el_estado_INcorrecto_de_la_letra() {
+	public void verSiSeObtieneElEstadoIcorrectoDeLaLetra() {
 		Idioma id = Idioma.Español;
 		Dificultad dif = Dificultad.Difícil;
 		wordleTest= new EstadoDeJuego(id, dif);
@@ -195,7 +194,8 @@ public class WordleTest {
 	
 	
 	@Test
-	public void ver_la_verificacion_de_si_esta_la_letra_en_la_palabra() {
+	public void verLaVerificacionDeSiEstaLaLetraEnLaPalabra() {
+		
 		Idioma id = Idioma.Español;
 		Dificultad dif = Dificultad.Difícil;
 		wordleTest= new EstadoDeJuego(id, dif);
