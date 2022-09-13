@@ -282,7 +282,7 @@ public class JuegoInterface {
 		textIntentos.setText("Intentos:");
 		Puntaje.setText("Puntaje:");
 		excepcion5Letras.setText("Ingrese una palabra de 5 letras!");
-		btnsig.setText("Siguiente Palabra:");
+		btnsig.setText("Siguiente Palabra");
 		jLabelPista.setText(juego.getPista());
 		btnPalabraSecreta.setText("Dime la palabra");
 
@@ -294,7 +294,7 @@ public class JuegoInterface {
 		textIntentos.setText("Attempts:");
 		Puntaje.setText("Score:");
 		excepcion5Letras.setText("Enter 5 letter words");
-		btnsig.setText("Next word:");
+		btnsig.setText("Next word");
 		jLabelPista.setText(juego.getPista());
 		btnPalabraSecreta.setText("Tell me the word");
 	}
@@ -366,6 +366,7 @@ public class JuegoInterface {
 	private void restarIntentos() {
 		juego.quitarIntentos();
 		cantidadDeIntentos.setText(Integer.toString(juego.getIntentos()));
+		cambiarColorIntentos();
 
 	}
 
@@ -534,16 +535,30 @@ public class JuegoInterface {
 
 	}
 
+	private void cambiarColorIntentos() {
+		if(juego.getIntentos()<=3) {
+			textIntentos.setForeground(Color.RED);
+			cantidadDeIntentos.setForeground(Color.RED);
+		}
+			
+		else {
+			textIntentos.setForeground(Color.black);
+			cantidadDeIntentos.setForeground(Color.black);
+			
+		}
+	}
+	
 	private void resetearJuegoYDiseño() {
 		juego.resetearJuego();
 		cantidadDeIntentos.setText(Integer.toString(juego.getIntentos()));
 		PuntajeCant.setText(Integer.toString(juego.getPuntaje()));
 		excepcion5Letras.setVisible(false);
+		cambiarColorIntentos();
 	}
 
 	private void ganarJuego() {
 
-		if (juego.getPuntaje() >= 150) {
+		if (juego.getPuntaje() >= 50) {
 
 			int opcion = JOptionPane.showConfirmDialog(frame, "¡Ganaste!, ¿Desea seguir jugando?", "",
 					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);

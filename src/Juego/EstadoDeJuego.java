@@ -59,7 +59,7 @@ public class EstadoDeJuego {
 		this.dificultad=dificultad;
 		cambiarDificultad(dificultad);
 		this.estadoDeLetras = new ArrayList<EstadoDeLetras>();
-		this.intentosDePista = 20;
+		this.intentosDePista = 3;
 		this.intentosDeAyuda = 1;
 
 	}
