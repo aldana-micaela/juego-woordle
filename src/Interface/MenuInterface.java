@@ -78,7 +78,7 @@ public class MenuInterface {
 	private void crearFrame() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(144, 238, 144));
-		frame.setBounds(500, 200, 450, 300);
+		frame.setBounds(500, 200, 941, 523);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
@@ -86,15 +86,15 @@ public class MenuInterface {
 
 	private void ponerImagenDeFondo() {
 		Imagen = new JLabel();
-		Imagen.setIcon(new ImageIcon(MenuInterface.class.getResource("/Img/wordle-logo2.png")));
-		Imagen.setBounds(10, -28, 434, 335);
+		Imagen.setIcon(new ImageIcon(MenuInterface.class.getResource("/Img/wordle-word-27-may-2022-1024x576.jpg")));
+		Imagen.setBounds(-67, -46, 1108, 530);
 		frame.getContentPane().add(Imagen);
 
 	}
 
 	private void crearBtn_IniciarJuego() {
 		btnIniciarJuego = new JButton("Jugar");
-		btnIniciarJuego.setBounds(88, 227, 117, 26);
+		btnIniciarJuego.setBounds(205, 389, 139, 37);
 		btnIniciarJuego.setBackground(Color.GREEN);
 		btnIniciarJuego.setFont(new Font("Dialog", Font.PLAIN, 14));
 		frame.getContentPane().add(btnIniciarJuego);
@@ -102,7 +102,7 @@ public class MenuInterface {
 
 	private void crearBtn_Reglas() {
 		btnReglas = new JButton("Reglas");
-		btnReglas.setBounds(240, 227, 117, 26);
+		btnReglas.setBounds(590, 389, 127, 37);
 		btnReglas.setBackground(Color.GREEN);
 		btnReglas.setFont(new Font("Dialog", Font.PLAIN, 14));
 		frame.getContentPane().add(btnReglas);
@@ -112,7 +112,7 @@ public class MenuInterface {
 	private void crearTitulo_MenuPrincipal() {
 		lblNewLabel = new JLabel("Men\u00FA Principal");
 		lblNewLabel.setFont(new Font("Eras Bold ITC", Font.PLAIN, 23));
-		lblNewLabel.setBounds(126, 0, 206, 30);
+		lblNewLabel.setBounds(371, 24, 206, 30);
 		frame.getContentPane().add(lblNewLabel);
 	}
 
@@ -150,7 +150,8 @@ public class MenuInterface {
 	private void crearIdiomaComboBox() {
 
 		idiomaComboBox = new JComboBox<String>();
-		idiomaComboBox.setBounds(160, 41, 117, 22);
+		idiomaComboBox.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		idiomaComboBox.setBounds(405, 79, 117, 30);
 		frame.getContentPane().add(idiomaComboBox);
 		idiomaComboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Español", "Inglés" }));
 	}
@@ -162,7 +163,8 @@ public class MenuInterface {
 	private void crearIDificultadComboBox() {
 
 		difComboBox = new JComboBox<String>();
-		difComboBox.setBounds(160, 176, 109, 22);
+		difComboBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		difComboBox.setBounds(387, 322, 139, 35);
 		frame.getContentPane().add(difComboBox);
 		difComboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Fácil", "Normal", "Difícil" }));
 	}
