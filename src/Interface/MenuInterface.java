@@ -22,13 +22,17 @@ public class MenuInterface {
 	private JLabel Imagen;
 	private JComboBox<String> idiomaComboBox;
 	private JComboBox<String> difComboBox;
-	
-	public enum Idioma{Español, Inglés}
-	public enum Dificultad {Fácil, Normal, Difícil}
-	private Idioma idiomaSeleccionado=Idioma.Español;
-	private Dificultad dificultadSeleccionada=Dificultad.Normal;
-	
-	
+
+	public enum Idioma {
+		Español, Inglés
+	}
+
+	public enum Dificultad {
+		Fácil, Normal, Difícil
+	}
+
+	private Idioma idiomaSeleccionado = Idioma.Español;
+	private Dificultad dificultadSeleccionada = Dificultad.Normal;
 
 	/**
 	 * Launch the application.
@@ -78,7 +82,7 @@ public class MenuInterface {
 	private void crearFrame() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(144, 238, 144));
-		frame.setBounds(500, 200, 941, 523);
+		frame.setBounds(300, 150, 941, 523);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
@@ -121,13 +125,14 @@ public class MenuInterface {
 
 			public void actionPerformed(ActionEvent e) {
 
-				String id =(String) idiomaComboBox.getSelectedItem();
+				String id = (String) idiomaComboBox.getSelectedItem();
 				String dif = (String) difComboBox.getSelectedItem();
-				
-				idiomaSeleccionado= Enum.valueOf(Idioma.class, id);
-				dificultadSeleccionada= Enum.valueOf(Dificultad.class, dif);
-				
+
+				idiomaSeleccionado = Enum.valueOf(Idioma.class, id);
+				dificultadSeleccionada = Enum.valueOf(Dificultad.class, dif);
+
 				new JuegoInterface(idiomaSeleccionado, dificultadSeleccionada);
+				frame.setVisible(false);
 
 			}
 		});
@@ -138,10 +143,11 @@ public class MenuInterface {
 
 			public void actionPerformed(ActionEvent e) {
 
-				JOptionPane.showMessageDialog(frame, "Reglas del juego:\n-Se debe adivinar la palabra en un lapso limitado de intentos.\n"
-						+ "-El jugador cuenta con la opcion de usar el boton de pistas <?> 3 veces.\n"
-						+ "-El jugador cuenta con una unica ayuda para adivinar la palabra.\n"
-						+ "-El juego se podrá ganar despues de igualar o superar los 50 puntos");
+				JOptionPane.showMessageDialog(frame,
+						"Reglas del juego:\n-Se debe adivinar la palabra en un lapso limitado de intentos.\n"
+								+ "-El jugador cuenta con la opcion de usar el boton de pistas <?> 3 veces.\n"
+								+ "-El jugador cuenta con una unica ayuda para adivinar la palabra.\n"
+								+ "-El juego se podrá ganar despues de igualar o superar los 50 puntos");
 
 			}
 		});
