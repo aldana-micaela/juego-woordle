@@ -24,14 +24,14 @@ public class MenuInterface {
 	private JComboBox<String> difComboBox;
 
 	public enum Idioma {
-		Español, Inglés
+		EspaÃ±ol, InglÃ©s
 	}
 
 	public enum Dificultad {
-		Fácil, Normal, Difícil
+		FÃ¡cil, Normal, DifÃ­cil
 	}
 
-	private Idioma idiomaSeleccionado = Idioma.Español;
+	private Idioma idiomaSeleccionado = Idioma.EspaÃ±ol;
 	private Dificultad dificultadSeleccionada = Dificultad.Normal;
 
 	/**
@@ -147,7 +147,7 @@ public class MenuInterface {
 						"Reglas del juego:\n-Se debe adivinar la palabra en un lapso limitado de intentos.\n"
 								+ "-El jugador cuenta con la opcion de usar el boton de pistas <?> 3 veces.\n"
 								+ "-El jugador cuenta con una unica ayuda para adivinar la palabra.\n"
-								+ "-El juego se podrá ganar despues de igualar o superar los 50 puntos");
+								+ "-El juego se podrï¿½ ganar despues de igualar o superar los 50 puntos");
 
 			}
 		});
@@ -159,7 +159,7 @@ public class MenuInterface {
 		idiomaComboBox.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		idiomaComboBox.setBounds(405, 79, 117, 30);
 		frame.getContentPane().add(idiomaComboBox);
-		idiomaComboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Español", "Inglés" }));
+		idiomaComboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "EspaÃ±ol", "InglÃ©s" }));
 	}
 
 	public Idioma getIdioma() {
@@ -172,7 +172,7 @@ public class MenuInterface {
 		difComboBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		difComboBox.setBounds(387, 322, 139, 35);
 		frame.getContentPane().add(difComboBox);
-		difComboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Fácil", "Normal", "Difícil" }));
+		difComboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "FÃ¡cil", "Normal", "DifÃ­cil" }));
 	}
 
 	public Dificultad getDificultad() {

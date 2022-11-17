@@ -12,14 +12,14 @@ import Interface.MenuInterface.Idioma;
 
 public class EstadoDeJuego {
 
-	private String[] palabrasEspañol = { "orden", "joven", "botas", "calma", "palma", "jugar", "apodo", "dulce",
+	private String[] palabrasEspaÃ±ol = { "orden", "joven", "botas", "calma", "palma", "jugar", "apodo", "dulce",
 			"vocal", "barco", "regla", "letra", "nadar", "torta", "atomo", "boton", "libro", "cielo", "falso", "carne",
 			"falta", "fuego", "pluma", "tucan", "gatos", "fruta", "poste", "mesas", "motos", "tecla" };
 
 	private String[] palabrasIngles = { "beach", "hairs", "queen", "apple", "banks", "sleep", "house", "snake", "alive",
 			"river", "cards", "tools", "dance" };
 
-	private Map<String, String> palabrasEspañolMap;
+	private Map<String, String> palabrasEspaÃ±olMap;
 	private Map<String, String> palabrasInglesMap;
 	private Set<String> palabrasEnJuego = new HashSet<String>(); 
 	
@@ -44,9 +44,9 @@ public class EstadoDeJuego {
 
 	public EstadoDeJuego(Idioma idioma, Dificultad dificultad) {
 
-		if (idioma.name().equals("Español")) {
-			this.palabrasAux = palabrasEspañol;
-			agregarPalabrasEspañol();
+		if (idioma.name().equals("Espaï¿½ol")) {
+			this.palabrasAux = palabrasEspaÃ±ol;
+			agregarPalabrasEspaÃ±ol();
 			
 		} else {
 			this.palabrasAux = palabrasIngles;
@@ -64,42 +64,42 @@ public class EstadoDeJuego {
 
 	}
 
-	private void agregarPalabrasEspañol() {
-		palabrasEspañolMap = new HashMap<String, String>();
+	private void agregarPalabrasEspaÃ±ol() {
+		palabrasEspaÃ±olMap = new HashMap<String, String>();
 
-		palabrasEspañolMap.put("orden", "A las personas con TOC les gusta el...");
-		palabrasEspañolMap.put("joven", "Alguien menor de 50 años es...");
-		palabrasEspañolMap.put("botas", "Calazado de pies.");
-		palabrasEspañolMap.put("calma", "En la playa hay...");
-		palabrasEspañolMap.put("palma", "Está en el centro y tiene 5 dedos.");
-		palabrasEspañolMap.put("jugar", "Actividad que a los chicos les encanta.");
-		palabrasEspañolMap.put("apodo", "Abreviatura con la que llaman a alguien.");
-		palabrasEspañolMap.put("dulce", "El chocolate es...");
-		palabrasEspañolMap.put("vocal", "aeiou.");
-		palabrasEspañolMap.put("barco", "Pedazo de metal sobre el mar.");
-		palabrasEspañolMap.put("regla", "Algo que es recto.");
-		palabrasEspañolMap.put("letra", "Algo que se escribe.");
-		palabrasEspañolMap.put("nadar", "En lo hondo del mar me cuesta...");
-		palabrasEspañolMap.put("torta", "Está presente en los cumpleaños.");
-		palabrasEspañolMap.put("atomo", "Es invisible para el ojo humano.");
-		palabrasEspañolMap.put("boton", "Se apreta.");
-		palabrasEspañolMap.put("libro", "Se lee un...");
-		palabrasEspañolMap.put("cielo", "Tiene nubes.");
-		palabrasEspañolMap.put("falso", "Tengo un billete...");
-		palabrasEspañolMap.put("carne", "Lo que no comen los vegetarianos.");
-		palabrasEspañolMap.put("falta", "Hecho de no haber aquello que se indica.");
-		palabrasEspañolMap.put("fuego", "Te lastima si lo tocas.");
-		palabrasEspañolMap.put("pluma", "Con lo que vuelan los pistácidos.");
-		palabrasEspañolMap.put("tucan", "Pistácido con pico muy largo.");
-		palabrasEspañolMap.put("gatos", "Animales domésticos primos de los leones.");
-		palabrasEspañolMap.put("fruta", "Comida que nos proporciona la tierra.");
-		palabrasEspañolMap.put("poste", "Palos de luz.");
-		palabrasEspañolMap.put("mesas", "Espacios donde se apoya la comida.");
-		palabrasEspañolMap.put("motos", "A los motoqueros les gusta las...");
-		palabrasEspañolMap.put("tecla", "Elemento de una computadora.");
-		
+		palabrasEspaÃ±olMap.put("orden", "A las personas con TOC les gusta el...");
+		palabrasEspaÃ±olMap.put("joven", "Alguien menor de 50 aï¿½os es...");
+		palabrasEspaÃ±olMap.put("botas", "Calazado de pies.");
+		palabrasEspaÃ±olMap.put("calma", "En la playa hay...");
+		palabrasEspaÃ±olMap.put("palma", "Estï¿½ en el centro y tiene 5 dedos.");
+		palabrasEspaÃ±olMap.put("jugar", "Actividad que a los chicos les encanta.");
+		palabrasEspaÃ±olMap.put("apodo", "Abreviatura con la que llaman a alguien.");
+		palabrasEspaÃ±olMap.put("dulce", "El chocolate es...");
+		palabrasEspaÃ±olMap.put("vocal", "aeiou.");
+		palabrasEspaÃ±olMap.put("barco", "Pedazo de metal sobre el mar.");
+		palabrasEspaÃ±olMap.put("regla", "Algo que es recto.");
+		palabrasEspaÃ±olMap.put("letra", "Algo que se escribe.");
+		palabrasEspaÃ±olMap.put("nadar", "En lo hondo del mar me cuesta...");
+		palabrasEspaÃ±olMap.put("torta", "Estï¿½ presente en los cumpleaï¿½os.");
+		palabrasEspaÃ±olMap.put("atomo", "Es invisible para el ojo humano.");
+		palabrasEspaÃ±olMap.put("boton", "Se apreta.");
+		palabrasEspaÃ±olMap.put("libro", "Se lee un...");
+		palabrasEspaÃ±olMap.put("cielo", "Tiene nubes.");
+		palabrasEspaÃ±olMap.put("falso", "Tengo un billete...");
+		palabrasEspaÃ±olMap.put("carne", "Lo que no comen los vegetarianos.");
+		palabrasEspaÃ±olMap.put("falta", "Hecho de no haber aquello que se indica.");
+		palabrasEspaÃ±olMap.put("fuego", "Te lastima si lo tocas.");
+		palabrasEspaÃ±olMap.put("pluma", "Con lo que vuelan los pistï¿½cidos.");
+		palabrasEspaÃ±olMap.put("tucan", "Pistï¿½cido con pico muy largo.");
+		palabrasEspaÃ±olMap.put("gatos", "Animales domï¿½sticos primos de los leones.");
+		palabrasEspaÃ±olMap.put("fruta", "Comida que nos proporciona la tierra.");
+		palabrasEspaÃ±olMap.put("poste", "Palos de luz.");
+		palabrasEspaÃ±olMap.put("mesas", "Espacios donde se apoya la comida.");
+		palabrasEspaÃ±olMap.put("motos", "A los motoqueros les gusta las...");
+		palabrasEspaÃ±olMap.put("tecla", "Elemento de una computadora.");
+	
 		this.palabraSecreta = elegirPalabra();
-		this.pista = palabrasEspañolMap.get(this.palabraSecreta);
+		this.pista = palabrasEspaÃ±olMap.get(this.palabraSecreta);
 
 	}
 
@@ -127,13 +127,13 @@ public class EstadoDeJuego {
 
 	public void cambiarDificultad(Dificultad dif) {
 		
-		if (dif.name().equals("Fácil")) {
+		if (dif.name().equals("Fï¿½cil")) {
 			this.intentos = 8;
 		}
 		if (dif.name().equals("Normal")) {
 			this.intentos = 6;
 		}
-		if (dif.name().equals("Difícil")) {
+		if (dif.name().equals("Difï¿½cil")) {
 			this.intentos = 4;
 		}
 	}
@@ -198,8 +198,8 @@ public class EstadoDeJuego {
 	public void cambiarPalabra() {
 		this.palabraSecreta = elegirPalabra();
 		
-		if(this.idioma.name().equals("Español"))
-			this.pista = palabrasEspañolMap.get(this.palabraSecreta);
+		if(this.idioma.name().equals("Espaï¿½ol"))
+			this.pista = palabrasEspaÃ±olMap.get(this.palabraSecreta);
 		else
 			this.pista = palabrasInglesMap.get(this.palabraSecreta);
 	}
@@ -297,8 +297,8 @@ public class EstadoDeJuego {
 		return palabrasEnJuego;
 	}
 	
-	public Map<String, String> getPalabrasEspañolMap() {
-		return palabrasEspañolMap;
+	public Map<String, String> getPalabrasEspaÃ±olMap() {
+		return palabrasEspaÃ±olMap;
 	}
 
 	public Map<String, String> getPalabrasInglesMap() {

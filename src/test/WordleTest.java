@@ -18,7 +18,7 @@ public class WordleTest {
 	
 	@Test
 	public void sumarPuntajeTest() {
-		Idioma id= Idioma.Español;
+		Idioma id= Idioma.EspaÃ±ol;
 		Dificultad dif= Dificultad.Normal;
 		wordleTest=new EstadoDeJuego(id, dif);
 		
@@ -30,7 +30,7 @@ public class WordleTest {
 
 	@Test
 	public void LimpiarEstadoDeLetrasTest() {
-		Idioma id= Idioma.Español;
+		Idioma id= Idioma.EspaÃ±ol;
 		Dificultad dif= Dificultad.Normal;
 		
 		ArrayList<Integer> p= new ArrayList<Integer>(1);
@@ -44,8 +44,8 @@ public class WordleTest {
 	
 	@Test 
 	public void verDificultadFacil() {
-		Idioma id= Idioma.Español;
-		Dificultad dif= Dificultad.Fácil;
+		Idioma id= Idioma.EspaÃ±ol;
+		Dificultad dif= Dificultad.FÃ¡cil;
 		wordleTest= new EstadoDeJuego(id, dif);
 		
 		wordleTest.cambiarDificultad(dif);
@@ -55,7 +55,7 @@ public class WordleTest {
 	
 	@Test 
 	public void verDificultadNormal() {
-		Idioma id= Idioma.Español;
+		Idioma id= Idioma.EspaÃ±ol;
 		Dificultad dif= Dificultad.Normal;
 		wordleTest= new EstadoDeJuego(id, dif);
 		
@@ -66,8 +66,8 @@ public class WordleTest {
 
 	@Test 
 	public void verDificultadDificil() {
-		Idioma id= Idioma.Español;
-		Dificultad dif= Dificultad.Difícil;
+		Idioma id= Idioma.EspaÃ±ol;
+		Dificultad dif= Dificultad.DifÃ­cil;
 		wordleTest= new EstadoDeJuego(id, dif);
 		
 		wordleTest.cambiarDificultad(dif);
@@ -78,8 +78,8 @@ public class WordleTest {
 	
 	@Test
 	public void verSiNoSeRepitenPalabrasEnElConjunto() {
-		Idioma id= Idioma.Español;
-		Dificultad dif= Dificultad.Difícil;
+		Idioma id= Idioma.EspaÃ±ol;
+		Dificultad dif= Dificultad.DifÃ­cil;
 		wordleTest= new EstadoDeJuego(id, dif);
 		
 		Set<String> conjuntoDePalabrasUsadas= wordleTest.getPalabrasEnJuego();
@@ -91,30 +91,30 @@ public class WordleTest {
 	
 	  @Test 
 	  public void verIdiomaIngles() {
-			Idioma id= Idioma.Inglés;
-			Dificultad dif= Dificultad.Difícil;
+			Idioma id= Idioma.InglÃ©s;
+			Dificultad dif= Dificultad.DifÃ­cil;
 			wordleTest= new EstadoDeJuego(id, dif);
 			
-			assertNull(wordleTest.getPalabrasEspañolMap());
+			assertNull(wordleTest.getPalabrasEspaÃ±olMap());
 			assertFalse(wordleTest.getPalabrasInglesMap().isEmpty());
 		  
 	  }
 	
 	  @Test 
-	  public void verIdiomaEspañol() {
-		  Idioma id= Idioma.Español;
-		  Dificultad dif= Dificultad.Difícil;
+	  public void verIdiomaEspaÃ±ol() {
+		  Idioma id= Idioma.EspaÃ±ol;
+		  Dificultad dif= Dificultad.DifÃ­cil;
 		  wordleTest= new EstadoDeJuego(id, dif);
 		  
 		  assertNull(wordleTest.getPalabrasInglesMap());
-		  assertFalse(wordleTest.getPalabrasEspañolMap().isEmpty());
+		  assertFalse(wordleTest.getPalabrasEspaÃ±olMap().isEmpty());
 		  
 	  }
 	
 	@Test
 	public void ver_Si_Se_Agrega_La_Palabra () {
-		Idioma id = Idioma.Español;
-		Dificultad dif = Dificultad.Difícil;
+		Idioma id = Idioma.EspaÃ±ol;
+		Dificultad dif = Dificultad.DifÃ­cil;
 		wordleTest= new EstadoDeJuego(id, dif);
 		
 		String palabra = wordleTest.getpalabra();
@@ -127,8 +127,8 @@ public class WordleTest {
 	
 	@Test
 	public void ver_si_verifica_bien_las_letras() {
-		Idioma id = Idioma.Español;
-		Dificultad dif = Dificultad.Difícil;
+		Idioma id = Idioma.EspaÃ±ol;
+		Dificultad dif = Dificultad.DifÃ­cil;
 		wordleTest= new EstadoDeJuego(id, dif);
 		
 		String palabraUser= wordleTest.getpalabra();
@@ -148,8 +148,8 @@ public class WordleTest {
 	
 	
 	public void ver_si_verifica_bien_las_letra() {
-		Idioma id = Idioma.Español;
-		Dificultad dif = Dificultad.Difícil;
+		Idioma id = Idioma.EspaÃ±ol;
+		Dificultad dif = Dificultad.DifÃ­cil;
 		wordleTest= new EstadoDeJuego(id, dif);
 		
 		String palabraUser= "aaaaa";
@@ -170,8 +170,8 @@ public class WordleTest {
 	
 	@Test
 	public void verSiSeObtieneElEstadocorrectoDeLaLetra() {
-		Idioma id = Idioma.Español;
-		Dificultad dif = Dificultad.Difícil;
+		Idioma id = Idioma.EspaÃ±ol;
+		Dificultad dif = Dificultad.DifÃ­cil;
 		wordleTest= new EstadoDeJuego(id, dif);
 		
 		String palabraUser= "12345";
@@ -182,8 +182,8 @@ public class WordleTest {
 	
 	@Test
 	public void verSiSeObtieneElEstadoIcorrectoDeLaLetra() {
-		Idioma id = Idioma.Español;
-		Dificultad dif = Dificultad.Difícil;
+		Idioma id = Idioma.EspaÃ±ol;
+		Dificultad dif = Dificultad.DifÃ­cil;
 		wordleTest= new EstadoDeJuego(id, dif);
 		
 		String palabraUser= wordleTest.getpalabra();
@@ -196,8 +196,8 @@ public class WordleTest {
 	@Test
 	public void verLaVerificacionDeSiEstaLaLetraEnLaPalabra() {
 		
-		Idioma id = Idioma.Español;
-		Dificultad dif = Dificultad.Difícil;
+		Idioma id = Idioma.EspaÃ±ol;
+		Dificultad dif = Dificultad.DifÃ­cil;
 		wordleTest= new EstadoDeJuego(id, dif);
 		
 		assertFalse(wordleTest.estaLaLetraEnLaPalabra('1'));

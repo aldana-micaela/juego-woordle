@@ -95,7 +95,7 @@ public class JuegoInterface {
 	 */
 	private void initialize() {
 		// inicializo
-		crearDiseñoJuego();
+		crearDiseÃ±oJuego();
 		boton_Aceptar();
 		boton_SiguientePalabra();
 		boton_pista();
@@ -103,7 +103,7 @@ public class JuegoInterface {
 
 	}
 	
-	private void crearDiseñoJuego() {
+	private void crearDiseÃ±oJuego() {
 
 		crearFrame();
 		crearTextoIngresarPalabra();
@@ -119,13 +119,13 @@ public class JuegoInterface {
 		JLabelPista();
 		palabraERA();
 
-		if (idioma.equals("Español")) {
-			buildIdiomaEspañol();
-		} else if (idioma.equals("Inglés")) {
+		if (idioma.equals("EspaÃ±ol")) {
+			buildIdiomaEspaÃ±ol();
+		} else if (idioma.equals("InglÃ©s")) {
 			buildIdiomaIngles();
 		}
 
-		if (dificultad.equals("Fácil")) {
+		if (dificultad.equals("FÃ¡cil")) {
 			cantidadDeIntentos.setText("8");
 
 		}
@@ -133,7 +133,7 @@ public class JuegoInterface {
 			cantidadDeIntentos.setText("6");
 
 		}
-		if (dificultad.equals("Difícil")) {
+		if (dificultad.equals("DifÃ­cil")) {
 			cantidadDeIntentos.setText("4");
 
 		}
@@ -276,7 +276,7 @@ public class JuegoInterface {
 		}
 	}
 
-	private void buildIdiomaEspañol() {
+	private void buildIdiomaEspaÃ±ol() {
 		textIngresarPalabra.setText("Ingrese una palabra:");
 		btnAceptar.setText("Aceptar");
 		textIntentos.setText("Intentos:");
@@ -548,7 +548,7 @@ public class JuegoInterface {
 		}
 	}
 	
-	private void resetearJuegoYDiseño() {
+	private void resetearJuegoYDiseÃ±o() {
 		juego.resetearJuego();
 		cantidadDeIntentos.setText(Integer.toString(juego.getIntentos()));
 		PuntajeCant.setText(Integer.toString(juego.getPuntaje()));
@@ -560,11 +560,11 @@ public class JuegoInterface {
 
 		if (juego.getPuntaje() >= 50) {
 
-			int opcion = JOptionPane.showConfirmDialog(frame, "¡Ganaste!, ¿Desea seguir jugando?", "",
+			int opcion = JOptionPane.showConfirmDialog(frame, "ï¿½Ganaste!, ï¿½Desea seguir jugando?", "",
 					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
 
 			if (opcion == 0) {
-				resetearJuegoYDiseño();
+				resetearJuegoYDiseÃ±o();
 			}
 
 			if (opcion == 1) {
@@ -574,12 +574,12 @@ public class JuegoInterface {
 	}
 
 	private void perderJuego() {
-		int opcion = JOptionPane.showConfirmDialog(frame, "¡Game Over!, ¿Desea seguir jugando?", "",
+		int opcion = JOptionPane.showConfirmDialog(frame, "ï¿½Game Over!, ï¿½Desea seguir jugando?", "",
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
 
 		if (opcion == 0) {
 			cambiarColor();
-			resetearJuegoYDiseño();
+			resetearJuegoYDiseÃ±o();
 
 		}
 		if (opcion == 1 || opcion == -1) {
