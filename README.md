@@ -29,13 +29,13 @@ cd juego-wordle`
 
 📦 Asegurate de tener Java 8 o superior instalado.
 
-📌 Posibles mejoras
+## 📌 Posibles mejoras
 Selección aleatoria de palabras desde archivo.
 Mayor validación de inputs.
 Agregar niveles de dificultad.
 Guardado de estadísticas.
 
-👩‍💻 Autoría
+## 👩‍💻 Autoría
 Aldana Micaela Filiberto y Juliana Camila Nuñez
 Estudiantes de Licenciatura en Sistemas
 Este proyecto fue desarrollado como parte de una práctica académica para afianzar conocimientos de Java, interfaces gráficas y lógica de programación.
