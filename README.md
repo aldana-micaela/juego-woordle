@@ -54,7 +54,7 @@ juego-woordle/
 │       └── PalabraTest.java
 │
 └── README.md
-
+```
 ## 🚀 Cómo ejecutar el proyecto
 
 1. Cloná este repositorio:
